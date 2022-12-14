@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: real-data-type
+# key: /real
+# --
+
+REAL(DFP)

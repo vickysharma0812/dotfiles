@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: vikas
+# key: /vikas
+# --
+!> authors: Vikas Sharma, Ph. D.
+! date: `(format-time-string "%Y-%m-%d")`
+! update: `(format-time-string "%Y-%m-%d")`
+! summary: ${1:write a line...}

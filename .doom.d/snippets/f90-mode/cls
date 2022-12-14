@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cls
+# key: /cls
+# --
+CLASS(${1:name}) $0

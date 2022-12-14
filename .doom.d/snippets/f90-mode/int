@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: integer-data-type
+# key: /int
+# --
+
+INTEGER(I4B)

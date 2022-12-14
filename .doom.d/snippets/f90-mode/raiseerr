@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: raiseerr
+# key: /raiseerr
+# --
+CALL e%raiseError(modName//"::"//myName//" - "// &
+  & '${1:message}')
+$0

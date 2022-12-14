@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: integer-intent-inout
+# key: /intinout
+# --
+
+INTEGER( I4B ), INTENT( INOUT ) ::

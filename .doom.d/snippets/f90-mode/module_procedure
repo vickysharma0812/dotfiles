@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: module procedure
+# key: /mp
+# --
+MODULE PROCEDURE ${1:name}
+$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cleanup
+# key: /cleanup
+# --
+!!! settings "Cleanup" $0

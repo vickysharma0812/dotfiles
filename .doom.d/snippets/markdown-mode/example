@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: example
+# key: /example
+# --
+!!! example "$1"

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: raisedebug
+# key: /raisedebug
+# --
+CALL e%raiseDebug(modName//"::"//myName//" - "// &
+     & '${1: message}')

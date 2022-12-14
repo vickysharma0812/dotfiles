@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: mps
+# key: /mps
+# --
+INTERFACE
+MODULE PURE SUBROUTINE ${1:name}(${2:args})
+  $3
+END SUBROUTINE ${1:name}
+END INTERFACE
+$0

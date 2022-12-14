@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: mpf
+# key: /mpf
+# --
+INTERFACE
+MODULE PURE FUNCTION ${1:name}( ${2:args} ) RESULT( Ans )
+  ${3:args}
+END FUNCTION ${4:args}
+END INTERFACE $0

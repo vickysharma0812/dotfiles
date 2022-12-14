@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: real-out
+# key: /realout
+# --
+
+REAL(DFP), INTENT( OUT ) ::

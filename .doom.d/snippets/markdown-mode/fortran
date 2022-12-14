@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fortran
+# key: /fortran
+# --
+'```fortran'
+$1
+'```'

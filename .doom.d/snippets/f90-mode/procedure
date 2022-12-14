@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: procedure
+# key: /proc
+# --
+PROCEDURE, PUBLIC, PASS(obj) :: $0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: char
+# key: /char
+# --
+CHARACTER(LEN=${1:*}) $0

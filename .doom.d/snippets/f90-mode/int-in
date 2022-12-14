@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: integer-intent-in
+# key: /intin
+# --
+
+INTEGER( I4B ), INTENT( IN ) ::

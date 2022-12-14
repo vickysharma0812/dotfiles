@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: raiseinfo
+# key: /raiseinfo
+# --
+CALL e%raiseInformation(modName//"::"//myName//" - "// &
+  & '${1:message}')
+$0

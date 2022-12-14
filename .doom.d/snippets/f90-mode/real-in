@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: real-in
+# key: /realin
+# --
+
+REAL(DFP), INTENT( IN ) ::

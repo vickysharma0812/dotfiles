@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: mf
+# key: /mf
+# --
+INTERFACE
+MODULE FUNCTION ${1:name}( ${2:args} ) RESULT( Ans )
+  ${3:args}
+END FUNCTION ${4:name}
+END INTERFACE $0
