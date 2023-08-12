@@ -93,66 +93,40 @@ return {
   },
 
   -- servers
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = {
-  --       ltex = {
-  --         settings = {
-  --           ltex = {
-  --             additionalRules = {
-  --               enablePickyRules = true,
-  --               motherTongue = 'en',
-  --               languageModel = '~/ngram',
-  --             },
-  --             checkFrequency = "save",
-  --             disabledRules = {
-  --               ['en-US'] = { 'PROFANITY', 'PASSIVE_VOICE' },
-  --               ['en-GB'] = { 'PROFANITY', 'PASSIVE_VOICE' },
-  --             },
-  --             -- dictionary = {
-  --             --   ['en-US'] = words,
-  --             --   ['en-GB'] = words,
-  --             -- },
-  --             -- filetypes ={ "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" }
-  --             -- filetypes = { "markdown", "tex", "mdx" }
-  --             filetypes = { "tex" },
-  --             enabled = { "latex", "tex", "bib" },
-  --             -- enabled = { "latex", "tex", "bib", "md" },
-  --           },
-  --         }
-  --       },
-  --
-  --     },
-  --   },
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        ltex = {
+          on_attach = function(client, bufnr)
+            -- your other on_attach code
+            -- for example, set keymaps here, like
+            -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- (see below code block for more details)
+            require("ltex-utils").on_attach(bufnr)
+          end,
+          settings = {
+            ltex = {
+              additionalRules = {
+                enablePickyRules = true,
+                motherTongue = 'en',
+                languageModel = '~/ngram',
+              },
+              checkFrequency = "save",
+              disabledRules = {
+                ['en-US'] = { 'PROFANITY', 'PASSIVE_VOICE' },
+                ['en-GB'] = { 'PROFANITY', 'PASSIVE_VOICE' },
+              },
+              filetypes = { "tex" },
+              enabled = { "latex", "tex", "bib" },
+              -- enabled = { "latex", "tex", "bib", "md" },
+            },
+          }
+        },
 
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     setup = {
-  --       ltex = function(_, opts)
-  --         --
-  --         -- extending the opts and then calling lsp setup for forls
-  --         --
-  --         local path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
-  --         local words = {}
-  --
-  --         for word in io.open(path, "r"):lines() do
-  --           table.insert(words, word)
-  --         end
-  --
-  --         opts.settings = {
-  --           dictionary = {
-  --             ['en-US'] = words,
-  --             ['en-GB'] = words,
-  --           },
-  --         }
-  --       end,
-  --     },
-  --   },
-  -- },
-
+      },
+    },
+  },
 
 
 }
