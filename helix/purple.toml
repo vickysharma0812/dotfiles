@@ -1,0 +1,94 @@
+# Author: Paul Graydon <p.y.graydon@gmail.com>
+
+"comment" = { fg = "comment", modifiers = ["italic"] }
+"constant" = { fg = "orange" }
+"constant.character.escape" = { fg = "magenta" }
+"function" = { fg = "yellow", modifiers = ["bold"] }
+"function.macro" = { fg = "cyan" }
+
+"keyword" = { fg = "light-green" }
+"keyword.control" = { fg = "teal" }
+"keyword.control.import" = { fg = "cyan" }
+"keyword.function" = { fg = "turquoise", modifiers = ["italic"] }
+"keyword.operator" = { fg = "green" }
+
+"operator" = { fg = "turquoise" }
+"punctuation" = { fg = "turquoise" }
+"string" = { fg = "light-green" }
+"string.regexp" = { fg = "light-blue" }
+"tag" = { fg = "red" }
+"type" = { fg = "teal" }
+"namespace" = { fg = "light-green" }
+"variable" = { fg = "white", modifiers=["italic"] }
+"variable.builtin" = { fg = "red" }
+"variable.other.member" = { fg = "green" }
+"variable.parameter" = { fg = "light-cyan", modifiers = ["italic"] }
+
+"diff.plus" = { fg = "green" }
+"diff.delta" = { fg = "orange" }
+"diff.minus" = { fg = "red" }
+
+"ui.background" = { fg = "foreground", bg = "background" }
+"ui.cursor" = { modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "orange", modifiers = ["bold"] }
+"ui.cursor.primary" = { modifiers = ["reversed"] }
+"ui.cursorline.primary" = { bg = "background_menu" }
+"ui.help" = { fg = "foreground", bg = "background_menu" }
+"ui.linenr" = { fg = "foreground_gutter" }
+"ui.linenr.selected" = { fg = "foreground" }
+"ui.menu" = { fg = "foreground", bg = "background_menu" }
+"ui.menu.selected" = { bg = "background_highlight" }
+"ui.popup" = { fg = "foreground", bg = "background_menu" }
+"ui.selection" = { bg = "background_highlight" }
+"ui.selection.primary" = { bg = "background_highlight" }
+"ui.statusline" = { fg = "foreground", bg = "background_menu" }
+"ui.statusline.inactive" = { fg = "foreground_gutter", bg = "background_menu" }
+"ui.statusline.normal" = { fg = "black", bg = "blue" }
+"ui.statusline.insert" = { fg = "black", bg = "green" }
+"ui.statusline.select" = { fg = "black", bg = "magenta" }
+"ui.text" = { fg = "foreground" }
+"ui.text.focus" = { fg = "yellow" }
+"ui.virtual.ruler" = { bg = "foreground_gutter" }
+"ui.virtual.whitespace" = { fg = "foreground_gutter" }
+"ui.window" = { fg = "black" }
+
+"error" = { fg = "red" }
+"warning" = { fg = "yellow" }
+"info" = { fg = "blue" }
+"hint" = { fg = "teal" }
+"diagnostic" = { modifiers = ["underlined"] }
+"special" = { fg = "orange" }
+
+"markup.heading" = { fg = "yellow", modifiers = ["bold"] }
+"markup.list" = { fg = "cyan" }
+"markup.bold" = { fg = "orange", modifiers = ["bold"] }
+"markup.italic" = { fg = "light-cyan", modifiers = ["italic"] }
+"markup.link.url" = { fg = "green" }
+"markup.link.text" = { fg = "teal" }
+"markup.quote" = { fg = "yellow", modifiers = ["italic"] }
+"markup.raw" = { fg = "cyan" }
+
+[palette]
+red = "#FF5151"
+orange = "#FFB454"
+yellow = "#FAD000"
+light-green = "#92FC79"
+green = "#45B08C"
+turquoise = "#00BEC5"
+light-cyan = "#9EFFFF"
+cyan = "#80FCFF"
+teal = "#008080"
+blue = "#BA87FF"
+magenta = "#D90FA8"
+white = "#E5E9F0"
+light-gray = "#6B778D"
+parameters = "#F16E6B"
+comment = "#B362FF"
+black = "#E1EFFF"
+
+foreground = "#FFFFFF"
+foreground_highlight = "#FFFFFF"
+foreground_gutter = "#A599E9"
+background = "#222145"
+background_highlight = "#54086B"
+background_menu = "#2D2B55"

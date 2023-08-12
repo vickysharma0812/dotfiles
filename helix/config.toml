@@ -1,0 +1,36 @@
+theme="catppuccin_mocha"
+
+[editor]
+line-number="relative"
+mouse=true
+auto-pairs = false
+auto-save = true
+shell = ["zsh", "-c"]
+auto-completion = true
+completion-trigger-len = 2
+true-color = true
+color-modes = true
+
+[editor.cursor-shape]
+insert="bar"
+normal="block"
+select="underline"
+
+[editor.file-picker]
+hidden=false
+
+[keys.normal]
+C-s = ":w"  
+C-o = ":open ~/.config/helix/config.toml" 
+a = "move_char_left" 
+w = "move_line_up" 
+"ret" = ["open_below", "normal_mode"]
+
+[keys.insert]
+"A-x" = "normal_mode" # Maps Alt-X to enter normal mode
+# Maps the enter key to open_below then re-enter normal mode
+"S-ret" = ["open_below", "insert_mode"] 
+
+[keys.select]
+# Maps the enter key to open_below then re-enter normal mode
+"C-S-j" = "goto_next_paragraph" 
