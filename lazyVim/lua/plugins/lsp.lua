@@ -98,6 +98,13 @@ return {
     opts = {
       servers = {
         ltex = {
+          on_attach = function(client, bufnr)
+            -- your other on_attach code
+            -- for example, set keymaps here, like
+            -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- (see below code block for more details)
+            require("ltex-utils").on_attach(bufnr)
+          end,
           settings = {
             ltex = {
               additionalRules = {
@@ -110,18 +117,13 @@ return {
                 ['en-US'] = { 'PROFANITY', 'PASSIVE_VOICE' },
                 ['en-GB'] = { 'PROFANITY', 'PASSIVE_VOICE' },
               },
-              -- dictionary = {
-              --   ['en-US'] = words,
-              --   ['en-GB'] = words,
-              -- },
-              -- filetypes ={ "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" }
-              -- filetypes = { "markdown", "tex", "mdx" }
               filetypes = { "tex" },
               enabled = { "latex", "tex", "bib" },
               -- enabled = { "latex", "tex", "bib", "md" },
             },
           }
         },
+
       },
     },
   },
