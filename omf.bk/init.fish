@@ -1,3 +1,4 @@
+
 ## Paths
 #
 # installing npm packages locally
@@ -7,23 +8,14 @@ set MANPATH $NPM_PACKAGES/share/man $MANPATH
 set PATH $PATH "/opt/homebrew/bin" "$HOME/Library/Python/3.9/bin"
 
 # starship prompt
-if type -q starship
-  starship init fish | source
-end
-
-## rbenv 
-if type -q rbenv
-  status --is-interactive; and rbenv init - fish | source
-end 
+starship init fish | source
 
 # fisher_path
 # set -g -x fisher_path $__fish_config_dir
 
 
 # easifem related
-if test -f ~/.config/easifem/easifemvar.fish 
-  source ~/.config/easifem/easifemvar.fish
-end
+source ~/.config/easifem/easifemvar.fish
 
 set -gx config $HOME/.config/
 set -gx fish $config/omf
@@ -50,27 +42,20 @@ set -gx myweb ~/OneDrive/Knowledge/LectureNotes/VikasSharma
 # To always Warpify the subshell for this command, add the following command to the end of your config.fish:
 # printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish" }}\x9c'
 
+## anaconda
+#
+source ~/anaconda3/etc/fish/conf.d/conda.fish
 
 ## rust
 set PATH $PATH "$HOME/.cargo/bin"
+
 set PATH $PATH "$HOME/.local/bin"
 
 ## GO related
+
 set GOPATH $HOME/go
 set PATH $PATH "$GOPATH/bin"
 
 
-## anaconda
-#
-if test -f ~/anaconda3/etc/fish/conf.d/conda.fish
-  source ~/anaconda3/etc/fish/conf.d/conda.fish
-end
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /Users/easifem/anaconda3/bin/conda
-    eval /Users/easifem/anaconda3/bin/conda "shell.fish" "hook" $argv | source
-    conda activate easifem
-end
-# <<< conda initialize <<<
-
+## rbenv 
+status --is-interactive; and rbenv init - fish | source
