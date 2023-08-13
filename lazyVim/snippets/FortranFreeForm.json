@@ -225,9 +225,9 @@
     "description": "module pure function",
     "body": [
       "INTERFACE",
-      "MODULE PURE FUNCTION ${NAME}( ${name2} ) RESULT( ans )",
+      "MODULE PURE FUNCTION ${1}( ${2} ) RESULT( ans )",
       "\t$0",
-      "END FUNCTION ${NAME}",
+      "END FUNCTION ${1}",
       "END INTERFACE",
       ""
     ]
@@ -237,9 +237,9 @@
     "description": "module elemental function",
     "body": [
       "INTERFACE",
-      "MODULE ELEMENTAL FUNCTION ${NAME}( ${name2} ) RESULT( ans )",
+      "MODULE ELEMENTAL FUNCTION ${1}( ${2} ) RESULT( ans )",
       "\t$0",
-      "END FUNCTION ${NAME}",
+      "END FUNCTION ${1}",
       "END INTERFACE",
       ""
     ]

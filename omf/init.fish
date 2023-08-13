@@ -96,3 +96,7 @@ if type -q ~/anaconda3/bin/conda
 end
 # <<< conda initialize <<<
 
+
+set -gx TERM 'xterm-256color'
+set -gx EDITOR 'nvim'
+set -gx VISUAL 'nvim'
