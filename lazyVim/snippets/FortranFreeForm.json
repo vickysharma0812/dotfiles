@@ -308,9 +308,9 @@
     "prefix": "mp",
     "description": "module procedure",
     "body": [
-      "MODULE PROCEDURE ${NAME}",
+      "MODULE PROCEDURE ${1}",
       "\t$0",
-      "END PROCEDURE ${NAME}"
+      "END PROCEDURE ${1}"
     ]
   },
   "modulefunction": {

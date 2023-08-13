@@ -124,10 +124,10 @@ local modkey1                          = "Control"
 -- personal variables
 --change these variables if you want
 local browser1                         = "vivaldi-stable"
-local browser2                         = "firefox"
+local browser2                         = "brave"
 local browser3                         = "chromium -no-default-browser-check"
 local editor                           = os.getenv("EDITOR") or "nano"
-local editorgui                        = "atom"
+local editorgui                        = "neovide"
 local filemanager                      = "thunar"
 local mailclient                       = "evolution"
 local mediaplayer                      = "spotify"
@@ -141,19 +141,24 @@ awful.util.tagnames                    = { "➊", "➋", "➌", "➍", "➎", "�
 --awful.util.tagnames = { "⌘", "♐", "⌥", "ℵ" }
 --awful.util.tagnames = { "www", "edit", "gimp", "inkscape", "music" }
 -- Use this : https://fontawesome.com/cheatsheet
---awful.util.tagnames = { "", "", "", "", "" }
+-- awful.util.tagnames                    = { "", "", "", "", "" }
 awful.layout.suit.tile.left.mirror     = true
 awful.layout.layouts                   = {
+  awful.layout.suit.spiral.dwindle,
   lain.layout.centerwork,
-  awful.layout.suit.tile,
+  lain.layout.termfair,
+  lain.layout.termfair.center,
+  -- lain.layout.cascade,
+  -- lain.layout.cascade.tile,
+  -- lain.layout.centerwork.horizontal,
+  -- awful.layout.suit.tile,
+  -- awful.layout.suit.tile.left,
+  -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.floating,
-  awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
   --awful.layout.suit.fair,
   --awful.layout.suit.fair.horizontal,
   --awful.layout.suit.spiral,
-  --awful.layout.suit.spiral.dwindle,
   -- awful.layout.suit.max,
   --awful.layout.suit.max.fullscreen,
   -- awful.layout.suit.magnifier,
@@ -161,11 +166,6 @@ awful.layout.layouts                   = {
   --awful.layout.suit.corner.ne,
   --awful.layout.suit.corner.sw,
   --awful.layout.suit.corner.se,
-  --lain.layout.cascade,
-  --lain.layout.cascade.tile,
-  --lain.layout.centerwork.horizontal,
-  --lain.layout.termfair,
-  --lain.layout.termfair.center,
 }
 
 awful.util.taglist_buttons             = my_table.join(
