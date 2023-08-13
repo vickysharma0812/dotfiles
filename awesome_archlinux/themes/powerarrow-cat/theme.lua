@@ -74,9 +74,11 @@ theme.bg_systray                                = mycolors.crust
 
 -- theme.tasklist_bg_focus                         = "#1A1A1A"
 theme.tasklist_bg_focus                         = mycolors.base
-theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_bg_normal                        = theme.bg_normal
+
+theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_fg_focus                         = theme.fg_focus
+theme.taglist_fg_focus                          = mycolors.maroon
 
 theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
