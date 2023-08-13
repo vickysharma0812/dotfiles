@@ -180,7 +180,7 @@ font:
   #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the
+  # the default being at the bottom. sIncreasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
   #glyph_offset:
   #  x: 0
@@ -785,7 +785,9 @@ key_bindings:
   - { key: Return, mods: Control|Shift, action: CreateNewWindow }
   - { key: N, mods: Control|Shift, action: SpawnNewInstance}
   - { key: Plus, mods: Control|Shift, action: IncreaseFontSize}
+  - { key: Semicolon, mods: Control|Shift, action: IncreaseFontSize}
   - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize}
+  - { key: Equals, mods: Control|Shift, action: DecreaseFontSize}
   - { key: Key0, mods: Control|Shift, action: ResetFontSize}
 
 
