@@ -26,7 +26,10 @@ if test -f ~/.config/easifem/easifemvar.fish
 end
 
 set -gx config $HOME/.config/
+set -gx tmux $HOME/.config/tmux/
+set -gx tmuxrc $HOME/.config/tmux/tmux.conf.local
 set -gx fish $config/omf
+set -gx fishrc $fish/init.fish
 set -gx kitty $config/kitty
 set -gx nvim $config/nvim
 set -g -x dropbox $HOME/Dropbox/
