@@ -1,0 +1,130 @@
+#!/bin/sh
+platform='OSX'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+  platform='freebsd'
+fi
+
+##
+## ~/.config/easifem/easifemvar.sh >> START
+##
+# export EASIFEM_INSTALL_DIR=${HOME}/.easifem
+# export EASIFEM_BUILD_DIR=${HOME}/temp 
+# export EASIFEM_SOURCE_DIR=${HOME} 
+# export EASIFEM_BASE=${HOME}/.easifem/base
+# export EASIFEM_EXTPKGS=${HOME}/.easifem/extpkgs
+# export EASIFEM_CLASSES=${HOME}/.easifem/classes
+# export EASIFEM_MATERIALS=${HOME}/.easifem/materials
+# export EASIFEM_KERNELS=${HOME}/.easifem/kernels
+# export EASIFEM_IDE=${HOME}/.easifem/ide
+# export EASIFEM_TEST_DIR=${HOME}/Dropbox/easifem/easifem-tests
+# mkdir -p ${HOME}/.easifem/ide/include
+# mkdir -p ${HOME}/.easifem/ide/lib
+# mkdir -p ${HOME}/.easifem/extpkgs/include
+# mkdir -p ${HOME}/.easifem/extpkgs/lib
+# mkdir -p ${HOME}/.easifem/base/include
+# mkdir -p ${HOME}/.easifem/base/lib
+# mkdir -p ${HOME}/.easifem/classes/include
+# mkdir -p ${HOME}/.easifem/classes/lib
+# mkdir -p ${HOME}/.easifem/materials/include
+# mkdir -p ${HOME}/.easifem/materials/lib
+# mkdir -p ${HOME}/.easifem/kernels/include
+# mkdir -p ${HOME}/.easifem/kernels/lib
+# mkdir -p ${HOME}/.easifem/easifem-app/bin
+#
+# export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${EASIFEM_EXTPKGS}/lib/pkgconfig"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${EASIFEM_EXTPKGS}/lib"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${EASIFEM_BASE}/lib"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${EASIFEM_CLASSES}/lib"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${EASIFEM_MATERIALS}/lib"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${EASIFEM_KERNELS}/lib"
+##
+## ~/.config/easifem/easifemvar.sh << END
+##
+
+
+export EASIFEM_TEST_DIR=${HOME}/Dropbox/easifem/easifem-tests
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.local/lib/"
+export easifem=~/Dropbox/easifem
+export apps=${HOME}/Dropbox/easifem/apps
+export extpkgs=~/Dropbox/easifem-extpkgs
+export base=$easifem/easifem-base
+export classes=$easifem/easifem-classes
+# export docs=$HOME/Documents/Vikas/vickysharma0812.github.io
+export docs=$HOME/Documents/Vikas/easifemDocs
+export examples=$docs/docs
+export tests=$easifem/easifem-tests
+export materials=$easifem/easifem-materials
+export kernels=$easifem/easifem-kernels
+export elasticity=$easifem/Elasticity
+export dbe=$easifem/DBE
+export stokes=$easifem/StokesFlow
+export reactionDiffusion=$easifem/ReactionDiffusion
+export erc=~/.easifemrc
+export bp=~/.bash_profile
+export br=~/.bash_profile
+export zrc=~/.zshrc
+export dropbox=~/Dropbox
+export temp=~/temp
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+
+alias cmt='cmake -G "Ninja" -B ~/temp/tests/build .'
+alias cmbt='cmake --build ~/temp/tests/build'
+alias rt="~/temp/tests/build/test"
+alias ct="rm -rf ~/temp/tests/build"
+alias ctest_easifem='cmt && cmbt && ctest --test-dir ~/temp/tests/build --rerun-failed --output-on-failure'
+alias rebuild='rm -rf ~/temp && \
+  cd $base && python3 install.py && \
+  cd $classes && python3 install.py && \
+  cd $materials && python3 install.py && \
+  cd $kernels && python3 install.py'
+alias cpexample='cp -rf $tests/*/examples/* $examples/'
+alias o=open
+alias o=open -a
+alias c=clear
+alias ls='exa -al --color=always --group-directories-first --header --icons'
+alias la='exa --header --long --icons'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias v='nvim'
+
+PATH="${PATH}:/usr/local/bin/:/opt"
+PATH="${PATH}:/opt/ParaView/bin:/opt/ParaView/lib"
+PATH="${PATH}:/opt/ParaView/bin:/opt/neovide/bin"
+PATH="${PATH}:/opt/julia/1.8.0-rc3/bin"
+PATH="$HOME/gems/bin:$PATH"
+PATH="${HOME}/.emacs.d/bin:${PATH}"
+PATH="${HOME}/.cargo/bin:${PATH}"
+PATH="$HOME/.config/rofi/scripts:$PATH"
+export PATH
+
+
+##
+## not related to the easifem
+##
+
+config=~/.config
+export awesome=${config}/awesome
+export kitty=${config}/kitty
+export alacritty=${config}/alacritty
+export helix=${config}/helix
+export nvim=${config}/nvim
+export lvim=${config}/lvim
+export dotfiles=${dropbox}/dotfiles
+export picom=${config}/picom
+
+export PATH="${PATH}:/usr/local/go/bin"
+export PATH="${PATH}:${HOME}/go/bin"
+export soft="${HOME}/softwares"
+export conf="${HOME}/.config"
+
+export PATH="$HOME/neovim/bin:$PATH"
+export PATH="$PATH:$HOME/ParaView/bin"
+
+##alias nvim=${HOME}/.local/nvim.appimage
