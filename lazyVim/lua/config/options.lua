@@ -48,7 +48,7 @@ local options = {
   hidden = true,
   pumblend = 10,       -- popup blend
   spelllang = "en_us", -- popup blend
-  spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
+  spellfile = vim.fn.stdpath("config") .. "/spell/en-US.utf-8.add",
   laststatus = 3,
   splitkeep = "screen",
 }
