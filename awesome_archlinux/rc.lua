@@ -99,19 +99,8 @@ awful.spawn.with_shell(
 
 -- {{{ Variable definitions
 
--- keep themes in alfabetical order for ATT
-local themes = {
-  "blackburn",       -- 1
-  "copland",         -- 2
-  "multicolor",      -- 3
-  "powerarrow",      -- 4
-  "powerarrow-blue", -- 5
-  "powerarrow-dark", -- 6
-  "powerarrow-cat",  -- 7
-}
-
 -- choose your theme here
-local chosen_theme = themes[7]
+local chosen_theme = "powerarrow-cat"
 
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)

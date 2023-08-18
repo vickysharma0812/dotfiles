@@ -179,8 +179,8 @@ return {
       s = {
         name = "Search",
         p = { "<cmd>Telescope projects<cr>", "Search projects" },
-        -- t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-        f = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
+        f = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+        -- f = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
         e = { "<cmd>Telescope symbols<cr>", "Pick a Symbols" },
         -- b = {
         --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",

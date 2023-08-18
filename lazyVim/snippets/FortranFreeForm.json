@@ -34,6 +34,11 @@
       "&$0"
     ]
   },
+  "ia": {
+    "prefix": "ia",
+    "body": "INTEGER( I4B ), ALlOCATABLE :: $1",
+    "description": "Integer allocatable :: "
+  },
   "ip": {
     "prefix": "ip",
     "body": "INTEGER( I4B ), PARAMETER :: $1",
@@ -129,15 +134,6 @@
       "END SUBROUTINE ${NAME}",
       "END INTERFACE",
       ""
-    ]
-  },
-  "warn": {
-    "prefix": "warn",
-    "description": "warning ",
-    "body": [
-      "!@warning",
-      "! \t$0",
-      "!@endwarning"
     ]
   },
   "note": {
@@ -351,6 +347,14 @@
     "description": "raise info",
     "body": [
       "CALL e%raiseInformation(modName //'::'//myName// ' - '// &",
+      "\t& '$1')"
+    ]
+  },
+  "warn": {
+    "prefix": "warn",
+    "description": "raise warning",
+    "body": [
+      "CALL e%raiseWarning(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },

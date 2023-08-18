@@ -113,29 +113,27 @@ return {
         { name = "emoji" },
       }
 
-      opts.window = { documentation = cmp.config.window.bordered(), }
+      opts.window = { documentation = cmp.config.window.bordered() }
     end,
-
   },
 
   setup = function()
     local cmp = require("cmp")
     print("hello world")
-    cmp.setup.cmdline({ '/', '?' }, {
+    cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'buffer' }
-      }
+        { name = "buffer" },
+      },
     })
 
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = 'path' }
+        { name = "path" },
       }, {
-        { name = 'cmdline' }
-      })
+        { name = "cmdline" },
+      }),
     })
   end,
-
 }
