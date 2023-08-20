@@ -1,11 +1,11 @@
 return {
-  'nvimdev/guard.nvim',
+  "nvimdev/guard.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local ft = require('guard.filetype')
+    local ft = require("guard.filetype")
 
-    ft('fortran'):fmt({
-      cmd = 'fprettify',
+    ft("fortran"):fmt({
+      cmd = "fprettify",
       args = {
         "--case",
         "2",
@@ -34,8 +34,10 @@ return {
       -- stdin = true
     })
 
+    ft("julia"):fmt("lsp")
+
     -- Call setup() LAST!
-    require('guard').setup({
+    require("guard").setup({
       -- the only options for the setup function
       fmt_on_save = true,
       -- Use lsp if no formatter was defined for this filetype
@@ -47,4 +49,3 @@ return {
   --   'nvim-tree/nvim-web-devicons',     -- optional
   -- },
 }
-

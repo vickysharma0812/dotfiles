@@ -4,9 +4,11 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "julia-lsp",
         "pyright",
         "fortls",
         "marksman",
+        "markdownlint",
         "texlab",
         "ltex-ls",
         "clangd",
@@ -53,7 +55,6 @@ return {
     },
   },
 
-
   -- look
   {
     "neovim/nvim-lspconfig",
@@ -84,11 +85,9 @@ return {
           header = "",
           prefix = "",
         },
-
       },
 
       autoformat = true,
-
     },
   },
 
@@ -109,24 +108,21 @@ return {
             ltex = {
               additionalRules = {
                 enablePickyRules = true,
-                motherTongue = 'en',
-                languageModel = '~/ngram',
+                motherTongue = "en",
+                languageModel = "~/ngram",
               },
               checkFrequency = "save",
               disabledRules = {
-                ['en-US'] = { 'PROFANITY', 'PASSIVE_VOICE' },
-                ['en-GB'] = { 'PROFANITY', 'PASSIVE_VOICE' },
+                ["en-US"] = { "PROFANITY", "PASSIVE_VOICE" },
+                ["en-GB"] = { "PROFANITY", "PASSIVE_VOICE" },
               },
               filetypes = { "tex" },
               enabled = { "latex", "tex", "bib" },
               -- enabled = { "latex", "tex", "bib", "md" },
             },
-          }
+          },
         },
-
       },
     },
   },
-
-
 }

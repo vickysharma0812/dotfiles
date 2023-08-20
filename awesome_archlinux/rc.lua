@@ -1202,4 +1202,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
-awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
+awful.spawn.with_shell("picom -b --config  $HOME/.config/picom/picom.conf")
+-- awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")

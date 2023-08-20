@@ -279,11 +279,11 @@
     "prefix": "generic",
     "description": "itnerface",
     "body": [
-      "INTERFACE ${NAME}",
+      "INTERFACE ${1}",
       "\tMODULE PROCEDURE $0",
-      "END INTERFACE ${NAME}",
+      "END INTERFACE ${1}",
       "",
-      "PUBLIC :: ${NAME}"
+      "PUBLIC :: ${1}"
     ]
   },
   "line": {
