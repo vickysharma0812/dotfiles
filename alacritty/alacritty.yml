@@ -134,6 +134,7 @@ font:
       - (Windows) Consolas
     # family: VictorMono Nerd Font Propo
     # family: Iosevka Nerd Font
+    # family: Inconsolata Nerd Font
     family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -147,6 +148,7 @@ font:
     # value specified for the normal font.
     # family: VictorMono Nerd Font Propo
     # family: Iosevka Nerd Font
+    # family: Inconsolata Nerd Font
     family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -400,7 +402,7 @@ font:
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
 
-#cursor:
+cursor:
   # Cursor style
   #style:
     # Cursor shape
@@ -409,7 +411,7 @@ font:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    #shape: Block
+    shape: Block
 
     # Cursor blinking state
     #
@@ -418,7 +420,7 @@ font:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    blinking: On
 
   # Vi mode cursor style
   #
