@@ -34,14 +34,17 @@ return {
       -- stdin = true
     })
 
-    ft("julia"):fmt("lsp")
+    -- ft("julia"):fmt("lsp")
+    --
+
+    -- ft("go"):fmt("lsp"):append("golines"):lint("golangci-lint")
 
     -- Call setup() LAST!
     require("guard").setup({
       -- the only options for the setup function
       fmt_on_save = false,
       -- Use lsp if no formatter was defined for this filetype
-      lsp_as_default_formatter = false,
+      lsp_as_default_formatter = true,
     })
   end,
   -- dependencies = {

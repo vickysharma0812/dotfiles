@@ -42,6 +42,11 @@
   "ip": {
     "prefix": "ip",
     "body": "INTEGER( I4B ), PARAMETER :: $1",
+    "description": "integer parameter :: "
+  },
+  "rp": {
+    "prefix": "rp",
+    "body": "REAL(DFP), PARAMETER :: $1",
     "description": "real parameter :: "
   },
   "ioi": {

@@ -8,7 +8,31 @@ roots = ["fpm.toml", ".fortls"]
 comment-token = "!"
 indent={tab-width=2, unit="  "}
 language-server = {command="fortls", args=["--notify_init", "--sort_keywords", "--hover_signature", "--hover_language", "fortran", "--use_signature_help"]}
-formatter={command="fprettify", args=["--config-file", "~/.fprettify.rc"]}
+formatter={command="fprettify", args = [
+        "--case",
+        "2",
+        "2",
+        "2",
+        "2",
+        "--line-length",
+        "78",
+        "--indent",
+        "2",
+        "--strict-indent",
+        "--disable-indent-mod",
+        "--whitespace",
+        "2",
+        "--whitespace-comma",
+        "--whitespace-assignment",
+        "--enable-decl",
+        "--whitespace-decl",
+        "--whitespace-relational",
+        "--whitespace-logical",
+        "--whitespace-multdiv",
+        "--whitespace-print",
+        "--whitespace-intrinsics",
+        "--strip-comments"]}
+
 
 # [[grammar]]
 # name = "fortran"

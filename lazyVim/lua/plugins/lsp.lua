@@ -12,8 +12,28 @@ return {
         "texlab",
         "ltex-ls",
         "clangd",
+        "gopls",
       },
     },
+  },
+
+  -- If you want to lazy load navbuddy you need to load it before your Lsp related Stuff.
+  -- https://github.com/SmiteshP/nvim-navbuddy
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+          "numToStr/Comment.nvim", -- Optional
+          "nvim-telescope/telescope.nvim", -- Optional
+        },
+        opts = { lsp = { auto_attach = true } },
+      },
+    },
+    -- your lsp config or other stuff
   },
 
   -- clangd
@@ -51,6 +71,28 @@ return {
             -- },
           }
         end,
+      },
+      servers = {
+        fortls = {
+          on_attach = function(client, bufnr)
+            -- your other on_attach code
+            -- for example, set keymaps here, like
+            -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- (see below code block for more details)
+            local navbuddy = require("nvim-navbuddy")
+            navbuddy.attach(client, bufnr)
+          end,
+        },
+        julials = {
+          on_attach = function(client, bufnr)
+            -- your other on_attach code
+            -- for example, set keymaps here, like
+            -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- (see below code block for more details)
+            local navbuddy = require("nvim-navbuddy")
+            navbuddy.attach(client, bufnr)
+          end,
+        },
       },
     },
   },

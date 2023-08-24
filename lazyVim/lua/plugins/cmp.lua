@@ -61,31 +61,31 @@ return {
 
       --   פּ ﯟ   some other good icons
       local kind_icons = {
-        Text = "",
-        Method = "m",
-        Function = "",
-        Constructor = "",
-        Field = "",
-        Variable = "",
-        Class = "",
-        Interface = "",
-        Module = "",
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
+        Text = " ",
+        Method = "m ",
+        Function = "󰊕 ",
+        Constructor = " ",
+        Field = " ",
+        Variable = "󰆧 ",
+        Class = "󰌗 ",
+        Interface = " ",
+        Module = " ",
+        Property = " ",
+        Unit = " ",
+        Value = "󱓞 ",
+        Enum = " ",
+        Keyword = "󰹻 ",
+        Snippet = " ",
+        Color = "󰌁 ",
+        File = "󰈙 ",
+        Reference = " ",
+        Folder = " ",
+        EnumMember = " ",
+        Constant = "󰏿 ",
+        Struct = " ",
+        Event = " ",
+        Operator = "󰆕 ",
+        TypeParameter = "󰊄 ",
       }
 
       opts.formatting = {
@@ -105,10 +105,10 @@ return {
       }
 
       opts.sources = {
-        { name = "luasnip" },
-        { name = "buffer" },
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
+        { name = "luasnip" },
+        { name = "buffer" },
         { name = "path" },
         { name = "emoji" },
       }
@@ -117,23 +117,23 @@ return {
     end,
   },
 
-  setup = function()
-    local cmp = require("cmp")
-    print("hello world")
-    cmp.setup.cmdline({ "/", "?" }, {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = "buffer" },
-      },
-    })
-
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        { name = "cmdline" },
-      }),
-    })
-  end,
+  -- setup = function()
+  --   local cmp = require("cmp")
+  --   print("hello world")
+  --   cmp.setup.cmdline({ "/", "?" }, {
+  --     mapping = cmp.mapping.preset.cmdline(),
+  --     sources = {
+  --       { name = "buffer" },
+  --     },
+  --   })
+  --
+  --   cmp.setup.cmdline(":", {
+  --     mapping = cmp.mapping.preset.cmdline(),
+  --     sources = cmp.config.sources({
+  --       { name = "path" },
+  --     }, {
+  --       { name = "cmdline" },
+  --     }),
+  --   })
+  -- end,
 }
