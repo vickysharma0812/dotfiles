@@ -73,7 +73,7 @@ vim.keymap.set("n", "<leader>wf", function()
   vim.cmd.w()
 end, opts)
 
-keymap("n", "tt", "<cmd>ToggleTerm direction=float<cr>", opts) -- copy current date
+keymap("n", "tt", "<cmd>ToggleTerm<cr>", opts) -- copy current date
 keymap("n", "tv", "<cmd>ToggleTerm direction=vertical<cr>", opts) -- copy current date
 keymap("n", "th", "<cmd>ToggleTerm direction=horizontal<cr>", opts) -- copy current date
 keymap("n", "tv", "<cmd>lua _VIFM_TOGGLE()<cr>", opts) -- copy current date

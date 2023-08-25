@@ -13,6 +13,7 @@ return {
         "ltex-ls",
         "clangd",
         "gopls",
+        "golines",
       },
     },
   },

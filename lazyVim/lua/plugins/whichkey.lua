@@ -114,14 +114,20 @@ return {
           m = { ":e ~/.config/nvim/snippets/markdown.json <CR>", "Markdown snippets" },
         },
       },
-      X = {
-        name = "Packer",
-        c = { "<cmd>PackerCompile<cr>", "Compile" },
-        i = { "<cmd>PackerInstall<cr>", "Install" },
-        s = { "<cmd>PackerSync<cr>", "Sync" },
-        S = { "<cmd>PackerStatus<cr>", "Status" },
-        u = { "<cmd>PackerUpdate<cr>", "Update" },
+      -- X = {
+      --   name = "Packer",
+      --   c = { "<cmd>PackerCompile<cr>", "Compile" },
+      --   i = { "<cmd>PackerInstall<cr>", "Install" },
+      --   s = { "<cmd>PackerSync<cr>", "Sync" },
+      --   S = { "<cmd>PackerStatus<cr>", "Status" },
+      --   u = { "<cmd>PackerUpdate<cr>", "Update" },
+      -- },
+      x = {
+        name = "Install",
+        b = { "<cmd>lua _BASE_TOGGLE()<CR>", "Install base" },
+        c = { "<cmd>lua _CLASS_TOGGLE()<CR>", "Install classes" },
       },
+
       g = {
         name = "Git",
         g = { "<cmd>lua vim.cmd.Git()<cr>", "Git" },
@@ -225,11 +231,6 @@ return {
         s = { "<cmd>Telescope grep_string<CR>", "Search text in project" },
         g = { "<cmd>Telescope live_grep<CR>", "Search string live_grep" },
         h = { "<cmd>Telescope help_tags<CR>", "Search help tags" },
-      },
-      i = {
-        name = "Install",
-        b = { "<cmd>lua _BASE_TOGGLE()<CR>", "Install base" },
-        c = { "<cmd>lua _CLASS_TOGGLE()<CR>", "Install classes" },
       },
       B = {
         name = "Tab",
