@@ -1,5 +1,6 @@
 return {
   "jhofscheier/ltex-utils.nvim",
+  ft = { "tex", "markdown" },
   dependencies = {
     "neovim/nvim-lspconfig",
     "nvim-telescope/telescope.nvim",

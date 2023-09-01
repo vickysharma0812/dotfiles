@@ -39,7 +39,7 @@ return {
 
     -- ft("go"):fmt("lsp"):append("golines"):lint("golangci-lint")
     --
-    ft("markdown"):fmt("lsp"):append("prettierd")
+    ft("markdown"):fmt("prettierd")
 
     -- Call setup() LAST!
     require("guard").setup({

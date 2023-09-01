@@ -221,6 +221,16 @@
       ""
     ]
   },
+  "purefunc": {
+    "prefix": "pf",
+    "description": "pure function",
+    "body": [
+      "PURE FUNCTION ${1}( ${2} ) RESULT( ans )",
+      "\t$0",
+      "END FUNCTION ${1}",
+      ""
+    ]
+  },
   "modpurefunc": {
     "prefix": "mpf",
     "description": "module pure function",

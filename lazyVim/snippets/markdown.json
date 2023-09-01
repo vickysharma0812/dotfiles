@@ -251,7 +251,7 @@
     "description": "enter fortran code",
     "body": [
       "```fortran",
-      " ",
+      "${0}",
       "```"
     ]
   },

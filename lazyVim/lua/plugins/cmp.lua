@@ -18,6 +18,25 @@ return {
       "hrsh7th/cmp-cmdline",
     },
 
+    -- config = function()
+    --   local cmp = require("cmp")
+    --   cmp.setup.cmdline({ "/", "?" }, {
+    --     mapping = cmp.mapping.preset.cmdline(),
+    --     sources = {
+    --       { name = "buffer" },
+    --     },
+    --   })
+    --
+    --   cmp.setup.cmdline(":", {
+    --     mapping = cmp.mapping.preset.cmdline(),
+    --     sources = cmp.config.sources({
+    --       { name = "path" },
+    --     }, {
+    --       { name = "cmdline" },
+    --     }),
+    --   })
+    -- end,
+
     opts = function(_, opts)
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -27,6 +46,22 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+      })
 
       require("luasnip/loaders/from_vscode").lazy_load({
         paths = "./snippets",

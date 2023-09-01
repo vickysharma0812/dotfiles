@@ -299,6 +299,14 @@ return {
           R = { "<cmd>TroubleToggle lsp_references<cr>", "TroubleToggle lsp references" },
         },
       },
+      z = {
+        name = "Zen mode",
+        z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
+        n = { "<cmd>TZNarrow<CR>", "Toggle ZenMode Narrow" },
+        f = { "<cmd>TZFocus<cr>", "Toggle ZenMode Focus" },
+        m = { "<cmd>TZMinimalist<cr>", "Toggle ZenMode Minimal" },
+        a = { "<cmd>TZAtaraxis<cr>", "Toggle ZenMode Ataraxis" },
+      },
       n = {
         name = "Notifications",
         d = { "lua require('notify').dismiss({ silent = true, pending = true })", "Delete all Notifications" },

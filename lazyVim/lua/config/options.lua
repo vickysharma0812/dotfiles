@@ -65,6 +65,11 @@ vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- separate vim plugins from neovim in case vim still in use
 vim.g.markdown_recommended_style = 0
+-- taken from here https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 if vim.g.neovide then
   vim.g.neovide_refresh_rate = 60
@@ -96,8 +101,5 @@ if vim.g.neovide then
   -- -----> end
 end
 
--- taken from here https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
+if vim.g.vscode then
+end

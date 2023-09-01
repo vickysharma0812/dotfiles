@@ -8,7 +8,7 @@ return {
     }
   end,
   config = function()
-    if vim.loop.os_uname() == "Darwin" then
+    if vim.fn.has("macunix") then
       vim.keymap.set("n", "ƒ", "<Plug>(VM-Find-Under)")
       vim.keymap.set("n", "å", "<Plug>(VM-Select-All)")
       vim.keymap.set("n", "∆", "<Plug>(VM-Add-Cursor-Down)")

@@ -41,6 +41,7 @@ return {
       cmp = true,
       gitsigns = true,
       nvimtree = true,
+      neotree = true,
       treesitter = true,
       notify = true,
       mini = true,
@@ -61,10 +62,10 @@ return {
       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-    },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "catppuccin",
+  --   },
+  -- },
 }
