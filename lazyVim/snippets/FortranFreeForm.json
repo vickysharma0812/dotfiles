@@ -34,9 +34,19 @@
       "&$0"
     ]
   },
+  "ia": {
+    "prefix": "ia",
+    "body": "INTEGER( I4B ), ALlOCATABLE :: $1",
+    "description": "Integer allocatable :: "
+  },
   "ip": {
     "prefix": "ip",
     "body": "INTEGER( I4B ), PARAMETER :: $1",
+    "description": "integer parameter :: "
+  },
+  "rp": {
+    "prefix": "rp",
+    "body": "REAL(DFP), PARAMETER :: $1",
     "description": "real parameter :: "
   },
   "ioi": {
@@ -131,15 +141,6 @@
       ""
     ]
   },
-  "warn": {
-    "prefix": "warn",
-    "description": "warning ",
-    "body": [
-      "!@warning",
-      "! \t$0",
-      "!@endwarning"
-    ]
-  },
   "note": {
     "prefix": "note",
     "description": "note ",
@@ -220,14 +221,24 @@
       ""
     ]
   },
+  "purefunc": {
+    "prefix": "pf",
+    "description": "pure function",
+    "body": [
+      "PURE FUNCTION ${1}( ${2} ) RESULT( ans )",
+      "\t$0",
+      "END FUNCTION ${1}",
+      ""
+    ]
+  },
   "modpurefunc": {
     "prefix": "mpf",
     "description": "module pure function",
     "body": [
       "INTERFACE",
-      "MODULE PURE FUNCTION ${NAME}( ${name2} ) RESULT( ans )",
+      "MODULE PURE FUNCTION ${1}( ${2} ) RESULT( ans )",
       "\t$0",
-      "END FUNCTION ${NAME}",
+      "END FUNCTION ${1}",
       "END INTERFACE",
       ""
     ]
@@ -237,9 +248,9 @@
     "description": "module elemental function",
     "body": [
       "INTERFACE",
-      "MODULE ELEMENTAL FUNCTION ${NAME}( ${name2} ) RESULT( ans )",
+      "MODULE ELEMENTAL FUNCTION ${1}( ${2} ) RESULT( ans )",
       "\t$0",
-      "END FUNCTION ${NAME}",
+      "END FUNCTION ${1}",
       "END INTERFACE",
       ""
     ]
@@ -283,11 +294,11 @@
     "prefix": "generic",
     "description": "itnerface",
     "body": [
-      "INTERFACE ${NAME}",
+      "INTERFACE ${1}",
       "\tMODULE PROCEDURE $0",
-      "END INTERFACE ${NAME}",
+      "END INTERFACE ${1}",
       "",
-      "PUBLIC :: ${NAME}"
+      "PUBLIC :: ${1}"
     ]
   },
   "line": {
@@ -351,6 +362,14 @@
     "description": "raise info",
     "body": [
       "CALL e%raiseInformation(modName //'::'//myName// ' - '// &",
+      "\t& '$1')"
+    ]
+  },
+  "warn": {
+    "prefix": "warn",
+    "description": "raise warning",
+    "body": [
+      "CALL e%raiseWarning(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },

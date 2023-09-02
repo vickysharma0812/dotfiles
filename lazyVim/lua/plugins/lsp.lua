@@ -4,14 +4,37 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "julia-lsp",
         "pyright",
         "fortls",
         "marksman",
+        "markdownlint",
         "texlab",
         "ltex-ls",
         "clangd",
+        "gopls",
+        "golines",
       },
     },
+  },
+
+  -- If you want to lazy load navbuddy you need to load it before your Lsp related Stuff.
+  -- https://github.com/SmiteshP/nvim-navbuddy
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+          "numToStr/Comment.nvim", -- Optional
+          "nvim-telescope/telescope.nvim", -- Optional
+        },
+        opts = { lsp = { auto_attach = true } },
+      },
+    },
+    -- your lsp config or other stuff
   },
 
   -- clangd
@@ -50,9 +73,30 @@ return {
           }
         end,
       },
+      servers = {
+        fortls = {
+          on_attach = function(client, bufnr)
+            -- your other on_attach code
+            -- for example, set keymaps here, like
+            -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- (see below code block for more details)
+            local navbuddy = require("nvim-navbuddy")
+            navbuddy.attach(client, bufnr)
+          end,
+        },
+        julials = {
+          on_attach = function(client, bufnr)
+            -- your other on_attach code
+            -- for example, set keymaps here, like
+            -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- (see below code block for more details)
+            local navbuddy = require("nvim-navbuddy")
+            navbuddy.attach(client, bufnr)
+          end,
+        },
+      },
     },
   },
-
 
   -- look
   {
@@ -84,49 +128,79 @@ return {
           header = "",
           prefix = "",
         },
-
       },
 
       autoformat = true,
-
     },
   },
 
   -- servers
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "jhofscheier/ltex-utils.nvim" },
     opts = {
       servers = {
+        texlab = {
+          settings = {
+            texlab = {
+              auxDirectory = "build",
+              diagnosticsDelay = 50,
+              build = {
+                executable = "latexmk",
+                onSave = true,
+                args = {
+                  "-pdf",
+                  "-pdflua",
+                  "-quiet",
+                  "-interaction=nonstopmode",
+                  "-synctex=1",
+                  "-shell-escape",
+                  -- "-pvc",
+                  "-f",
+                  "-outdir=build",
+                  "%f",
+                },
+              },
+              forwardSearch = {
+                args = { "--synctex-forward", "%l:1:%f", "%p" },
+                executable = "zathura",
+              },
+              chktex = { onOpenAndSave = true, onEdit = false },
+              formatterLineLength = 80,
+              latexFormatter = "texlab",
+            },
+          },
+        },
         ltex = {
+          filetype = { "tex", "markdown" },
           on_attach = function(client, bufnr)
             -- your other on_attach code
             -- for example, set keymaps here, like
             -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
             -- (see below code block for more details)
+            vim.notify("ltex starts")
             require("ltex-utils").on_attach(bufnr)
           end,
           settings = {
             ltex = {
               additionalRules = {
                 enablePickyRules = true,
-                motherTongue = 'en',
-                languageModel = '~/ngram',
+                motherTongue = "en",
+                languageModel = "~/ngram",
               },
               checkFrequency = "save",
               disabledRules = {
-                ['en-US'] = { 'PROFANITY', 'PASSIVE_VOICE' },
-                ['en-GB'] = { 'PROFANITY', 'PASSIVE_VOICE' },
+                ["en-US"] = { "PROFANITY", "PASSIVE_VOICE" },
+                ["en-GB"] = { "PROFANITY", "PASSIVE_VOICE" },
               },
-              filetypes = { "tex" },
-              enabled = { "latex", "tex", "bib" },
-              -- enabled = { "latex", "tex", "bib", "md" },
+              -- filetypes = { "tex" },
+              -- enabled = { "latex", "tex", "bib", "markdown", "mdx" },
+              enabled = { "latex", "markdown" },
+              -- enabled = { "latex", "tex", "bib" },
             },
-          }
+          },
         },
-
       },
     },
   },
-
-
 }

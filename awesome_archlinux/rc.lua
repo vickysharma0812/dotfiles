@@ -99,19 +99,8 @@ awful.spawn.with_shell(
 
 -- {{{ Variable definitions
 
--- keep themes in alfabetical order for ATT
-local themes = {
-  "blackburn",       -- 1
-  "copland",         -- 2
-  "multicolor",      -- 3
-  "powerarrow",      -- 4
-  "powerarrow-blue", -- 5
-  "powerarrow-dark", -- 6
-  "powerarrow-cat",  -- 7
-}
-
 -- choose your theme here
-local chosen_theme = themes[7]
+local chosen_theme = "powerarrow-cat"
 
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
@@ -358,11 +347,18 @@ globalkeys = my_table.join(
     { description = mailclient, group = "function keys" }),
   awful.key({ modkey }, "F10", function() awful.util.spawn(mediaplayer) end,
     { description = mediaplayer, group = "function keys" }),
-  awful.key({ modkey }, "F11",
-    function() awful.util.spawn("rofi -theme-str 'window {width: 100%;height: 100%;}' -show drun") end,
-    { description = "rofi fullscreen", group = "function keys" }),
-  -- awful.key({ modkey }, "F12", function() awful.util.spawn("rofi -show drun") end,
-  --   { description = "rofi", group = "function keys" }),
+  -- awful.key({ modkey }, "F11",
+  --   function() awful.util.spawn("rofi -theme-str 'window {width: 100%;height: 100%;}' -show drun") end,
+  --   { description = "rofi fullscreen", group = "function keys" }),
+  awful.key({ modkey }, "F11", function()
+    os.execute(
+      string.format(
+        "rofi -show %s -theme %s",
+        "drun",
+        os.getenv("HOME") .. "/.config/rofi/launchers/type-3/style-9.rasi"
+      )
+    )
+  end, { description = "rofi", group = "function keys" }),
   awful.key({ modkey }, "F12", function()
     os.execute(
       string.format(
@@ -677,6 +673,8 @@ globalkeys = my_table.join(
   awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
     { description = "decrease the number of columns", group = "layout" }),
   awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
+    { description = "select next", group = "layout" }),
+  awful.key({ modkey, altkey}, "space", function() awful.layout.inc(1) end,
     { description = "select next", group = "layout" }),
   --awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
   -- {description = "select previous", group = "layout"}),
@@ -1213,4 +1211,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
-awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
+awful.spawn.with_shell("picom -b --config  $HOME/.config/picom/picom.conf")
+-- awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")

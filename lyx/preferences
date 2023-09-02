@@ -8,6 +8,8 @@ Format 24
 # MISC SECTION ######################################
 #
 
+# The time interval between auto-saves in seconds.
+\autosave 0
 \user_name "Vikas Sharma"
 \user_email ""
 
@@ -25,55 +27,67 @@ Format 24
 # COLOR SECTION ###################################
 #
 
-\set_color "cursor" "#D8DEE9"
-\set_color "background" "#2E3440"
-\set_color "foreground" "#D8DEE9"
-\set_color "selection" "#4c566a"
-\set_color "selectiontext" "#e5e9f0"
-\set_color "latex" "#A3BE8C"
+\set_color "cursor" "#cdd6f4"
+\set_color "background" "#11111b"
+\set_color "foreground" "#cdd6f4"
+\set_color "selection" "#313244"
+\set_color "selectiontext" "#74c7ec"
+\set_color "latex" "#94e2d5"
 \set_color "preview" "#D8DEE9"
+\set_color "inlinecompletion" "#cdd6f4"
 \set_color "note" "#ECEFF4"
 \set_color "notebg" "#3B4252"
 \set_color "comment" "#4C566A"
-\set_color "commentbg" "#2E3440"
-\set_color "greyedout" "#D8DEE9"
-\set_color "greyedoutbg" "#2E3440"
+\set_color "commentbg" "#313244"
+\set_color "greyedout" "#6c7086"
+\set_color "greyedouttext" "#a6adc8"
+\set_color "greyedoutbg" "#6c7086"
 \set_color "shaded" "#88C0D0"
-\set_color "footlabel" "#81a1c1"
+\set_color "listingsbg" "#11111b"
+\set_color "branchlabel" "#fab387"
+\set_color "footlabel" "#b4befe"
+\set_color "indexlabel" "#a6e3a1"
+\set_color "marginlabel" "#cba6f7"
 \set_color "urllabel" "#ebcb8b"
 \set_color "urltext" "#bf616a"
 \set_color "depthbar" "#ECEFF4"
 \set_color "language" "#ECEFF4"
-\set_color "command" "#D8DEE9"
-\set_color "commandbg" "#2E3440"
-\set_color "commandframe" "#2E3440"
+\set_color "command" "#bac2de"
+\set_color "commandbg" "#1e1e2e"
+\set_color "commandframe" "#1e1e2e"
 \set_color "special" "#ECEFF4"
-\set_color "graphicsbg" "#4c566a"
-\set_color "math" "#ECEFF4"
-\set_color "mathbg" "#2e3440"
-\set_color "mathmacrobg" "#2E3440"
-\set_color "mathframe" "#3B4252"
-\set_color "mathcorners" "#3B4252"
-\set_color "mathline" "#ECEFF4"
-\set_color "collapsible" "#D8DEE9"
-\set_color "collapsibleframe" "#3B4252"
-\set_color "insetbg" "#BF616A"
-\set_color "insetframe" "#BF616A"
-\set_color "eolmarker" "#88C0D0"
-\set_color "added_space" "#88C0D0"
-\set_color "appendix" "#88C0D0"
+\set_color "graphicsbg" "#313244"
+\set_color "math" "#b4befe"
+\set_color "mathbg" "#181825"
+\set_color "mathmacrobg" "#313244"
+\set_color "mathframe" "#cba6f7"
+\set_color "mathcorners" "#1e1e2e"
+\set_color "mathline" "#94e2d5"
+\set_color "collapsible" "#cdd6f4"
+\set_color "collapsibleframe" "#313244"
+\set_color "insetbg" "#f5c2e7"
+\set_color "insetframe" "#f5c2e7"
+\set_color "error" "#f38ba8"
+\set_color "eolmarker" "#f9e2af"
+\set_color "added_space" "#f5e0dc"
+\set_color "appendix" "#74c7ec"
 \set_color "changebar" "#88C0D0"
-\set_color "deletedtext" "#bf616a"
+\set_color "deletedtext" "#eba0ac"
 \set_color "addedtext" "#a3be8c"
 \set_color "changedtextauthor1" "#bf616a"
 \set_color "changedtextauthor2" "#a3be8c"
+\set_color "changedtextauthor3" "#f38ba8"
+\set_color "changedtextauthor4" "#f2cdcd"
+\set_color "changedtextauthor5" "#cba6f7"
+\set_color "deletedtextmodifier" "#f9e2af"
 \set_color "tabularline" "#8fbcbb"
 \set_color "tabularonoffline" "#999999"
-\set_color "bottomarea" "#3B4252"
+\set_color "bottomarea" "#181825"
+\set_color "newpage" "#89b4fa"
 \set_color "pagebreak" "#88C0D0"
-\set_color "buttonframe" "#8fbcbb"
-\set_color "buttonbg" "#3B4252"
-\set_color "buttonhoverbg" "#3b4252"
+\set_color "buttonframe" "#b4befe"
+\set_color "buttonbg" "#313244"
+\set_color "buttonhoverbg" "#45475a"
 
 #
 # PRINTER SECTION ###################################
@@ -89,6 +103,7 @@ Format 24
 # FILE SECTION ######################################
 #
 
+\make_backup false
 
 #
 # PLAIN TEXT EXPORT SECTION ##############################
@@ -99,6 +114,7 @@ Format 24
 # SPELLCHECKER SECTION ##############################
 #
 
+\use_system_colors false
 
 #
 # LANGUAGE SUPPORT SECTION ##########################

@@ -53,7 +53,8 @@ end
 
 local easifem_base = Terminal:new({
   cmd = "base",
-  hidden = true,
+  -- hidden = true,
+  hidden = false,
   dir = os.getenv("base"), -- it should EASIFEM_BASE_SOURCE
   close_on_exit = false,
   count = 100,
@@ -61,6 +62,9 @@ local easifem_base = Terminal:new({
   float_opts = {
     border = "double",
   },
+  -- on_stderr = function(t: Terminal, job: number, data: string[], name: string) end,
+  -- on_stdout = function(t: Terminal, job: number, data: string[], name: string) end,
+  -- on_exit = function(t: Terminal, job: number, data: string[], name: string) end,
 })
 
 local easifem_class = Terminal:new({
@@ -77,8 +81,14 @@ local easifem_class = Terminal:new({
 
 function _BASE_TOGGLE()
   easifem_base:toggle()
+  -- easifem_base:spawn()
 end
 
 function _CLASS_TOGGLE()
   easifem_class:toggle()
 end
+
+vim.api.nvim_create_user_command("Rfinder", function()
+  local path = vim.api.nvim_buf_get_name(0)
+  os.execute("open -R " .. path)
+end, {})

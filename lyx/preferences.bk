@@ -1,0 +1,131 @@
+# LyX 2.3.7 generated this file. If you want to make your own
+# modifications you should do them from inside LyX and save.
+
+Format 24
+
+
+#
+# MISC SECTION ######################################
+#
+
+# The time interval between auto-saves in seconds.
+\autosave 0
+\user_name "Vikas Sharma"
+\user_email ""
+
+#
+# SCREEN & FONTS SECTION ############################
+#
+
+\screen_zoom 200
+\screen_font_roman "PT Serif"
+\screen_font_sans "PT Sans"
+\screen_font_typewriter "PT Mono"
+\screen_font_sizes 5 7 8 9 10 12 14.4 17.26 20.74 24.88
+
+#
+# COLOR SECTION ###################################
+#
+
+\set_color "cursor" "#D8DEE9"
+\set_color "background" "#2E3440"
+\set_color "foreground" "#D8DEE9"
+\set_color "selection" "#4c566a"
+\set_color "selectiontext" "#e5e9f0"
+\set_color "latex" "#A3BE8C"
+\set_color "preview" "#D8DEE9"
+\set_color "note" "#ECEFF4"
+\set_color "notebg" "#3B4252"
+\set_color "comment" "#4C566A"
+\set_color "commentbg" "#2E3440"
+\set_color "greyedout" "#D8DEE9"
+\set_color "greyedoutbg" "#2E3440"
+\set_color "shaded" "#88C0D0"
+\set_color "footlabel" "#81a1c1"
+\set_color "urllabel" "#ebcb8b"
+\set_color "urltext" "#bf616a"
+\set_color "depthbar" "#ECEFF4"
+\set_color "language" "#ECEFF4"
+\set_color "command" "#D8DEE9"
+\set_color "commandbg" "#2E3440"
+\set_color "commandframe" "#2E3440"
+\set_color "special" "#ECEFF4"
+\set_color "graphicsbg" "#4c566a"
+\set_color "math" "#ECEFF4"
+\set_color "mathbg" "#2e3440"
+\set_color "mathmacrobg" "#2E3440"
+\set_color "mathframe" "#3B4252"
+\set_color "mathcorners" "#3B4252"
+\set_color "mathline" "#ECEFF4"
+\set_color "collapsible" "#D8DEE9"
+\set_color "collapsibleframe" "#3B4252"
+\set_color "insetbg" "#BF616A"
+\set_color "insetframe" "#BF616A"
+\set_color "eolmarker" "#88C0D0"
+\set_color "added_space" "#88C0D0"
+\set_color "appendix" "#88C0D0"
+\set_color "changebar" "#88C0D0"
+\set_color "deletedtext" "#bf616a"
+\set_color "addedtext" "#a3be8c"
+\set_color "changedtextauthor1" "#bf616a"
+\set_color "changedtextauthor2" "#a3be8c"
+\set_color "tabularline" "#8fbcbb"
+\set_color "tabularonoffline" "#999999"
+\set_color "bottomarea" "#3B4252"
+\set_color "pagebreak" "#88C0D0"
+\set_color "buttonframe" "#8fbcbb"
+\set_color "buttonbg" "#3B4252"
+\set_color "buttonhoverbg" "#3b4252"
+
+#
+# PRINTER SECTION ###################################
+#
+
+
+#
+# TEX SECTION #######################################
+#
+
+
+#
+# FILE SECTION ######################################
+#
+
+\make_backup false
+
+#
+# PLAIN TEXT EXPORT SECTION ##############################
+#
+
+
+#
+# SPELLCHECKER SECTION ##############################
+#
+
+\use_system_colors false
+
+#
+# LANGUAGE SUPPORT SECTION ##########################
+#
+
+
+#
+# 2nd MISC SUPPORT SECTION ##########################
+#
+
+
+#
+# FORMATS SECTION ##########################
+#
+
+\default_view_format 
+
+#
+# CONVERTERS SECTION ##########################
+#
+
+
+#
+# COPIERS SECTION ##########################
+#
+
