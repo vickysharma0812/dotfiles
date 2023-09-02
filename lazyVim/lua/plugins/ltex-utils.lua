@@ -1,6 +1,7 @@
 return {
   "jhofscheier/ltex-utils.nvim",
-  ft = { "tex", "markdown" },
+  branch = "vickysharma0812",
+  -- ft = { "tex", "markdown" },
   dependencies = {
     "neovim/nvim-lspconfig",
     "nvim-telescope/telescope.nvim",

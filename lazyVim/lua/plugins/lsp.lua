@@ -137,6 +137,7 @@ return {
   -- servers
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "jhofscheier/ltex-utils.nvim" },
     opts = {
       servers = {
         texlab = {
@@ -171,11 +172,13 @@ return {
           },
         },
         ltex = {
+          filetype = { "tex", "markdown" },
           on_attach = function(client, bufnr)
             -- your other on_attach code
             -- for example, set keymaps here, like
             -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
             -- (see below code block for more details)
+            vim.notify("ltex starts")
             require("ltex-utils").on_attach(bufnr)
           end,
           settings = {
@@ -190,8 +193,9 @@ return {
                 ["en-US"] = { "PROFANITY", "PASSIVE_VOICE" },
                 ["en-GB"] = { "PROFANITY", "PASSIVE_VOICE" },
               },
-              filetypes = { "tex" },
-              enabled = { "latex", "tex", "bib", "markdown", "mdx" },
+              -- filetypes = { "tex" },
+              -- enabled = { "latex", "tex", "bib", "markdown", "mdx" },
+              enabled = { "latex", "markdown" },
               -- enabled = { "latex", "tex", "bib" },
             },
           },
