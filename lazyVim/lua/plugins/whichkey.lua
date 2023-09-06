@@ -85,7 +85,6 @@ return {
       ["e"] = { "<cmd>Neotree toggle float<cr>", "Explorer" },
       -- ["q"] = { "<cmd>q!<CR>", "Quit" },
       -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-      ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["."] = {
         "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
         "Find files",
@@ -271,10 +270,7 @@ return {
       },
       T = {
         name = "Terminal",
-        n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-        u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-        t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-        p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
         l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazy" },
         b = { "<cmd>lua _BASE_TOGGLE()<cr>", "Base" },
         c = { "<cmd>lua _CLASS_TOGGLE()<cr>", "Classes" },
@@ -284,11 +280,12 @@ return {
       },
       t = {
         name = "Toggle",
-        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
+        t = { "<cmd>TransparentToggle<cr>", "Toggle transparent" },
         z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
         h = { "<cmd>Twilight<cr>", "Toggle Twilight" },
         s = { "<cmd>Navbuddy<cr>", "Toggle Navbuddy" },
-        o = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
+        O = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
+        o = { "<cmd>Lspsaga outline<cr>", "Toggle Symbol-outline" },
         x = {
           name = "TroubleToggle",
           d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document diagnostic" },
@@ -310,6 +307,17 @@ return {
       n = {
         name = "Notifications",
         d = { "lua require('notify').dismiss({ silent = true, pending = true })", "Delete all Notifications" },
+      },
+      h = {
+        name = "harpoon",
+        a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
+        r = { "<cmd>lua require('harpoon.mark').rm_file()<cr>", "remove file" },
+        m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "harpoon menu" },
+        n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "next file" },
+        p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "previous file" },
+        ["1"] = { "<cmd> lua require('harpoon.ui').nav_file(1)<cr>", "file 1" },
+        ["2"] = { "<cmd> lua require('harpoon.ui').nav_file(2)<cr>", "file 2" },
+        ["3"] = { "<cmd> lua require('harpoon.ui').nav_file(3)<cr>", "file 3" },
       },
     },
   },

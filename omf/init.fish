@@ -54,7 +54,7 @@ set -gx alarc $alacritt/alacritty.yml
 set -gx kitty $config/kitty
 set -gx nvim $config/nvim
 set -g -x dropbox $HOME/Dropbox/
-set -gx dotfiles $dropbox/dotfiles
+set -gx dot $dropbox/dotfiles
 set -gx easifem $dropbox/easifem
 set -gx base $easifem/easifem-base
 set -gx classes $easifem/easifem-classes
@@ -69,6 +69,7 @@ set -gx onedrive ~/OneDrive
 set -gx know ~/OneDrive/Knowledge
 set -gx fem ~/OneDrive/Knowledge/FEM
 set -gx lectures ~/OneDrive/Knowledge/LectureNotes
+set -gx notes $lectures/Notes/
 set -gx myweb ~/OneDrive/Knowledge/LectureNotes/VikasSharma
 
 # To always Warpify the subshell for this command, add the following command to the end of your config.fish:
@@ -108,3 +109,9 @@ set -gx VISUAL nvim
 if type -q brew
     set PATH $PATH /opt/homebrew/bin "$HOME/Library/Python/3.11/bin"
 end
+
+if test -d /opt/eww/eww-v0.4.0
+    set PATH $PATH /opt/eww/eww-v0.4.0
+end
+
+fish_vi_key_bindings

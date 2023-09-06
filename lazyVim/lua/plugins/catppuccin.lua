@@ -38,34 +38,62 @@ return {
     integration_default = nil, -- set to true/false to enable/disable integrations by default
     integrations = {
       aerial = true,
-      cmp = true,
-      gitsigns = true,
-      nvimtree = true,
-      neotree = true,
-      treesitter = true,
-      notify = true,
-      mini = true,
       bufferline = true,
-      gitgutter = true,
-      which_key = true,
+      cmp = true,
       flash = true,
-      lsp_saga = true,
-      markdown = true,
-      noice = true,
-      octo = true,
-      symbols_outline = true,
-      telescope = {
+      gitsigns = true,
+      gitgutter = true,
+      harpoon = true,
+      indent_blankline = {
         enabled = true,
-        -- style = "nvchad"
+        colored_indent_levels = false,
       },
       lsp_trouble = true,
+      lsp_saga = true,
+      nvimtree = true,
+      neotree = true,
+      noice = true,
+      notify = true,
+      notifier = true,
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+        },
+        inlay_hints = {
+          background = true,
+        },
+      },
+      mini = true,
+      markdown = true,
+      octo = true,
+      overseer = true,
+      symbols_outline = true,
+      semantic_tokens = true,
+      treesitter = true,
+      treesitter_context = true,
+      telekasten = true,
+      telescope = {
+        enabled = true,
+        style = "nvchad",
+      },
+      which_key = true,
       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
   },
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     colorscheme = "catppuccin",
-  --   },
-  -- },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
 }

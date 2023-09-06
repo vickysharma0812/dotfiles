@@ -258,37 +258,47 @@
   "class": {
     "prefix": "cls",
     "description": "class",
-    "body": "CLASS( $1 )"
+    "body": "CLASS( $0 )"
+  },
+  "ci": {
+    "prefix": "ci",
+    "description": "class intent in",
+    "body": "CLASS($1), INTENT(IN) :: $0"
+  },
+  "cio": {
+    "prefix": "cio",
+    "description": "class intent inout",
+    "body": "CLASS($1), INTENT(INOUT) :: $0"
   },
   "coi": {
     "prefix": "coi",
     "description": "class optional intent in",
-    "body": "CLASS($1), OPTIONAL, INTENT(IN) :: $2"
+    "body": "CLASS($1), OPTIONAL, INTENT(IN) :: $0"
   },
   "coo": {
     "prefix": "coo",
     "description": "class optional intent out",
-    "body": "CLASS($1), OPTIONAL, INTENT(OUT) :: $2"
+    "body": "CLASS($1), OPTIONAL, INTENT(OUT) :: $0"
   },
   "coio": {
     "prefix": "coio",
     "description": "class optional intent inout",
-    "body": "CLASS($1), OPTIONAL, INTENT(INOUT) :: $2"
+    "body": "CLASS($1), OPTIONAL, INTENT(INOUT) :: $0"
   },
   "intentin": {
     "prefix": "in",
     "description": "intent in",
-    "body": "INTENT( IN ) :: $1"
+    "body": "INTENT( IN ) :: $0"
   },
   "intentout": {
     "prefix": "out",
     "description": "intent out",
-    "body": "INTENT( OUT ) :: $1"
+    "body": "INTENT( OUT ) :: $0"
   },
   "intentinout": {
     "prefix": "inout",
     "description": "intent in out",
-    "body": "INTENT( INOUT ) :: $1"
+    "body": "INTENT( INOUT ) :: $0"
   },
   "generic": {
     "prefix": "generic",
@@ -313,7 +323,7 @@
   "procedure": {
     "prefix": "proc",
     "description": "procedure",
-    "body": "PROCEDURE, PUBLIC, PASS( obj ) :: $1"
+    "body": "PROCEDURE, PUBLIC, PASS( obj ) :: $0"
   },
   "moduleprocedure": {
     "prefix": "mp",
@@ -861,5 +871,17 @@
       ""
     ],
     "description": "check essential parameter template"
+  },
+  "mpwip": {
+    "prefix": "mpwip",
+    "description": "module procedure work in progress",
+    "body": [
+      "MODULE PROCEDURE ${1}",
+      "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
+      "CALL e%raiseError(modName //'::'//myName// ' - '// &",
+      "\t& '[WIP] this module has not been implemented yet')",
+      "! TODO: Implement ${1} ${0}",
+      "END PROCEDURE ${1}"
+    ]
   }
 }
