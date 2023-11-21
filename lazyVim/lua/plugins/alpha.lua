@@ -1,6 +1,13 @@
+if true then
+  return {}
+end
+
 return {
   "goolord/alpha-nvim",
-  optional = true,
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("alpha").setup(require("alpha.themes.dashboard").config)
+  end,
   opts = function(_, dashboard)
     dashboard.section.header.val = {
       [[███████╗ █████╗ ███████╗██╗███████╗███████╗███╗   ███╗]],

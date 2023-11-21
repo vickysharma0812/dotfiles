@@ -838,6 +838,12 @@ xplr.config.node_types.mime_essence = {}
 -- xplr.config.node_types.extension.rs = { meta = { icon = "🦀" } }
 -- ```
 xplr.config.node_types.extension = {}
+xplr.config.node_types.extension.md = { meta = { icon = "  " }, style = { fg = "Blue" } }
+xplr.config.node_types.extension.rs = { meta = { icon = "🦀 " } }
+xplr.config.node_types.extension.F90 = { meta = { icon = "󱈚 " }, style = { fg = "Red" } }
+xplr.config.node_types.extension.go = { meta = { icon = " " }, style = { fg = "Green" } }
+xplr.config.node_types.extension.py = { meta = { icon = "󰌠 " }, style = { fg = "LightBlue" } }
+xplr.config.node_types.extension.sh = { meta = { icon = "󱆃 " }, style = { fg = "Magenta" } }
 
 -- Metadata and style based on special file names.
 --
@@ -853,6 +859,7 @@ xplr.config.node_types.extension = {}
 -- xplr.config.node_types.special["Downloads"] = { meta = { icon = "" }, style = { fg = "Blue" } }
 -- ```
 xplr.config.node_types.special = {}
+xplr.config.node_types.special["Cargo.toml"] = { meta = { icon = "" } }
 
 -- ### Layouts ----------------------------------------------------------------
 --

@@ -1,6 +1,13 @@
+if true then
+  return {}
+end
+
 return {
   "nvimdev/guard.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    "nvimdev/guard-collection",
+  },
   config = function()
     local ft = require("guard.filetype")
 
@@ -34,12 +41,9 @@ return {
       -- stdin = true
     })
 
-    -- ft("julia"):fmt("lsp")
-    --
-
-    -- ft("go"):fmt("lsp"):append("golines"):lint("golangci-lint")
-    --
-    ft("markdown"):fmt("prettierd")
+    ft("markdown"):fmt("prettier")
+    -- ft("toml"):fmt("prettier")
+    ft("javascript"):fmt("prettier")
 
     -- Call setup() LAST!
     require("guard").setup({
@@ -49,8 +53,4 @@ return {
       lsp_as_default_formatter = true,
     })
   end,
-  -- dependencies = {
-  --   'nvim-treesitter/nvim-treesitter', -- optional
-  --   'nvim-tree/nvim-web-devicons',     -- optional
-  -- },
 }

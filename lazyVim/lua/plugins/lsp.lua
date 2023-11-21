@@ -1,15 +1,16 @@
 return {
-
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "julia-lsp",
+        -- "julia-lsp",
         "pyright",
         "fortls",
         "marksman",
         "markdownlint",
-        "texlab",
+        -- "texlab",
+        "prettier",
+        "prettierd",
         "ltex-ls",
         "clangd",
         "gopls",
@@ -129,8 +130,7 @@ return {
           prefix = "",
         },
       },
-
-      autoformat = true,
+      -- autoformat = true,
     },
   },
 
@@ -140,39 +140,40 @@ return {
     dependencies = { "jhofscheier/ltex-utils.nvim" },
     opts = {
       servers = {
-        texlab = {
-          settings = {
-            texlab = {
-              auxDirectory = "build",
-              diagnosticsDelay = 50,
-              build = {
-                executable = "latexmk",
-                onSave = true,
-                args = {
-                  "-pdf",
-                  "-pdflua",
-                  "-quiet",
-                  "-interaction=nonstopmode",
-                  "-synctex=1",
-                  "-shell-escape",
-                  -- "-pvc",
-                  "-f",
-                  "-outdir=build",
-                  "%f",
-                },
-              },
-              forwardSearch = {
-                args = { "--synctex-forward", "%l:1:%f", "%p" },
-                executable = "zathura",
-              },
-              chktex = { onOpenAndSave = true, onEdit = false },
-              formatterLineLength = 80,
-              latexFormatter = "texlab",
-            },
-          },
-        },
+        -- texlab = {
+        --   settings = {
+        --     texlab = {
+        --       auxDirectory = "build",
+        --       diagnosticsDelay = 50,
+        --       build = {
+        --         executable = "latexmk",
+        --         onSave = true,
+        --         args = {
+        --           "-pdf",
+        --           "-pdflua",
+        --           "-quiet",
+        --           "-interaction=nonstopmode",
+        --           "-synctex=1",
+        --           "-shell-escape",
+        --           -- "-pvc",
+        --           "-f",
+        --           "-outdir=build",
+        --           "%f",
+        --         },
+        --       },
+        --       forwardSearch = {
+        --         args = { "--synctex-forward", "%l:1:%f", "%p" },
+        --         executable = "zathura",
+        --       },
+        --       chktex = { onOpenAndSave = true, onEdit = false },
+        --       formatterLineLength = 80,
+        --       latexFormatter = "texlab",
+        --     },
+        --   },
+        -- },
         ltex = {
-          filetype = { "tex", "markdown" },
+          filetype = { "tex" },
+          -- filetype = { "tex", "markdown" },
           on_attach = function(client, bufnr)
             -- your other on_attach code
             -- for example, set keymaps here, like
@@ -194,8 +195,8 @@ return {
                 ["en-GB"] = { "PROFANITY", "PASSIVE_VOICE" },
               },
               -- filetypes = { "tex" },
-              -- enabled = { "latex", "tex", "bib", "markdown", "mdx" },
-              enabled = { "latex", "markdown" },
+              enabled = { "latex", "tex", "bib" },
+              -- enabled = { "latex", "markdown" },
               -- enabled = { "latex", "tex", "bib" },
             },
           },
