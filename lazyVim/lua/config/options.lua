@@ -70,24 +70,27 @@ vim.o.foldcolumn = "1" -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.g.autoformat = true
 
 if vim.g.neovide then
   vim.g.neovide_refresh_rate = 60
   vim.g.neovide_cursor_vfx_mode = "railgun"
   -- vim.g.neovide_cursor_vfx_mode = 'torpedo'
-  vim.g.neovide_cursor_animation_length = 0.04
+  vim.g.neovide_cursor_animation_length = 0.05
   vim.g.neovide_cursor_trail_size = 0.8
   vim.g.neovide_remember_window_size = true
   vim.g.neovide_cursor_antialiasing = true
   vim.g.neovide_cursor_animate_in_insert_mode = true
   -- vim.o.guifont = 'Fira_Code_Regular_Nerd_Font_Complete:h11'
-  vim.o.guifont = "VictorMono_Nerd_Font_Propo:h13"
+  vim.o.guifont = "VictorMono_Nerd_Font_Propo:h16"
   -- vim.o.guifont = 'JetBrainsMono_Nerd_Font_Mono:h13'
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
   vim.g.neovide_fullscreen = false
+  vim.g.neovide_theme = "auto"
+  vim.g.neovide_profiler = false
 
   -- For transparency <---- starts
   -- Helper function for transparency formatting
@@ -101,5 +104,5 @@ if vim.g.neovide then
   -- -----> end
 end
 
-if vim.g.vscode then
-end
+-- if vim.g.vscode then
+-- end

@@ -1,0 +1,132 @@
+layout {
+  cwd "~/Dropbox/easifem/"
+  default_tab_template {
+    children
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+  }
+
+  tab name="config"{
+    pane name="config"{}
+  }
+
+  tab focus=true name="base"  {
+    pane split_direction="vertical" {
+      pane {
+        size "50%"
+        pane split_direction="horizontal" {
+          pane {
+            name "base"
+            cwd "easifem-base"
+            size "90%"
+            command "nvim"
+          }
+          pane {
+            name "build"
+            size "10%"
+            cwd "easifem-base"
+            command "python3"
+            args "./install.py"
+          }
+        }
+      } 
+      pane {
+        size "50%"
+        pane split_direction="horizontal" {
+          pane {
+            name "tests"
+            size "70%"
+            command "nvim"
+            cwd "easifem-tests"
+          }
+          pane {
+            name "buid"
+            size "30%"
+            cwd "easifem-tests"
+          }
+        }
+      } 
+    }
+  }
+
+  tab name="classes"  {
+    pane split_direction="vertical" {
+      pane {
+        size "50%"
+        pane split_direction="horizontal" {
+          pane {
+            name "classes"
+            cwd "easifem-classes"
+            size "90%"
+            command "nvim"
+          }
+          pane {
+            name "build"
+            size "10%"
+            cwd "easifem-classes"
+            command "python3"
+            args "./install.py"
+          }
+        }
+      } 
+      pane {
+        size "50%"
+        pane split_direction="horizontal" {
+          pane {
+            name "tests"
+            size "70%"
+            command "nvim"
+            cwd "easifem-tests"
+          }
+          pane {
+            name "buid"
+            size "30%"
+            cwd "easifem-tests"
+          }
+        }
+      } 
+    }
+  }
+
+  tab name="kernels" {
+    pane split_direction="vertical" {
+      pane {
+        size "50%"
+        pane split_direction="horizontal" {
+          pane {
+            name "kernels"
+            cwd "easifem-kernels"
+            size "90%"
+            command "nvim"
+          }
+          pane {
+            name "build"
+            size "10%"
+            cwd "easifem-kernels"
+            command "python3"
+            args "./install.py"
+          }
+        }
+      } 
+      pane {
+        size "50%"
+        pane split_direction="horizontal" {
+          pane {
+            name "tests"
+            size "70%"
+            command "nvim"
+            cwd "easifem-tests"
+          }
+          pane {
+            name "buid"
+            size "30%"
+            cwd "easifem-tests"
+          }
+        }
+      } 
+    }
+  }
+}
+
+

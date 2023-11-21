@@ -237,12 +237,21 @@
       "</Tabs>"
     ]
   },
-  "f90 code": {
-    "prefix": "f90code",
-    "description": "enter fortran code",
+  "go": {
+    "prefix": "go",
+    "description": "go code fence",
     "body": [
-      "```fortran title=\"${1:title}\"",
-      " ",
+      "```bash",
+      "${0}",
+      "```"
+    ]
+  },
+  "bash": {
+    "prefix": "bash",
+    "description": "bash code fence",
+    "body": [
+      "```bash",
+      "${0}",
       "```"
     ]
   },
@@ -785,25 +794,25 @@
   },
   "error": {
     "prefix": "error",
-    "description": "raise error",
+    "description": "Raise error",
     "body": [
-      "CALL e%raiseError(modName //'::'//myName// ' - '// &",
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },
   "info": {
     "prefix": "info",
-    "description": "raise info",
+    "description": "Raise info",
     "body": [
-      "CALL e%raiseInformation(modName //'::'//myName// ' - '// &",
+      "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },
   "debug": {
     "prefix": "debug",
-    "description": "raise debug",
+    "description": "Raise debug",
     "body": [
-      "CALL e%raiseDebug(modName //'::'//myName// ' - '// &",
+      "CALL e%RaiseDebug(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },

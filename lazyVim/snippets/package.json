@@ -17,6 +17,10 @@
       {
         "language": "cmake",
         "path": "./cmake.json"
+      },
+      {
+        "language": "tex",
+        "path": "./latex.json"
       }
     ]
   }

@@ -1,9 +1,12 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
-    normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
-    }
+keybinds clear-defaults=true {
+  
+  unbind "Space"
+  normal {
+    unbind "Ctrl p" "Ctrl o" "Ctrl h" "Ctrl t"
+    // uncomment this and adjust key if using copy_on_select=false
+    // bind "Alt c" { Copy; }
+  }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
@@ -21,18 +24,19 @@ keybinds {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl p" { SwitchToMode "Normal"; }
+        unbind "Ctrl p"
+        bind "Ctrl a" { SwitchToMode "Normal"; }
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
         bind "k" "Up" { MoveFocus "Up"; }
-        bind "p" { SwitchFocus; }
+        bind "a" { SwitchFocus; }
         bind "n" { NewPane; SwitchToMode "Normal"; }
         bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-        bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "f" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
@@ -47,7 +51,8 @@ keybinds {
         bind "l" "Right" { MovePane "Right"; }
     }
     tab {
-        bind "Ctrl t" { SwitchToMode "Normal"; }
+        unbind "Ctrl t"
+        bind "Alt a" { SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "Left" "Up" "k" { GoToPreviousTab; }
         bind "l" "Right" "Down" "j" { GoToNextTab; }
@@ -83,7 +88,7 @@ keybinds {
         // bind "Alt c" { Copy; }
     }
     search {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
+        bind "Ctrl /" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
@@ -110,8 +115,9 @@ keybinds {
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
     session {
-        bind "Ctrl o" { SwitchToMode "Normal"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
+        unbind "Ctrl o"
+        bind "Ctrl x" { SwitchToMode "Normal"; }
+        bind "Ctrl x" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
         bind "w" {
             LaunchOrFocusPlugin "zellij:session-manager" {
@@ -141,17 +147,17 @@ keybinds {
         bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
         bind "o" { FocusNextPane; }
         bind "d" { Detach; }
-        bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
+
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
-        bind "Alt n" { NewPane; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        //bind "Alt n" { NewPane; }
+        //bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+        //bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+        //bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+        //bind "Alt k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
@@ -161,7 +167,8 @@ keybinds {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     shared_except "pane" "locked" {
-        bind "Ctrl p" { SwitchToMode "Pane"; }
+        unbind "Ctrl p"
+        bind "Ctrl a" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
         bind "Ctrl n" { SwitchToMode "Resize"; }
@@ -170,10 +177,12 @@ keybinds {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
     }
     shared_except "session" "locked" {
-        bind "Ctrl o" { SwitchToMode "Session"; }
+        unbind "Ctrl o"
+        bind "Ctrl x" { SwitchToMode "Session"; }
     }
     shared_except "tab" "locked" {
-        bind "Ctrl t" { SwitchToMode "Tab"; }
+        unbind "Ctrl t"
+        bind "Alt a" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
         bind "Ctrl h" { SwitchToMode "Move"; }
@@ -220,7 +229,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-pane_frames false
+pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -234,6 +243,97 @@ pane_frames false
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
 themes {
+carbonfox {
+    bg "#161616"
+    fg "#f2f4f8"
+    red "#ee5396"
+    green "#25be6a"
+    blue "#78a9ff"
+    yellow "#08bdba"
+    magenta "#be95ff"
+    orange "#3ddbd9"
+    cyan "#33b1ff"
+    black "#353535"
+    white "#b6b8bb"
+  }
+  dawnfox {
+    bg "#faf4ed"
+    fg "#575279"
+    red "#b4637a"
+    green "#618774"
+    blue "#286983"
+    yellow "#ea9d34"
+    magenta "#907aa9"
+    orange "#d7827e"
+    cyan "#56949f"
+    black "#ebdfe4"
+    white "#625c87"
+  }
+  dayfox {
+    bg "#f6f2ee"
+    fg "#3d2b5a"
+    red "#a5222f"
+    green "#396847"
+    blue "#2848a9"
+    yellow "#ac5402"
+    magenta "#6e33ce"
+    orange "#955f61"
+    cyan "#287980"
+    black "#d3c7bb"
+    white "#643f61"
+  }
+  duskfox {
+    bg "#232136"
+    fg "#e0def4"
+    red "#eb6f92"
+    green "#a3be8c"
+    blue "#569fba"
+    yellow "#f6c177"
+    magenta "#c4a7e7"
+    orange "#ea9a97"
+    cyan "#9ccfd8"
+    black "#373354"
+    white "#cdcbe0"
+  }
+  nightfox {
+    bg "#192330"
+    fg "#cdcecf"
+    red "#c94f6d"
+    green "#81b29a"
+    blue "#719cd6"
+    yellow "#dbc074"
+    magenta "#9d79d6"
+    orange "#f4a261"
+    cyan "#63cdcf"
+    black "#29394f"
+    white "#aeafb0"
+  }
+  nordfox {
+    bg "#2e3440"
+    fg "#cdcecf"
+    red "#bf616a"
+    green "#a3be8c"
+    blue "#81a1c1"
+    yellow "#ebcb8b"
+    magenta "#b48ead"
+    orange "#c9826b"
+    cyan "#88c0d0"
+    black "#444c5e"
+    white "#abb1bb"
+  }
+  terafox {
+    bg "#152528"
+    fg "#e6eaea"
+    red "#e85c51"
+    green "#7aa4a1"
+    blue "#5a93aa"
+    yellow "#fda47f"
+    magenta "#ad5c7c"
+    orange "#ff8349"
+    cyan "#a1cdd8"
+    black "#254147"
+    white "#cbd9d8"
+  }
   tokyo-night-dark {
     fg 169 177 214
     bg 26 27 38
@@ -315,16 +415,33 @@ themes {
     black "#181825" // Mantle
     white "#cdd6f4"
   }
+
+  rose-pine {
+    bg "#191724"
+    fg "#e0def4"
+    red "#eb6f92"
+    green "#31748f"
+    blue "#9ccfd8"
+    yellow "#f6c177"
+    magenta "#c4a7e7"
+    orange "#fe640b"
+    cyan "#ebbcba"
+    black "#26233a"
+    white "#e0def4"
+  }
 }
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-  theme "catppuccin-mocha"
+  // theme "tokyo-night"
+  //theme "catppuccin-mocha"
+  //theme "carbonfox"
+  theme "rose-pine"
 
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
@@ -338,7 +455,7 @@ themes {
 //   - true (default)
 //   - false
 //
-// mouse_mode false
+mouse_mode true
 
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back

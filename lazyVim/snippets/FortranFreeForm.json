@@ -31,22 +31,22 @@
     "description": "break the lines ",
     "body": [
       " &",
-      "&$0"
+      "&$1"
     ]
   },
   "ia": {
     "prefix": "ia",
-    "body": "INTEGER( I4B ), ALlOCATABLE :: $1",
+    "body": "INTEGER( I4B ), ALlOCATABLE :: $0",
     "description": "Integer allocatable :: "
   },
   "ip": {
     "prefix": "ip",
-    "body": "INTEGER( I4B ), PARAMETER :: $1",
+    "body": "INTEGER( I4B ), PARAMETER :: $0",
     "description": "integer parameter :: "
   },
   "rp": {
     "prefix": "rp",
-    "body": "REAL(DFP), PARAMETER :: $1",
+    "body": "REAL(DFP), PARAMETER :: $0",
     "description": "real parameter :: "
   },
   "ioi": {
@@ -127,16 +127,16 @@
   "logical": {
     "prefix": "logi",
     "description": "logical",
-    "body": "LOGICAL( LGT ) "
+    "body": "LOGICAL( LGT ) $0"
   },
   "modpuresub": {
     "prefix": "mps",
     "description": "module pure subroutine",
     "body": [
       "INTERFACE",
-      "MODULE PURE SUBROUTINE ${NAME}( $0 )",
+      "MODULE PURE SUBROUTINE ${1}( $0 )",
       "\t",
-      "END SUBROUTINE ${NAME}",
+      "END SUBROUTINE ${1}",
       "END INTERFACE",
       ""
     ]
@@ -214,9 +214,9 @@
     "description": "module subroutine",
     "body": [
       "INTERFACE",
-      "MODULE SUBROUTINE ${NAME}( ${Name2} )",
+      "MODULE SUBROUTINE ${1}( ${2} )",
       "\t$0",
-      "END SUBROUTINE ${NAME}",
+      "END SUBROUTINE ${1}",
       "END INTERFACE",
       ""
     ]
@@ -258,37 +258,47 @@
   "class": {
     "prefix": "cls",
     "description": "class",
-    "body": "CLASS( $1 )"
+    "body": "CLASS( $0 )"
+  },
+  "ci": {
+    "prefix": "ci",
+    "description": "class intent in",
+    "body": "CLASS($1), INTENT(IN) :: $0"
+  },
+  "cio": {
+    "prefix": "cio",
+    "description": "class intent inout",
+    "body": "CLASS($1), INTENT(INOUT) :: $0"
   },
   "coi": {
     "prefix": "coi",
     "description": "class optional intent in",
-    "body": "CLASS($1), OPTIONAL, INTENT(IN) :: $2"
+    "body": "CLASS($1), OPTIONAL, INTENT(IN) :: $0"
   },
   "coo": {
     "prefix": "coo",
     "description": "class optional intent out",
-    "body": "CLASS($1), OPTIONAL, INTENT(OUT) :: $2"
+    "body": "CLASS($1), OPTIONAL, INTENT(OUT) :: $0"
   },
   "coio": {
     "prefix": "coio",
     "description": "class optional intent inout",
-    "body": "CLASS($1), OPTIONAL, INTENT(INOUT) :: $2"
+    "body": "CLASS($1), OPTIONAL, INTENT(INOUT) :: $0"
   },
   "intentin": {
     "prefix": "in",
     "description": "intent in",
-    "body": "INTENT( IN ) :: $1"
+    "body": "INTENT( IN ) :: $0"
   },
   "intentout": {
     "prefix": "out",
     "description": "intent out",
-    "body": "INTENT( OUT ) :: $1"
+    "body": "INTENT( OUT ) :: $0"
   },
   "intentinout": {
     "prefix": "inout",
     "description": "intent in out",
-    "body": "INTENT( INOUT ) :: $1"
+    "body": "INTENT( INOUT ) :: $0"
   },
   "generic": {
     "prefix": "generic",
@@ -313,10 +323,10 @@
   "procedure": {
     "prefix": "proc",
     "description": "procedure",
-    "body": "PROCEDURE, PUBLIC, PASS( obj ) :: $1"
+    "body": "PROCEDURE, PUBLIC, PASS( obj ) :: $0"
   },
-  "moduleprocedure": {
-    "prefix": "mp",
+  "submoduleModuleProcedure": {
+    "prefix": "smp",
     "description": "module procedure",
     "body": [
       "MODULE PROCEDURE ${1}",
@@ -351,33 +361,50 @@
   },
   "error": {
     "prefix": "error",
-    "description": "raise error",
+    "description": "Raise error",
     "body": [
-      "CALL e%raiseError(modName //'::'//myName// ' - '// &",
-      "\t& '$1')"
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
+      "\t& '$0')"
+    ]
+  },
+  "implementation error": {
+    "prefix": "imperror",
+    "description": "Implementation error",
+    "body": [
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
+      "\t& '[IMPLEMENTATION ERROR] :: This routine should be implemented by ' //&",
+      "\t& 'child classes')"
+    ]
+  },
+  "wip error": {
+    "prefix": "wiperror",
+    "description": "Work in progress error",
+    "body": [
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
+      "\t& '[WIP] :: This routine is under development' )"
     ]
   },
   "info": {
     "prefix": "info",
-    "description": "raise info",
+    "description": "Raise info",
     "body": [
-      "CALL e%raiseInformation(modName //'::'//myName// ' - '// &",
+      "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },
   "warn": {
     "prefix": "warn",
-    "description": "raise warning",
+    "description": "Raise warning",
     "body": [
-      "CALL e%raiseWarning(modName //'::'//myName// ' - '// &",
+      "CALL e%RaiseWarning(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },
   "debug": {
     "prefix": "debug",
-    "description": "raise debug",
+    "description": "Raise debug",
     "body": [
-      "CALL e%raiseDebug(modName //'::'//myName// ' - '// &",
+      "CALL e%RaiseDebug(modName //'::'//myName// ' - '// &",
       "\t& '$1')"
     ]
   },
@@ -396,7 +423,7 @@
     "prefix": "myname",
     "description": "myname",
     "body": [
-      "CHARACTER(*), PARAMETER :: myName=$1"
+      "CHARACTER(*), PARAMETER :: myName=$0"
     ]
   },
   "ifp": {
@@ -465,7 +492,7 @@
   },
   "char": {
     "prefix": "char",
-    "body": "CHARACTER(${1:*})",
+    "body": "CHARACTER(${1:*}) $0",
     "description": "Character"
   },
   "close": {
@@ -801,7 +828,11 @@
   },
   "sub": {
     "prefix": "sub",
-    "body": "subroutine ${1:name}(${2:input})\n\t${3:argument type}, intent(${4:inout}) :: ${2/\\w+\\((.*)\\)|.*/$2/}\n\t$0\nend subroutine ${1/(\\w+).*/$1/}",
+    "body": [
+      "SUBROUTINE ${1:name}(${2:input})",
+      "$0",
+      "END SUBROUTINE ${1:name}"
+    ],
     "description": "subroutine"
   },
   "sum": {
@@ -861,5 +892,29 @@
       ""
     ],
     "description": "check essential parameter template"
+  },
+  "mpwip": {
+    "prefix": "mpwip",
+    "description": "module procedure work in progress",
+    "body": [
+      "MODULE PROCEDURE ${1}",
+      "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
+      "\t& '[WIP] this module has not been implemented yet')",
+      "! TODO: Implement ${1} ${0}",
+      "END PROCEDURE ${1}"
+    ]
+  },
+  "Module procedure not implemented": {
+    "prefix": "mpni",
+    "description": "module procedure not implemented",
+    "body": [
+      "MODULE PROCEDURE ${1}",
+      "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
+      "\t& '[WIP] this module has not been implemented yet')",
+      "! TODO: Implement ${1} ${0}",
+      "END PROCEDURE ${1}"
+    ]
   }
 }

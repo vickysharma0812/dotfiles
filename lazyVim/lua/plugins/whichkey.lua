@@ -1,6 +1,10 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end,
   opts = {
     plugins = {
       marks = true, -- shows a list of your marks on ' and `
@@ -23,13 +27,16 @@ return {
     },
     -- add operators that will trigger motion and text object completion
     -- to enable all native operators, set the preset / operators plugin above
-    -- operators = { gc = "Comments" },
+    operators = { gc = "Comments" },
     key_labels = {
       -- override the label used to display some keys. It doesn't effect WK in any other way.
       -- For example:
       -- ["<space>"] = "SPC",
       -- ["<cr>"] = "RET",
       -- ["<tab>"] = "TAB",
+    },
+    motion = {
+      count = true,
     },
     icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -44,8 +51,9 @@ return {
       border = "rounded", -- none, single, double, shadow
       position = "bottom", -- bottom, top
       margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+      padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
       winblend = 0,
+      zindex = 1000,
     },
     layout = {
       height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -53,11 +61,24 @@ return {
       spacing = 3, -- spacing between columns
       align = "left", -- align columns left, center or right
     },
-    ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
+    show_keys = true,
     triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
+    -- triggers = { "<leader>" }, -- or specify a list manually
+    triggers_nowait = {
+      -- marks
+      "`",
+      "'",
+      "g`",
+      "g'",
+      -- registers
+      '"',
+      "<c-r>",
+      -- spelling
+      "z=",
+    },
     triggers_blacklist = {
       -- list of mode / prefixes that should never be hooked by WhichKey
       -- this is mostly relevant for key maps that start with a native binding
@@ -68,7 +89,7 @@ return {
 
     defaults = {
       mode = "n", -- NORMAL mode
-      prefix = "<leader>",
+      prefix = " ", -- "<leader>",
       buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
       silent = true, -- use `silent` when creating keymaps
       noremap = true, -- use `noremap` when creating keymaps
@@ -78,14 +99,8 @@ return {
     mappings = {
       ["<leader>"] = { "<cmd>Telescope find_files<CR>", "Find files" },
       ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-      -- ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-      -- ["e"] = { "<cmd>NeoTreeFocusToggle<cr>", "Explorer" },
       ["E"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
-      -- ["E"] = { "<cmd>NeoTreeFloatToggle<cr>", "Explorer" },
       ["e"] = { "<cmd>Neotree toggle float<cr>", "Explorer" },
-      -- ["q"] = { "<cmd>q!<CR>", "Quit" },
-      -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-      ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["."] = {
         "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
         "Find files",
@@ -102,26 +117,15 @@ return {
         o = { "<cmd>Neotree reveal<CR>", "Reveal file in tree" },
         c = {
           name = "Config files",
-          e = { ":e ~/.easifemrc <CR>", "EASIFEM" },
-          z = { ":e ~/.zshrc <CR>", "zsh" },
-          k = { ":e ~/.config/kitty/kitty.conf <CR>", "Kitty" },
           a = { ":e ~/.config/awesome/rc.lua <CR>", "Awesome" },
-          v = { ":e ~/.config/nvim/init.lua <CR>", "Neovim" },
-          s = { ":e ~/.config/nvim/lua/user/keymaps.lua <CR>", "Keymaps" },
-          p = { ":e ~/.config/nvim/lua/user/plugins.lua <CR>", "Plugins" },
-          w = { ":e ~/.config/nvim/lua/user/whichkey.lua <CR>", "Which key" },
+          s = { ":e ~/.config/omf/init.fish <CR>", "Shell" },
+          t = { ":e ~/.config/alacritty/alacritty.yml <CR>", "Alacritty" },
+          w = { ":e ~/.config/wezterm/wezterm.lua <CR>", "Wezterm" },
+          z = { ":e ~/.config/zellij/config.kdl <CR>", "Zellij" },
           f = { ":e ~/.config/nvim/snippets/FortranFreeForm.json <CR>", "Fortran snippets" },
           m = { ":e ~/.config/nvim/snippets/markdown.json <CR>", "Markdown snippets" },
         },
       },
-      -- X = {
-      --   name = "Packer",
-      --   c = { "<cmd>PackerCompile<cr>", "Compile" },
-      --   i = { "<cmd>PackerInstall<cr>", "Install" },
-      --   s = { "<cmd>PackerSync<cr>", "Sync" },
-      --   S = { "<cmd>PackerStatus<cr>", "Status" },
-      --   u = { "<cmd>PackerUpdate<cr>", "Update" },
-      -- },
       x = {
         name = "Install",
         b = { "<cmd>lua _BASE_TOGGLE()<CR>", "Install base" },
@@ -162,7 +166,7 @@ return {
         -- R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
         -- l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
       },
-      L = {
+      c = {
         name = "LSP",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
         d = {
@@ -199,10 +203,6 @@ return {
         f = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
         -- f = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
         e = { "<cmd>Telescope symbols<cr>", "Pick a Symbols" },
-        -- b = {
-        --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-        --   "Search buffers",
-        -- },
         b = {
           "<cmd>Neotree buffers right toggle<cr>",
           "Search buffers",
@@ -213,7 +213,8 @@ return {
         h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
         H = { "<cmd>Telescope heading<cr>", "Documents headings" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+        -- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+        -- use leader f r
         R = { "<cmd>Telescope registers<cr>", "Registers" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
@@ -248,8 +249,8 @@ return {
         l = { "<cmd>bnext<CR>", "Next buffer" },
         h = { "<cmd>bprevious<CR>", "Previous buffer" },
         d = { "<cmd>bdelete<CR>", "Close buffer" },
-        -- f = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format buffer" },
-        f = { "<cmd>GuardFmt<CR>", "Format buffer by using Guard" },
+        f = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format buffer" },
+        -- f = { "<cmd>GuardFmt<CR>", "Format buffer by using Guard" },
         w = { "<cmd>lua vim.cmd.w()<CR>", "Save buffer" },
       },
       w = {
@@ -271,10 +272,7 @@ return {
       },
       T = {
         name = "Terminal",
-        n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-        u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-        t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-        p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
         l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazy" },
         b = { "<cmd>lua _BASE_TOGGLE()<cr>", "Base" },
         c = { "<cmd>lua _CLASS_TOGGLE()<cr>", "Classes" },
@@ -284,11 +282,15 @@ return {
       },
       t = {
         name = "Toggle",
-        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
+        t = { "<cmd>TransparentToggle<cr>", "Toggle transparent" },
+        b = { "<cmd>Neotree source=buffers action=show position=right<cr>", "Toggle buffer to right" },
+        g = { "<cmd>Neotree source=git_status action=show position=right<cr>", "Toggle buffer to right" },
+        f = { "<cmd>Neotree source=filesystem action=show position=right<cr>", "Toggle files to right" },
         z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
         h = { "<cmd>Twilight<cr>", "Toggle Twilight" },
         s = { "<cmd>Navbuddy<cr>", "Toggle Navbuddy" },
         o = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
+        O = { "<cmd>Lspsaga outline<cr>", "Toggle Symbol-outline" },
         x = {
           name = "TroubleToggle",
           d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document diagnostic" },
@@ -310,6 +312,17 @@ return {
       n = {
         name = "Notifications",
         d = { "lua require('notify').dismiss({ silent = true, pending = true })", "Delete all Notifications" },
+      },
+      h = {
+        name = "harpoon",
+        a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
+        r = { "<cmd>lua require('harpoon.mark').rm_file()<cr>", "remove file" },
+        m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "harpoon menu" },
+        n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "next file" },
+        p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "previous file" },
+        ["1"] = { "<cmd> lua require('harpoon.ui').nav_file(1)<cr>", "file 1" },
+        ["2"] = { "<cmd> lua require('harpoon.ui').nav_file(2)<cr>", "file 2" },
+        ["3"] = { "<cmd> lua require('harpoon.ui').nav_file(3)<cr>", "file 3" },
       },
     },
   },

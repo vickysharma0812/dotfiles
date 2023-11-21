@@ -13,21 +13,34 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "Tokyo Night"
-
--- config.font = wezterm.font 'JetBrains Mono'
+-- config.color_scheme = "catppuccin-mocha"
+config.color_scheme = "carbonfox"
 config.font = wezterm.font("VictorMono Nerd Font Propo")
+config.font_size = 14
 
--- config.enable_tab_bar = false
+config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 
+-- config.window_background_image = os.getenv("HOME") .. "/Dropbox/dotfiles/wallpaper/4k/8.jpg"
 config.window_background_opacity = 0.9
-config.macos_window_background_blur = 10
-
+config.macos_window_background_blur = 20
+-- config.text_background_opacity = 0.5
+-- config.default_prog = { "/opt/homebrew/bin/btop" }
 config.window_decorations = "RESIZE"
 
-config.use_fancy_tab_bar = true
+config.keys = {
+	{
+		key = "Enter",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitHorizontal,
+	},
+	{
+		key = "z",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.TogglePaneZoomState,
+	},
+}
 
 -- and finally, return the configuration to wezterm
 return config

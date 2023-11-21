@@ -1,9 +1,6 @@
-if true then
-  return {}
-end
-
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
+  -- "jose-elias-alvarez/null-ls.nvim",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = { "mason.nvim" },
   opts = function()
@@ -16,6 +13,8 @@ return {
         -- nls.builtins.formatting.stylua,
         -- nls.builtins.formatting.shfmt,
         -- nls.builtins.diagnostics.flake8,
+        nls.builtins.diagnostics.cmake_lint,
+        nls.builtins.formatting.cmake_format,
         nls.builtins.formatting.fprettify.with({
           extra_args = {
             "--case",

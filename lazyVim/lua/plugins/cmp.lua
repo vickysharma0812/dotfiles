@@ -16,26 +16,8 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-omni",
     },
-
-    -- config = function()
-    --   local cmp = require("cmp")
-    --   cmp.setup.cmdline({ "/", "?" }, {
-    --     mapping = cmp.mapping.preset.cmdline(),
-    --     sources = {
-    --       { name = "buffer" },
-    --     },
-    --   })
-    --
-    --   cmp.setup.cmdline(":", {
-    --     mapping = cmp.mapping.preset.cmdline(),
-    --     sources = cmp.config.sources({
-    --       { name = "path" },
-    --     }, {
-    --       { name = "cmdline" },
-    --     }),
-    --   })
-    -- end,
 
     opts = function(_, opts)
       local has_words_before = function()
@@ -131,6 +113,8 @@ return {
           -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
           -- This concatonates the icons with the name of the item kind
           vim_item.menu = ({
+            -- omni = "[VimTex]",
+            omni = (vim.inspect(vim_item.menu):gsub('%"', "")),
             luasnip = "[Snippet]",
             buffer = "[Buffer]",
             path = "[Path]",
@@ -140,35 +124,19 @@ return {
       }
 
       opts.sources = {
+        { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
-        { name = "luasnip" },
+        { name = "omni" },
         { name = "buffer" },
         { name = "path" },
         { name = "emoji" },
       }
 
-      opts.window = { documentation = cmp.config.window.bordered() }
+      opts.window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      }
     end,
   },
-
-  -- setup = function()
-  --   local cmp = require("cmp")
-  --   print("hello world")
-  --   cmp.setup.cmdline({ "/", "?" }, {
-  --     mapping = cmp.mapping.preset.cmdline(),
-  --     sources = {
-  --       { name = "buffer" },
-  --     },
-  --   })
-  --
-  --   cmp.setup.cmdline(":", {
-  --     mapping = cmp.mapping.preset.cmdline(),
-  --     sources = cmp.config.sources({
-  --       { name = "path" },
-  --     }, {
-  --       { name = "cmdline" },
-  --     }),
-  --   })
-  -- end,
 }

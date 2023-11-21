@@ -162,15 +162,6 @@
 (submodule_statement
   (module_name) (name) @namespace)
 
-(function_statement
-  (name) @function)
-
-(subroutine_statement
-  (name) @function)
-
-(module_procedure_statement
-  (name) @function)
-
 (end_program_statement
   (name) @namespace)
 
@@ -180,7 +171,16 @@
 (end_submodule_statement
   (name) @namespace)
 
+(function_statement
+  (name) @function)
+
 (end_function_statement
+  (name) @function)
+
+(subroutine_statement
+  (name) @function)
+
+(module_procedure_statement
   (name) @function)
 
 (end_subroutine_statement
