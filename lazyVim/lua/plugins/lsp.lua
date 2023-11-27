@@ -56,8 +56,6 @@ return {
       setup = {
         fortls = function(_, opts)
           opts.cmd = {
-            -- fortran = {
-            -- cmd = {
             "fortls",
             "--lowercase_intrinsics",
             "--source_dirs",
@@ -69,8 +67,6 @@ return {
             "--hover_signature",
             "--hover_language=fortran",
             "--use_signature_help",
-            -- },
-            -- },
           }
         end,
       },
@@ -171,6 +167,14 @@ return {
         --     },
         --   },
         -- },
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { "jhofscheier/ltex-utils.nvim" },
+    opts = {
+      servers = {
         ltex = {
           filetype = { "tex" },
           -- filetype = { "tex", "markdown" },
