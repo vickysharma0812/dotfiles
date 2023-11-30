@@ -14,6 +14,8 @@ return {
         -- nls.builtins.formatting.shfmt,
         -- nls.builtins.diagnostics.flake8,
         nls.builtins.diagnostics.cmake_lint,
+        -- formatting
+        nls.builtins.formatting.dprint,
         nls.builtins.formatting.cmake_format,
         nls.builtins.formatting.fprettify.with({
           extra_args = {

@@ -71,8 +71,7 @@ set -gx tests $easifem/easifem-tests
 set -gx kernels $easifem/easifem-kernels/
 set -gx elasticity $easifem/Elasticity/
 set -gx vikas $HOME/Documents/Vikas
-# set -gx docs $HOME/Documents/vickysharma0812.github.io
-set -gx docs $HOME/Documents/easifemDocs
+set -gx docs $HOME/Documents/vickysharma0812.github.io
 set -gx apps $easifem/apps
 set -gx EASIFEM_TEST_DIR $tests
 set -gx onedrive ~/OneDrive

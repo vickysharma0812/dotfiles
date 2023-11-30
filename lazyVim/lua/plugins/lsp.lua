@@ -131,48 +131,49 @@ return {
   },
 
   -- servers
+  -- texlab
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       texlab = {
+  --         settings = {
+  --           texlab = {
+  --             auxDirectory = "build",
+  --             diagnosticsDelay = 50,
+  --             build = {
+  --               executable = "latexmk",
+  --               onSave = true,
+  --               args = {
+  --                 "-pdf",
+  --                 "-pdflua",
+  --                 "-quiet",
+  --                 "-interaction=nonstopmode",
+  --                 "-synctex=1",
+  --                 "-shell-escape",
+  --                 -- "-pvc",
+  --                 "-f",
+  --                 "-outdir=build",
+  --                 "%f",
+  --               },
+  --             },
+  --             forwardSearch = {
+  --               args = { "--synctex-forward", "%l:1:%f", "%p" },
+  --               executable = "zathura",
+  --             },
+  --             chktex = { onOpenAndSave = true, onEdit = false },
+  --             formatterLineLength = 80,
+  --             latexFormatter = "texlab",
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+  --
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "jhofscheier/ltex-utils.nvim" },
-    opts = {
-      servers = {
-        -- texlab = {
-        --   settings = {
-        --     texlab = {
-        --       auxDirectory = "build",
-        --       diagnosticsDelay = 50,
-        --       build = {
-        --         executable = "latexmk",
-        --         onSave = true,
-        --         args = {
-        --           "-pdf",
-        --           "-pdflua",
-        --           "-quiet",
-        --           "-interaction=nonstopmode",
-        --           "-synctex=1",
-        --           "-shell-escape",
-        --           -- "-pvc",
-        --           "-f",
-        --           "-outdir=build",
-        --           "%f",
-        --         },
-        --       },
-        --       forwardSearch = {
-        --         args = { "--synctex-forward", "%l:1:%f", "%p" },
-        --         executable = "zathura",
-        --       },
-        --       chktex = { onOpenAndSave = true, onEdit = false },
-        --       formatterLineLength = 80,
-        --       latexFormatter = "texlab",
-        --     },
-        --   },
-        -- },
-      },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "jhofscheier/ltex-utils.nvim" },
+    dependencies = { "jhofscheier/ltex_extra.nvim" },
     opts = {
       servers = {
         ltex = {
@@ -184,7 +185,22 @@ return {
             -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
             -- (see below code block for more details)
             vim.notify("ltex starts")
-            require("ltex-utils").on_attach(bufnr)
+            require("ltex_extra").setup({
+              -- table <string> : languages for witch dictionaries will be loaded, e.g. { "es-AR", "en-US" }
+              -- https://valentjn.github.io/ltex/supported-languages.html#natural-languages
+              load_langs = { "en-US" }, -- en-US as default
+              -- boolean : whether to load dictionaries on startup
+              init_check = true,
+              -- string : relative or absolute path to store dictionaries
+              -- e.g. subfolder in the project root or the current working directory: ".ltex"
+              -- e.g. shared files for all projects:  vim.fn.expand("~") .. "/.local/share/ltex"
+              path = ".ltex", -- project root or current working directory
+              -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+              log_level = "none",
+              -- table : configurations of the ltex language server.
+              -- Only if you are calling the server from ltex_extra
+              server_opts = nil,
+            })
           end,
           settings = {
             ltex = {
