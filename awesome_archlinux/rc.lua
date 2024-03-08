@@ -110,7 +110,7 @@ local modkey1 = "Control"
 
 -- personal variables
 --change these variables if you want
-local browser1 = "vivaldi-stable"
+local browser1 = "firefox"
 local browser2 = "brave"
 local browser3 = "chromium -no-default-browser-check"
 local editor = os.getenv("EDITOR") or "nano"
@@ -118,7 +118,7 @@ local editorgui = "neovide"
 local filemanager = "thunar"
 local mailclient = "evolution"
 local mediaplayer = "spotify"
-local terminal = "alacritty" or "wezterm"
+local terminal = "alacritty -qq" or "wezterm"
 local virtualmachine = "virtualbox"
 
 -- awesome variables

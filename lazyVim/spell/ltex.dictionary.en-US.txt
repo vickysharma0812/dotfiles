@@ -1,6 +1,0 @@
-Eq
-uv-ST
-semidiscrete
-Fortran
-BinomUtility
-sampple

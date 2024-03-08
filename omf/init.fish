@@ -17,6 +17,11 @@ function fish_greeting
     printf "      https://www.easifem.com \n"
 end
 
+# Path to EASIFEM config
+set -q XDG_DATA_HOME
+and set -gx EASIFEM_CONFIG_PATH "$XDG_DATA_HOME/easifem"
+or set -gx EASIFEM_CONFIG_PATH "$HOME/.config/easifem"
+
 ## Paths
 #
 # installing npm packages locally
@@ -56,6 +61,7 @@ set -gx alacritty $config/alacritty/
 set -gx alarc $alacritt/alacritty.yml
 set -gx kitty $config/kitty
 set -gx nvim $config/nvim
+set -gx yazi $config/yazi
 set -gx zellij $config/zellij
 set -gx awesome $config/awesome
 set -gx wezterm $config/wezterm
@@ -69,15 +75,18 @@ set -gx classes $easifem/easifem-classes
 set -gx materials $easifem/easifem-materials/
 set -gx tests $easifem/easifem-tests
 set -gx kernels $easifem/easifem-kernels/
-set -gx elasticity $easifem/Elasticity/
+set -gx elasticity $easifem/easifem-elasticity/
+set -gx acoustic $easifem/easifem-acoustic/
 set -gx vikas $HOME/Documents/Vikas
-set -gx docs $HOME/Documents/vickysharma0812.github.io
+set -gx easifemDocs $HOME/Documents/easifem.github.io/
+set -gx docs $easifemDocs/docs/docs-api
 set -gx apps $easifem/apps
 set -gx EASIFEM_TEST_DIR $tests
 set -gx onedrive ~/OneDrive
 set -gx know ~/OneDrive/Knowledge
 set -gx fem ~/OneDrive/Knowledge/FEM
 set -gx lectures ~/OneDrive/Knowledge/LectureNotes
+set -gx sim ~/OneDrive/Publications/Simulations/
 set -gx pub ~/OneDrive/Publications
 set -gx subpub ~/OneDrive/Publications/Submitted/
 set -gx onpub ~/OneDrive/Publications/Ongoing/
@@ -101,10 +110,12 @@ function fishme
 end
 
 
-function rebuid_easifem
-    easifem clean base classes materials kernels $argv
-    cd $base && python3 install.py && cd $classes && python3 install.py && cd $materials && python3 install.py && cd $kernels && python3 install.py && cd $elasticity && python3 install.py
-end
+# function rebuid_easifem
+#     easifem clean base classes materials kernels $argv
+#     cd $base && python3 install.py && cd $classes && python3 install.py && cd $elasticity && python3 install.py
+# end
+
+source $EASIFEM_CONFIG_PATH/easifem_functions.fish
 
 alias cdoc="cd $docs" # cd to docs
 alias vdoc="cd $docs && nvim ." # cd to docs
@@ -156,6 +167,37 @@ set -gx TERM xterm-256color
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+# paraview related
+#
+
+# if type -q /opt/paraview/bin/paraview
+#     set PATH $PATH /opt/paraview/bin
+#     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH /opt/paraview/lib
+# end
+
+set -gx NVM_DIR "$HOME/.nvm"
+
+function nvm
+    bash -c '$NVM_DIR/nvm.sh "$@"' $argv
+end
+
+# https://github.com/ajeetdsouza/zoxide
+# Add this to the end of your config file (usually ~/.config/fish/config.fish):
+if type -q zoxide
+    zoxide init fish | source
+end
+
+# https://yazi-rs.github.io/docs/quick-start
+# We suggest using this ya shell wrapper that provides the ability to 
+# change the current working directory when exiting Yazi.
+function ya
+    set tmp (mktemp -t "yazi-cwd.XXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
 
 
 fish_vi_key_bindings

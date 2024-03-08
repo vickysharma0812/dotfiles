@@ -1,0 +1,215 @@
+[colors.bright]
+black = "0x6e6a86"
+blue = "0x9ccfd8"
+cyan = "0xebbcba"
+green = "0x31748f"
+magenta = "0xc4a7e7"
+red = "0xeb6f92"
+white = "0xe0def4"
+yellow = "0xf6c177"
+
+[colors.cursor]
+cursor = "0x524f67"
+text = "0xe0def4"
+
+[colors.hints.end]
+background = "#1f1d2e"
+foreground = "#6e6a86"
+
+[colors.hints.start]
+background = "#1f1d2e"
+foreground = "#908caa"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+[colors.normal]
+black = "0x26233a"
+blue = "0x9ccfd8"
+cyan = "0xebbcba"
+green = "0x31748f"
+magenta = "0xc4a7e7"
+red = "0xeb6f92"
+white = "0xe0def4"
+yellow = "0xf6c177"
+
+[colors.primary]
+background = "0x191724"
+foreground = "0xe0def4"
+
+[colors.selection]
+background = "0x403d52"
+text = "0xe0def4"
+
+[colors.vi_mode_cursor]
+cursor = "0x524f67"
+text = "0xe0def4"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+builtin_box_drawing = true
+size = 12.0
+
+[font.bold]
+family = "VictorMono Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "VictorMono Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "VictorMono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "VictorMono Nerd Font Mono"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ClearLogNotice"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollToTop"
+key = "Home"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "End"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Semicolon"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "NumpadSubtract"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Equals"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Space"
+mode = "~Search"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "Space"
+mode = "Vi|~Search"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "I"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ClearSelection"
+key = "Escape"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "G"
+mode = "Vi|~Search"
+
+[scrolling]
+history = 5000
+
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = true
+opacity = 1.0
+option_as_alt = "Both"
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 0
+y = 0

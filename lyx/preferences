@@ -17,7 +17,7 @@ Format 24
 # SCREEN & FONTS SECTION ############################
 #
 
-\screen_zoom 200
+\screen_zoom 400
 \paragraph_markers true
 \screen_font_roman "PT Serif"
 \screen_font_sans "PT Sans"

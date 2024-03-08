@@ -1,0 +1,2 @@
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QIt can be \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q or \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q\nUsually, element matrix is stored with \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"DOUBLE_PUNCTUATION","sentence":"^\\Qimport EXAMPLE9 from \"../../../docs-api/ReferenceElement/ReferenceElement_.md\";\\E$"}

@@ -75,7 +75,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.7
+  opacity: 1.0
 
   # Startup Mode (changes require restart)
   #
@@ -663,18 +663,23 @@ key_bindings:
   - { key: Equals, mods: Control|Shift, action: DecreaseFontSize }
   - { key: Key0, mods: Control|Shift, action: ResetFontSize }
   - { key: Yen, mods: None, chars: "\\" }
-#   - IncreaseFontSize
-#   - DecreaseFontSize
-#   - ResetFontSize
+  #   - IncreaseFontSize
+  #   - DecreaseFontSize
+  #   - ResetFontSize
 
-#   - CreateNewWindow
+  #   - CreateNewWindow
 
-# Vi Mode
-# - { key: Escape,  mods: None, action: ToggleViMode            }
-# - { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
-#- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
-#- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
-#- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
+  # Vi Mode
+  # - { key: Escape,  mods: None, action: ToggleViMode            }
+  - { key: Space, mods: Shift|Control, mode: ~Search, action: ToggleViMode }
+  - {
+      key: Space,
+      mods: Shift|Control,
+      mode: Vi|~Search,
+      action: ScrollToBottom,
+    }
+  - { key: Escape, mode: Vi|~Search, action: ClearSelection }
+  - { key: I, mode: Vi|~Search, action: ToggleViMode }
 #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
 #- { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
 #- { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
