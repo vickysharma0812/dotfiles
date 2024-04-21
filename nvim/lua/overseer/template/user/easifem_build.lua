@@ -34,8 +34,6 @@ return {
         "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include/arpack",
         "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/base/include",
         "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/classes/include",
-        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/kernels/include",
-        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/materials/include",
         "-J/Users/easifem/.easifem/ide/include",
         "-ffree-form",
         "-ffree-line-length-none",

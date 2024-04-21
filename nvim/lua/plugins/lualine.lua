@@ -1,6 +1,28 @@
 return {
   "nvim-lualine/lualine.nvim",
+  enabled = false,
   event = "VeryLazy",
+  keys = {
+    {
+      "<leader>hs",
+      function()
+        local lualine = require("lualine")
+        local stat = vim.g.statStatusLine
+        if stat == nil or stat == true then
+          vim.g.statStatusLine = false
+          vim.cmd([[set laststatus=0]])
+          vim.cmd([[hi! link StatusLine Normal]])
+          vim.cmd([[hi! link StatusLineNC Normal]])
+          vim.cmd([[set statusline=%{repeat('─',winwidth('.'))}]])
+        else
+          vim.g.statStatusLine = true
+        end
+        lualine.hide({ unhide = vim.g.statStatusLine })
+      end,
+      mode = { "n" },
+      desc = "toggle status line",
+    },
+  },
   opts = function()
     local icons = require("lazyvim.config").icons
     local Util = require("lazyvim.util")
@@ -33,18 +55,6 @@ return {
           },
         },
         lualine_x = {
-          -- stylua: ignore
-          {
-            function() return require("noice").api.status.command.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = Util.ui.fg("Statement"),
-          },
-          -- stylua: ignore
-          {
-            function() return require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = Util.ui.fg("Constant"),
-          },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,

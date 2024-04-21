@@ -1,0 +1,35 @@
+name:
+  .trash: 
+  .cargo: 
+  .emacs.d: 
+  a.out: 
+extension:
+  go: 
+  f*: 󱈚
+  hs: 
+  rs: 
+  jl: 
+  py: 
+  lua: 
+  zig: 
+  tex: 
+  svg: 
+  eps: 
+  png: 
+  jpeg: 
+  pdf: 
+  msh: 󰔶
+  yaml: 
+  toml: 
+  conf: 
+filetype:
+  dir: 
+  file: 
+  pipe: 󰟥
+  socket: 
+  executable: 
+  symlink-dir: 󰿨
+  symlink-file: 
+  device-char: 
+  device-block: 󰜫
+  special: 

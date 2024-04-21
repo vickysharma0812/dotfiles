@@ -1,19 +1,27 @@
-theme:
-  lightTheme: false 
-  activeBorderColor:
-    - "#a6e3a1" # Green
-    - bold
-  inactiveBorderColor:
-    - "#cdd6f4" # Text
-  optionsTextColor:
-    - "#89b4fa" # Blue
-  selectedLineBgColor:
-    - "#313244" # Surface0
-  selectedRangeBgColor:
-    - "#313244" # Surface0
-  cherryPickedCommitBgColor:
-    - "#94e2d5" # Teal
-  cherryPickedCommitFgColor:
-    - "#89b4fa" # Blue
-  unstagedChangesColor:
-    - red       # Red
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+gui:
+  nerdFontsVersion: "3"
+  showIcons: true
+  showFileTree: true
+  scrollHeight: 10
+  scrollPastBottom: true
+  mouseEvents: true
+  skipDiscardChangeWarning: false
+  skipStashWarning: true
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexible
+  theme:
+    activeBorderColor:
+      - "#89ddff"
+      - bold
+    inactiveBorderColor:
+      - "#565f89"
+    optionsTextColor:
+      - "#3d59a1"
+    selectedLineBgColor:
+      - "#292e42"
+      - bold
+  commitLength:
+    show: true
+  skipNoStagedFilesWarning: false

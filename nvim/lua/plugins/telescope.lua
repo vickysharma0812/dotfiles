@@ -4,6 +4,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    tag = "0.1.6",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       defaults = {
@@ -21,7 +22,7 @@ return {
             --     left corner", "E" -> "right edge", "S" -> "bottom edge"
             anchor = "N",
             height = 0.35,
-            width = 0.8,
+            width = 0.9,
             prompt_position = "bottom",
             preview_cutoff = 1,
           },
@@ -72,5 +73,21 @@ return {
       -- },
       -- }
     end,
+  },
+
+  -- project
+  {
+    "ahmedkhalf/project.nvim",
+    lazy = false,
+    opts = {
+      active = true,
+      on_config_done = nil,
+      manual_mode = false,
+      detection_methods = { "pattern", "lsp" },
+      patterns = { ".git" },
+      show_hidden = false,
+      silent_chdir = true,
+      ignore_lsp = {},
+    },
   },
 }

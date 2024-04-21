@@ -15,6 +15,14 @@
         "path": "./markdown.json"
       },
       {
+        "language": ["markdown"],
+        "path": "./easifem-markdown.json"
+      },
+      {
+        "language": ["fortran", "markdown"],
+        "path": "./easifem-fortran.json"
+      },
+      {
         "language": "cmake",
         "path": "./cmake.json"
       },

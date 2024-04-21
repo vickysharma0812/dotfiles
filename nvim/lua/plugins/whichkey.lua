@@ -101,12 +101,13 @@ return {
       ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
       ["E"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
       ["e"] = { "<cmd>Neotree toggle float<cr>", "Explorer" },
-      ["."] = {
-        "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-        "Find files",
-      },
+      -- ["."] = {
+      --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      --   "Find files",
+      -- },
+      ["."] = { "<cmd>JABSOpen<cr>", "Find files" },
       [","] = {
-        "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = true})<cr>",
+        "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_ivy{previewer = true})<cr>",
         "Find buffers",
       },
 
@@ -114,11 +115,12 @@ return {
         name = "Files",
         f = { "<cmd>Telescope find_files<CR>", "Find files" },
         g = { "<cmd>Telescope git_files<CR>", "Find Git files" },
-        w = { "<cmd>write<CR>", "Write file" },
         d = { "<cmd>Bdelete<CR>", "Close file" },
-        -- o = { "<cmd>NvimTreeFindFile<CR>", "Reveal file in tree" },
-        -- o = { "<cmd>NeoTreeReveal<CR>", "Reveal file in tree" },
-        o = { "<cmd>Neotree reveal<CR>", "Reveal file in tree" },
+        -- o = { "<cmd>Neotree reveal<CR>", "Reveal file in tree" },
+        o = { "<cmd>Neotree position=float reveal_force_cwd=true dir=%:p:h reveal_file=%:p<CR>", "Reveal file in tree" },
+        w = { '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "find current word spectre" },
+        p = { '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', "find on current file" },
+        S = { '<cmd>lua require("spectre").toggle()<CR>', "Toggle spectre" },
         c = {
           name = "Config files",
           a = { ":e ~/.config/awesome/rc.lua <CR>", "Awesome" },
@@ -126,14 +128,24 @@ return {
           t = { ":e ~/.config/alacritty/alacritty.toml <CR>", "Alacritty toml" },
           T = { ":e ~/.config/alacritty/alacritty.yml <CR>", "Alacritty yml" },
           z = { ":e ~/.config/zellij/config.kdl <CR>", "Zellij" },
-          f = { ":e ~/.config/nvim/snippets/FortranFreeForm.json <CR>", "Fortran snippets" },
-          m = { ":e ~/.config/nvim/snippets/markdown.json <CR>", "Markdown snippets" },
+          f = { ":e ~/.config/nvim/snippets/easifem-fortran.json <CR>", "Fortran snippets" },
+          m = { ":e ~/.config/nvim/snippets/easifem-markdown.json <CR>", "Markdown snippets" },
         },
       },
       x = {
         name = "Install",
         b = { "<cmd>lua _BASE_TOGGLE()<CR>", "Install base" },
         c = { "<cmd>lua _CLASS_TOGGLE()<CR>", "Install classes" },
+      },
+
+      o = {
+        name = "Overseer",
+        r = { "<cmd>OverseerRun<CR>", "Overseer run" },
+        q = { "<cmd>OverseerQuickAction<CR>", "Overseer quick action" },
+        o = { "<cmd>OverseerOpen<CR>", "Overseer open" },
+        t = { "<cmd>OverseerToggle<CR>", "Overseer toggle" },
+        d = { "<cmd>OverseerClose<CR>", "Overseer close" },
+        w = { "<cmd>WatchRun<CR>", "Watch run" },
       },
 
       g = {
@@ -195,7 +207,7 @@ return {
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+        -- s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
         S = {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
           "Workspace Symbols",
@@ -203,6 +215,8 @@ return {
       },
       s = {
         name = "Search",
+        x = { "<cmd>Telescope tmux sessions<cr>", "Tmux sessions" },
+        y = { "<cmd>Telescope tmux windows<cr>", "Tmux windows" },
         p = { "<cmd>Telescope projects<cr>", "Search projects" },
         f = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
         -- f = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
@@ -226,7 +240,8 @@ return {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
           "Workspace Symbols",
         },
-        y = { "<cmd>Telescope neoclip<cr>", "Neoclip" },
+        -- y = { "<cmd>Telescope neoclip<cr>", "Neoclip" },
+        w = { '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Search current word" },
       },
       P = {
         name = "Project",
@@ -288,15 +303,19 @@ return {
       },
       t = {
         name = "Toggle",
-        t = { "<cmd>TransparentToggle<cr>", "Toggle transparent" },
-        b = { "<cmd>Neotree source=buffers action=show position=right<cr>", "Toggle buffer to right" },
-        g = { "<cmd>Neotree source=git_status action=show position=right<cr>", "Toggle buffer to right" },
-        f = { "<cmd>Neotree source=filesystem action=show position=right<cr>", "Toggle files to right" },
+        -- t = { "<cmd>TransparentToggle<cr>", "Toggle transparent" },
+        --
+        n = { "<cmd>tabnew<CR>", "New Tab" },
+        d = { "<cmd>tabclose<CR>", "Close Tab" },
+        l = { "<cmd>tabnext<CR>", "Next Tab" },
+        h = { "<cmd>tabprevious<CR>", "Previous Tab" },
+        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
+        b = {
+          "<cmd>Neotree source=buffers reveal=true action=focus position=float toggle=true<cr>",
+          "Toggle buffer to right",
+        },
         z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
-        h = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-        s = { "<cmd>Navbuddy<cr>", "Toggle Navbuddy" },
-        o = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
-        O = { "<cmd>Lspsaga outline<cr>", "Toggle Symbol-outline" },
+        s = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
         x = {
           name = "TroubleToggle",
           d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document diagnostic" },
@@ -323,7 +342,7 @@ return {
         name = "harpoon",
         a = {
           function()
-            require("harpoon"):list():append()
+            require("harpoon"):list():add()
           end,
           "add file",
         },

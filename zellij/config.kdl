@@ -34,6 +34,7 @@ keybinds clear-defaults=true {
         bind "k" "Up" { MoveFocus "Up"; }
         bind "a" { SwitchFocus; }
         bind "n" { NewPane; SwitchToMode "Normal"; }
+        bind "N" { NewPane; ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
@@ -173,6 +174,15 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+        bind "Alt 1" { GoToTab 1; SwitchToMode "Normal"; }
+        bind "Alt 2" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "Alt 3" { GoToTab 3; SwitchToMode "Normal"; }
+        bind "Alt 4" { GoToTab 4; SwitchToMode "Normal"; }
+        bind "Alt 5" { GoToTab 5; SwitchToMode "Normal"; }
+        bind "Alt 6" { GoToTab 6; SwitchToMode "Normal"; }
+        bind "Alt 7" { GoToTab 7; SwitchToMode "Normal"; }
+        bind "Alt 8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "Alt 9" { GoToTab 9; SwitchToMode "Normal"; }
 
         // monocle plugins
         bind "F1" {
@@ -278,6 +288,19 @@ pane_frames false
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
 themes {
+  flexoki-dark {
+    bg "#100F0F"
+    fg "#FFFCF0"
+    red "#AF3029"
+    green "#66800B"
+    blue "#205EA6"
+    yellow "#AD8301"
+    magenta "#A02F6F"
+    orange "#BC5215"
+    cyan "#24837B"
+    black "#100F0F"
+    white "#FFFCF0"
+  }
   rose-pine {
     bg "#191724"
     fg "#e0def4"
@@ -291,14 +314,41 @@ themes {
     black "#26233a"
     white "#e0def4"
   }
+tokyo-night-dark {
+        fg 169 177 214
+        bg 26 27 38
+        black 56 62 90
+        red 249 51 87
+        green 158 206 106
+        yellow 224 175 104
+        blue 122 162 247
+        magenta 187 154 247
+        cyan 42 195 222
+        white 192 202 245
+        orange 255 158 100
+    }
+tokyo-night {
+        fg 169 177 214
+        bg 26 27 38
+        black 56 62 90
+        red 249 51 87
+        green 158 206 106
+        yellow 224 175 104
+        blue 122 162 247
+        magenta 187 154 247
+        cyan 42 195 222
+        white 192 202 245
+        orange 255 158 100
+    }
 }
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-  // theme "tokyo-night"
+  //theme "tokyo-night"
   //theme "catppuccin-mocha"
   //theme "carbonfox"
-  theme "rose-pine"
+  //theme "flexoki-dark"
+  //theme "rose-pine"
 
 // The name of the default layout to load on startup
 // Default: "default"

@@ -1,7 +1,3 @@
-if true then
-  return {}
-end
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -20,6 +16,7 @@ return {
       servers = {
         gopls = {
           keys = {
+            -- Workaround for the lack of a DAP strategy in neotest-go: https://github.com/nvim-neotest/neotest-go/issues/12
             { "<leader>td", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug Nearest (Go)" },
           },
           settings = {
@@ -64,7 +61,7 @@ return {
         gopls = function(_, opts)
           -- workaround for gopls not supporting semanticTokensProvider
           -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-          require("lazyvim.util").on_attach(function(client, _)
+          LazyVim.lsp.on_attach(function(client, _)
             if client.name == "gopls" then
               if not client.server_capabilities.semanticTokensProvider then
                 local semantic = client.config.capabilities.textDocument.semanticTokens
@@ -86,28 +83,52 @@ return {
   },
   -- Ensure Go tools are installed
   {
-    "nvimtools/none-ls.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, opts)
-      if type(opts.sources) == "table" then
-        local nls = require("null-ls")
-        vim.list_extend(opts.sources, {
-          -- nls.builtins.code_actions.gomodifytags,
-          -- nls.builtins.code_actions.impl,
-          nls.builtins.formatting.gofumpt,
-          nls.builtins.formatting.goimports_reviser,
-        })
-      end
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "goimports", "gofumpt", "golangci-lint" })
     end,
+  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   optional = true,
+  --   dependencies = {
+  --     {
+  --       "williamboman/mason.nvim",
+  --       opts = function(_, opts)
+  --         opts.ensure_installed = opts.ensure_installed or {}
+  --         vim.list_extend(opts.ensure_installed, { "gomodifytags", "impl" })
+  --       end,
+  --     },
+  --   },
+  --   opts = function(_, opts)
+  --     local nls = require("null-ls")
+  --     opts.sources = vim.list_extend(opts.sources or {}, {
+  --       nls.builtins.code_actions.gomodifytags,
+  --       nls.builtins.code_actions.impl,
+  --       nls.builtins.formatting.goimports,
+  --       nls.builtins.formatting.gofumpt,
+  --     })
+  --   end,
+  -- },
+  {
+    "stevearc/conform.nvim",
+    optional = false,
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofumpt" },
+      },
+    },
   },
   {
     "mfussenegger/nvim-dap",
     optional = true,
     dependencies = {
       {
-        "mason.nvim",
+        "williamboman/mason.nvim",
         opts = function(_, opts)
           opts.ensure_installed = opts.ensure_installed or {}
-          vim.list_extend(opts.ensure_installed, { "gomodifytags", "impl", "gofumpt", "goimports-reviser", "delve" })
+          vim.list_extend(opts.ensure_installed, { "delve" })
         end,
       },
       {
@@ -127,7 +148,17 @@ return {
         ["neotest-go"] = {
           -- Here we can set options for neotest-go, e.g.
           -- args = { "-tags=integration" }
+          recursive_run = true,
         },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        go = { "golangcilint" },
       },
     },
   },

@@ -34,8 +34,10 @@
     "prefix": "gpl3",
     "description": "GNU-GPL3 licence",
     "body": [
-      "! This program is a part of EASIFEM library",
-      "! Copyright (C) (Since 2020)  Vikas Sharma, Ph.D",
+			"! This program is a part of EASIFEM library",
+			"! Expandable And Scalable Infrastructure for Finite Element Methods",
+			"! htttps://www.easifem.com",
+			"! Vikas Sharma, Ph.D., vickysharma0812@gmail.com",
       "!",
       "! This program is free software: you can redistribute it and/or modify",
       "! it under the terms of the GNU General Public License as published by",
@@ -57,7 +59,7 @@
     "description": "break the lines ",
     "body": [
       " &",
-      "&$1"
+      "$0"
     ]
   },
   "ia": {
@@ -75,44 +77,74 @@
     "body": "REAL(DFP), PARAMETER :: $0",
     "description": "real parameter :: "
   },
+  "loi": {
+    "prefix": "loi",
+    "body": "LOGICAL(LGT), OPTIONAL, INTENT(IN) :: ",
+    "description": "logical optional in"
+  },
+  "li": {
+    "prefix": "li",
+    "body": "LOGICAL(LGT), INTENT(IN) :: ",
+    "description": "logical in"
+  },
+  "loo": {
+    "prefix": "loo",
+    "body": "LOGICAL(LGT), OPTIONAL, INTENT(OUT) :: ",
+    "description": "logical optional out"
+  },
+  "lo": {
+    "prefix": "lo",
+    "body": "LOGICAL(LGT), INTENT(OUT) :: ",
+    "description": "logical out"
+  },
+  "loio": {
+    "prefix": "loio",
+    "body": "LOGICAL(LGT), OPTIONAL, INTENT(INOUT) :: ",
+    "description": "logical optional inout"
+  },
+  "lio": {
+    "prefix": "lio",
+    "body": "LOGICAL(LGT), INTENT(INOUT) :: ",
+    "description": "logical inout"
+  },
   "ioi": {
     "prefix": "ioi",
-    "body": "INTEGER( I4B ), OPTIONAL, INTENT( IN ) :: ",
+    "body": "INTEGER( I4B ), OPTIONAL, INTENT(IN) :: ",
     "description": "real optional in"
   },
   "ii": {
     "prefix": "ii",
-    "body": "INTEGER( I4B ), INTENT( IN ) :: ",
+    "body": "INTEGER( I4B ), INTENT(IN) :: ",
     "description": "real in"
   },
   "ioo": {
     "prefix": "ioo",
-    "body": "INTEGER( I4B ), OPTIONAL, INTENT( OUT ) :: ",
+    "body": "INTEGER( I4B ), OPTIONAL, INTENT(OUT) :: ",
     "description": "real optional out"
   },
   "io": {
     "prefix": "io",
-    "body": "INTEGER( I4B ), INTENT( OUT ) :: ",
+    "body": "INTEGER( I4B ), INTENT(OUT) :: ",
     "description": "real out"
   },
   "ioio": {
     "prefix": "ioio",
-    "body": "INTEGER( I4B ), OPTIONAL, INTENT( INOUT ) :: ",
+    "body": "INTEGER( I4B ), OPTIONAL, INTENT(INOUT) :: ",
     "description": "real optional inout"
   },
   "iio": {
     "prefix": "iio",
-    "body": "INTEGER( I4B ), INTENT( INOUT ) :: ",
+    "body": "INTEGER( I4B ), INTENT(INOUT) :: ",
     "description": "real inout"
   },
   "civ": {
     "prefix": "civ",
-    "body": "INTEGER( C_INT ), VALUE, INTENT( IN ) :: ",
+    "body": "INTEGER( C_INT ), VALUE, INTENT(IN) :: ",
     "description": "cint value in"
   },
   "real": {
     "prefix": "real",
-    "body": "REAL( DFP ) ",
+    "body": "REAL(DFP) ",
     "description": "real"
   },
   "ra": {
@@ -122,32 +154,32 @@
   },
   "roi": {
     "prefix": "roi",
-    "body": "REAL( DFP ), OPTIONAL, INTENT( IN ) :: ",
+    "body": "REAL( DFP ), OPTIONAL, INTENT(IN) :: ",
     "description": "real optional in"
   },
   "ri": {
     "prefix": "ri",
-    "body": "REAL( DFP ), INTENT( IN ) :: ",
+    "body": "REAL( DFP ), INTENT(IN) :: ",
     "description": "real in"
   },
   "roo": {
     "prefix": "roo",
-    "body": "REAL( DFP ), OPTIONAL, INTENT( OUT ) :: ",
+    "body": "REAL( DFP ), OPTIONAL, INTENT(OUT) :: ",
     "description": "real optional out"
   },
   "ro": {
     "prefix": "ro",
-    "body": "REAL( DFP ), INTENT( OUT ) :: ",
+    "body": "REAL( DFP ), INTENT(OUT) :: ",
     "description": "real out"
   },
   "roio": {
     "prefix": "roio",
-    "body": "REAL( DFP ), OPTIONAL, INTENT( INOUT ) :: ",
+    "body": "REAL( DFP ), OPTIONAL, INTENT(INOUT) :: ",
     "description": "real optional inout"
   },
   "rio": {
     "prefix": "rio",
-    "body": "REAL( DFP ), INTENT( INOUT ) :: ",
+    "body": "REAL( DFP ), INTENT(INOUT) :: ",
     "description": "real inout"
   },
   "logical": {
@@ -198,8 +230,8 @@
     "description": "vikas",
     "body": [
       "!> author: Vikas Sharma, Ph. D.",
-      "! date: \t",
-      "! summary: \t"
+      "! date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "! summary: $0"
     ]
   },
   "szaghi": {
@@ -207,8 +239,8 @@
     "description": "szaghi",
     "body": [
       "!> author: Stefano Zaghi, https://github.com/szaghi",
-      "! date: \t$1",
-      "! summary: \t$2"
+      "! date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "! summary: $0"
     ]
   },
   "usage": {
@@ -241,7 +273,8 @@
     "body": [
       "INTERFACE",
       "MODULE SUBROUTINE ${1}( ${2} )",
-      "\t$0",
+      "\t$3",
+      "$0",
       "END SUBROUTINE ${1}",
       "END INTERFACE",
       ""
@@ -314,17 +347,17 @@
   "intentin": {
     "prefix": "in",
     "description": "intent in",
-    "body": "INTENT( IN ) :: $0"
+    "body": "INTENT(IN) :: $0"
   },
   "intentout": {
     "prefix": "out",
     "description": "intent out",
-    "body": "INTENT( OUT ) :: $0"
+    "body": "INTENT(OUT) :: $0"
   },
   "intentinout": {
     "prefix": "inout",
     "description": "intent in out",
-    "body": "INTENT( INOUT ) :: $0"
+    "body": "INTENT(INOUT) :: $0"
   },
   "generic": {
     "prefix": "generic",
@@ -347,7 +380,7 @@
   "procedure": {
     "prefix": "proc",
     "description": "procedure",
-    "body": "PROCEDURE, PUBLIC, PASS( obj ) :: $0"
+    "body": "PROCEDURE, PUBLIC, PASS(obj) :: $0"
   },
   "submoduleModuleProcedure": {
     "prefix": "smp",
@@ -374,11 +407,11 @@
     "description": "display",
     "body": [
       "INTERFACE",
-      "MODULE SUBROUTINE ${NAME1}( Obj, Msg, UnitNo )",
-      "\tCLASS( ${NAME2} ), INTENT( IN ) :: Obj",
-      "\tCHARACTER( LEN = * ), INTENT( IN ) :: Msg",
-      "\tINTEGER( I4B ), OPTIONAL, INTENT( IN ) :: UnitNo",
-      "END SUBROUTINE ${NAME1}",
+      "MODULE SUBROUTINE ${1}( Obj, Msg, UnitNo )",
+      "\tCLASS( ${0} ), INTENT(IN) :: Obj",
+      "\tCHARACTER( LEN = * ), INTENT(IN) :: Msg",
+      "\tINTEGER( I4B ), OPTIONAL, INTENT(IN) :: UnitNo",
+      "END SUBROUTINE ${1}",
       "END INTERFACE",
       ""
     ]
@@ -1019,6 +1052,19 @@
       "DEALLOCATE (essentialParam)",
       "END IF",
       "astr = '' "
+    ]
+  },
+  "import_method":{
+    "prefix": "import_method",
+    "description": "subroutine import method",
+    "body": [
+  "INTERFACE",
+  "MODULE SUBROUTINE obj_Import(obj, hdf5, group)",
+    "CLASS($0), INTENT(INOUT) :: obj",
+    "TYPE(HDF5File_), INTENT(INOUT) :: hdf5",
+    "CHARACTER(*), INTENT(IN) :: group",
+  "END SUBROUTINE obj_Import",
+  "END INTERFACE"
     ]
   }
 }

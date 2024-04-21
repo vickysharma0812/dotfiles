@@ -98,12 +98,14 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
+      transparent_background = true,
+      transparent = true,
       dim_inactive = true,
       palettes = {
         -- Custom duskfox with black background
         carbonfox = {
           bg1 = "#000000", -- Black background
-          -- bg0 = "#1d1d2b", -- Alt backgrounds (floats, statusline, ...)
+          bg0 = "#1d1d2b", -- Alt backgrounds (floats, statusline, ...)
           -- bg3 = "#121820", -- 55% darkened from stock
           -- sel0 = "#131b24", -- 55% darkened from stock
         },
@@ -148,12 +150,12 @@ return {
     opts = {
       transparent = true,
       styles = {
-        sidebars = "transparent",
-        floats = "transparent",
+        sidebars = "dark",
+        floats = "dark",
         comments = { italic = true },
-        keywords = { italic = true },
-        functions = { bold = true },
-        variables = {},
+        keywords = { italic = false },
+        functions = { bold = false, italic = true },
+        variables = { bold = true },
       },
     },
   },
@@ -226,12 +228,54 @@ return {
     },
   },
   {
+    "kepano/flexoki-neovim",
+    name = "flexoki",
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    opts = {
+      compile = false, -- enable compiling the colorscheme
+      undercurl = true, -- enable undercurls
+      commentStyle = { italic = true },
+      functionStyle = { italic = true },
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = true, -- do not set background color
+      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+      terminalColors = true, -- define vim.g.terminal_color_{0,17}
+      colors = { -- add/modify theme and palette colors
+        palette = {},
+        theme = {
+          wave = {},
+          lotus = {},
+          dragon = {},
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+      overrides = function(colors) -- add/modify highlights
+        return {}
+      end,
+      theme = "dragon", -- Load "wave" theme when 'background' option is not set
+      background = { -- map the value of 'background' option to a theme
+        dark = "dragon", -- try "dragon" !
+        light = "lotus",
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "tokyonight",
+      -- colorscheme = "kanagawa-dragon",
+      colorscheme = "tokyonight",
       -- colorscheme = "catppuccin",
       -- colorscheme = "carbonfox",
-      colorscheme = "rose-pine",
+      -- colorscheme = "rose-pine",
+      -- colorscheme = "flexoki-dark",
     },
   },
 }

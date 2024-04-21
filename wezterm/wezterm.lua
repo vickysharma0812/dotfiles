@@ -14,8 +14,10 @@ end
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "catppuccin-mocha"
-config.color_scheme = "rose-pine"
-config.font = wezterm.font("VictorMono Nerd Font Propo")
+-- config.color_scheme = "flexoki-dark"
+config.color_scheme = "tokyonight"
+-- config.font = wezterm.font("VictorMono Nerd Font Propo")
+config.font = wezterm.font("Monaspace Neon")
 config.font_size = 14
 
 config.use_fancy_tab_bar = true

@@ -4,10 +4,10 @@ return {
   opts = function()
     return {
       templates = {
-        "builtin",
+        "user.easifem_base",
         "user.easifem_build",
         "user.run_script",
-        "user.f90_build",
+        "builtin",
       },
       component_aliases = {
         default = {
