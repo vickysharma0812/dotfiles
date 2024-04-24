@@ -1,19 +1,79 @@
 return {
   -- NOTE: if you do not need syntax highlighting
   -- please activate setting below
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = function(_, opts)
-  --     if type(opts.ensure_installed) == "table" then
-  --       vim.list_extend(opts.ensure_installed, { "bibtex", "latex" })
-  --     end
-  --     if type(opts.highlight.disable) == "table" then
-  --       vim.list_extend(opts.highlight.disable, { "latex" })
-  --     else
-  --       opts.highlight.disable = { "latex" }
-  --     end
-  --   end,
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "bibtex", "latex" })
+      end
+      if type(opts.highlight.disable) == "table" then
+        vim.list_extend(opts.highlight.disable, { "latex" })
+      else
+        opts.highlight.disable = { "latex" }
+      end
+    end,
+  },
+  --
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        grammarly = function(_, opts)
+          opts.cmd = {
+            "grammarly-languageserver",
+            "--stdio",
+          }
+          opts.filetypes = { "tex", "markdown" }
+          opts.init_options = {
+            clientId = "client_BaDkMgx4X19X9UxxYRCXZo",
+          }
+          opts.single_file_support = true
+        end,
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    optional = true,
+    opts = {
+      servers = {
+        texlab = {
+          keys = {
+            { "<Leader>K", "<plug>(vimtex-doc-package)", desc = "Vimtex Docs", silent = true },
+          },
+          settings = {
+            texlab = {
+              rootDirectory = nil,
+              build = {
+                executable = "latexmk",
+                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                onSave = false,
+                forwardSearchAfter = false,
+              },
+              auxDirectory = ".",
+              forwardSearch = {
+                executable = nil,
+                args = {},
+              },
+              chktex = {
+                onOpenAndSave = false,
+                onEdit = false,
+              },
+              diagnosticsDelay = 300,
+              latexFormatter = "latexindent",
+              latexindent = {
+                ["local"] = nil, -- local is a reserved keyword
+                modifyLineBreaks = true,
+              },
+              bibtexFormatter = "texlab",
+              formatterLineLength = 80,
+            },
+          },
+        },
+      },
+    },
+  },
   {
     "lervag/vimtex",
     lazy = false, -- lazy-loading will disable inverse search
@@ -82,6 +142,11 @@ return {
       -- PDF Viewer:
       -- http://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html
       vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_context_pdf_viewer = "zathura"
+      -- vim.g.vimtex_view_method = "skim"
+      -- vim.g.vimtex_context_pdf_viewer = "skim"
+      vim.g.vimtex_view_skim_sync = 1
+      vim.g.vimtex_view_skim_activate = 1
       vim.g.vimtex_quickfix_mode = 0
 
       vim.g.vimtex_log_ignore = {
@@ -91,7 +156,6 @@ return {
         "Token not allowed in a PDF string",
       }
 
-      vim.g.vimtex_context_pdf_viewer = "zathura"
       vim.g.vimtex_complete_enabled = 1
       --
       -- Ignore mappings

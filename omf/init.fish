@@ -183,11 +183,10 @@ set -gx VISUAL nvim
 #     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH /opt/paraview/lib
 # end
 
-set -gx NVM_DIR "$HOME/.nvm"
-
-function nvm
-    bash -c '$NVM_DIR/nvm.sh "$@"' $argv
-end
+# set -gx NVM_DIR "$HOME/.nvm"
+# function nvm
+# bash -c '$NVM_DIR/nvm.sh "$@"' $argv
+# end
 
 # https://yazi-rs.github.io/docs/quick-start
 # We suggest using this ya shell wrapper that provides the ability to

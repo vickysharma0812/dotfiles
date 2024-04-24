@@ -17,14 +17,14 @@ Format 24
 # SCREEN & FONTS SECTION ############################
 #
 
-\screen_zoom 400
+\screen_zoom 300
 \paragraph_markers true
-\screen_font_roman "PT Serif"
-\screen_font_sans "PT Sans"
-\screen_font_typewriter "PT Mono"
+\screen_font_roman "STIX Two Text"
+\screen_font_sans "STIX Two Text"
+\screen_font_typewriter "VictorMono Nerd Font"
 \screen_font_sizes 5 7 8 9 10 12 14.4 17.26 20.74 24.88
 \fullscreen_limit true
-\open_buffers_in_tabs true
+\single_instance false
 
 #
 # COLOR SECTION ###################################
@@ -120,7 +120,6 @@ Format 24
 # SPELLCHECKER SECTION ##############################
 #
 
-\use_system_colors false
 
 #
 # LANGUAGE SUPPORT SECTION ##########################

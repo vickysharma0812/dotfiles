@@ -133,9 +133,10 @@ return {
         },
       },
       x = {
-        name = "Install",
-        b = { "<cmd>lua _BASE_TOGGLE()<CR>", "Install base" },
-        c = { "<cmd>lua _CLASS_TOGGLE()<CR>", "Install classes" },
+        name = "EASIFEM dev",
+        -- g = { "<cmd>CMakeGenerate<CR>", "Cmake configure" },
+        -- b = { "<cmd>CMakeBuild()<CR>", "Cmake build" },
+        -- r = { "<cmd>CMakeRun()<CR>", "Cmake run" },
       },
 
       o = {
