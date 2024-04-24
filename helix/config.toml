@@ -1,11 +1,11 @@
-theme="catppuccin_mocha"
+theme="tokyonight_night"
 
 [editor]
 line-number="relative"
 mouse=true
-auto-pairs = false
+auto-pairs = true
 auto-save = true
-shell = ["zsh", "-c"]
+shell = ["fish", "-c"]
 auto-completion = true
 completion-trigger-len = 2
 true-color = true

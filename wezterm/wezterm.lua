@@ -14,8 +14,10 @@ end
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "catppuccin-mocha"
-config.color_scheme = "carbonfox"
-config.font = wezterm.font("VictorMono Nerd Font Propo")
+-- config.color_scheme = "flexoki-dark"
+config.color_scheme = "tokyonight"
+-- config.font = wezterm.font("VictorMono Nerd Font Propo")
+config.font = wezterm.font("Monaspace Neon")
 config.font_size = 14
 
 config.use_fancy_tab_bar = true
@@ -23,7 +25,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 
 -- config.window_background_image = os.getenv("HOME") .. "/Dropbox/dotfiles/wallpaper/4k/8.jpg"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1.0
 config.macos_window_background_blur = 20
 -- config.text_background_opacity = 0.5
 -- config.default_prog = { "/opt/homebrew/bin/btop" }

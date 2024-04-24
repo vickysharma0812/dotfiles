@@ -1,0 +1,96 @@
+-- /home/stevearc/.config/nvim/lua/overseer/template/user/run_script.lua
+return {
+  name = "run script",
+  builder = function()
+    local file = vim.fn.expand("%:p")
+    local filename = vim.fn.expand("%:t")
+    local cmd = { file }
+    if vim.bo.filetype == "go" then
+      cmd = { "go", "run", file }
+    end
+    if vim.bo.filetype == "fortran" then
+      cmd = {
+        "gfortran",
+        "-DDEBUG_VER",
+        "-DUSE_Int32",
+        "-DUSE_Real64",
+        "-DAPPLE",
+        "-D_ASCII_SUPPORTED",
+        "-D_R16P",
+        "-D_UCS4_SUPPORTED",
+        "-DASCII_SUPPORTED",
+        "-DDarwin_SYSTEM",
+        "-DUCS4_SUPPORTED",
+        "-DUSE_APPLE_NativeBLAS",
+        "-DUSE_ARPACK",
+        "-DUSE_BLAS95",
+        "-DUSE_CMAKE",
+        "-DUSE_FFTW",
+        "-DUSE_LAPACK95",
+        "-DUSE_LIS",
+        "-DUSE_NativeBLAS",
+        "-DUSE_OpenMP",
+        "-DUSE_PLPLOT",
+        "-DUSE_GMSH",
+        "-DUSE_SuperLU",
+        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include",
+        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include/arpack",
+        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include/toml-f/modules/",
+        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/base/include",
+        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/classes/include",
+        "-I" .. os.getenv("HOME") .. "/.easifem/ide/include",
+        "-ffree-form",
+        "-ffree-line-length-none",
+        "-std=f2018",
+        "-fimplicit-none",
+        "-Waliasing",
+        "-Wall",
+        "-Wampersand",
+        "-Warray-bounds",
+        "-Wc-binding-type",
+        "-Wcharacter-truncation",
+        "-Wconversion",
+        "-Wdo-subscript",
+        "-Wfunction-elimination",
+        "-Wimplicit-interface",
+        "-Wimplicit-procedure",
+        "-Wintrinsic-shadow",
+        "-Wuse-without-only",
+        "-Wintrinsics-std",
+        "-Wline-truncation",
+        "-Wno-align-commons",
+        "-Wno-overwrite-recursive",
+        "-Wno-tabs",
+        "-Wreal-q-constant",
+        "-Wsurprising",
+        "-Wunderflow",
+        "-Wunused-parameter",
+        "-Wrealloc-lhs",
+        "-Wrealloc-lhs-all",
+        "-Wtarget-lifetime",
+        "-pedantic",
+        "-pedantic-errors",
+        "-c",
+        file,
+        "-o",
+        os.getenv("HOME") .. "/.easifem/ide/include/" .. filename .. ".o",
+      }
+    end
+    return {
+      cmd = cmd,
+      components = {
+        "default",
+        { "on_complete_notify", statuses = { "FAILURE" }, on_change = true },
+        { "on_complete_dispose", statuses = { "SUCCESS", "FAILURE", "CANCELED" }, timeout = 30 },
+        { "on_output_quickfix", open = true, set_diagnostics = true },
+        { "restart_on_save" },
+        { "on_result_diagnostics", virtual_text = true },
+        { "on_exit_set_status", success_codes = { 0 } },
+        -- { "on_output_parse", problem_matcher = "$gcc" },
+      },
+    }
+  end,
+  condition = {
+    filetype = { "fortran" },
+  },
+}

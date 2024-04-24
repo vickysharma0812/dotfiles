@@ -1,48 +1,52 @@
+[language-server.fortls]
+command="fortls"
+args=["--notify_init", "--sort_keywords", "--hover_signature", "--hover_language", "fortran", "--use_signature_help"]
+
 [[language]]
 name="fortran"
 scope="source.fortran"
 injection-regex = "fortran"
-auto-format=true
-file-types = ["f", "for", "f90", "f95", "f03", "F90", "inc", "part"]
-roots = ["fpm.toml", ".fortls"]
+file-types = ["f", "for", "f90", "f95", "f03", "F90"]
 comment-token = "!"
 indent={tab-width=2, unit="  "}
-language-server = {command="fortls", args=["--notify_init", "--sort_keywords", "--hover_signature", "--hover_language", "fortran", "--use_signature_help"]}
+auto-format=true
+roots = ["fpm.toml", ".fortls"]
 formatter={command="fprettify", args = [
-        "--case",
-        "2",
-        "2",
-        "2",
-        "2",
-        "--line-length",
-        "78",
-        "--indent",
-        "2",
-        "--strict-indent",
-        "--disable-indent-mod",
-        "--whitespace",
-        "2",
-        "--whitespace-comma",
-        "--whitespace-assignment",
-        "--enable-decl",
-        "--whitespace-decl",
-        "--whitespace-relational",
-        "--whitespace-logical",
-        "--whitespace-multdiv",
-        "--whitespace-print",
-        "--whitespace-intrinsics",
-        "--strip-comments"]}
+              "--case",
+              "2",
+              "2",
+              "2",
+              "2",
+              "--line-length",
+              "78",
+              "--indent",
+              "2",
+              "--strict-indent",
+              "--disable-indent-mod",
+              "--whitespace",
+              "2",
+              "--whitespace-comma",
+              "--whitespace-assignment",
+              "--enable-decl",
+              "--whitespace-decl",
+              "--whitespace-relational",
+              "--whitespace-logical",
+              "--whitespace-multdiv",
+              "--whitespace-print",
+              "--whitespace-intrinsics",
+              "--strip-comments"
+        ]}
+language-servers = ["fortls"]
 
-
-# [[grammar]]
-# name = "fortran"
-# source = { path = "/home/easifem/Dropbox/tree-sitter-fortran" }
+[[grammar]]
+name = "fortran"
+source = { git = "https://github.com/stadelmanma/tree-sitter-fortran", rev="" }
 
 [[language]]
 name = "rust"
 
-[language.config]
-checkOnSave = { command = "clippy" }
+[[language]]
+name = "toml"
 
 [[language]]
 name="python"

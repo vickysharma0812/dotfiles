@@ -1,1 +1,1 @@
-/Users/easifem/Library/Application Support/org.dystroy.broot/launcher/fish/br.fish
+/home/easifem/.local/share/broot/launcher/fish/br.fish
