@@ -1,1 +1,4 @@
 .DS_Store
+fish/fish_history
+fish/fish_variables
+*.bk
