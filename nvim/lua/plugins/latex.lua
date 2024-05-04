@@ -141,10 +141,10 @@ return {
       vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
       -- PDF Viewer:
       -- http://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html
-      vim.g.vimtex_view_method = "zathura"
-      vim.g.vimtex_context_pdf_viewer = "zathura"
-      -- vim.g.vimtex_view_method = "skim"
-      -- vim.g.vimtex_context_pdf_viewer = "skim"
+      -- vim.g.vimtex_view_method = "zathura"
+      -- vim.g.vimtex_context_pdf_viewer = "zathura"
+      vim.g.vimtex_view_method = "skim"
+      vim.g.vimtex_context_pdf_viewer = "skim"
       vim.g.vimtex_view_skim_sync = 1
       vim.g.vimtex_view_skim_activate = 1
       vim.g.vimtex_quickfix_mode = 0

@@ -1,6 +1,6 @@
 return {
   -- Required fields
-  name = "easifem base build",
+  name = "build easifem base",
   builder = function(params)
     local file = vim.fn.expand("%:p")
     local filename = vim.fn.expand("%:t")
@@ -45,8 +45,10 @@ return {
         "-D_R16P",
         "-D_UCS4_SUPPORTED",
         "-DeasifemBase_EXPORTS",
-        "-I/opt/homebrew/Cellar/plplot/5.15.0_4/lib/fortran/modules/plplot",
-        "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include",
+        -- "-I/opt/homebrew/Cellar/plplot/5.15.0_4/lib/fortran/modules/plplot",
+        "-I"
+          .. os.getenv("EASIFEM_INSTALL_DIR")
+          .. "/easifem/extpkgs/include",
         "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include/arpack",
         "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/extpkgs/include/toml-f/modules/",
         "-I" .. os.getenv("EASIFEM_INSTALL_DIR") .. "/easifem/base/include",

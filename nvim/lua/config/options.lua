@@ -77,8 +77,8 @@ if vim.g.neovide then
   vim.g.neovide_cursor_antialiasing = true
   vim.g.neovide_cursor_animate_in_insert_mode = true
   -- vim.o.guifont = 'Fira_Code_Regular_Nerd_Font_Complete:h11'
-  vim.o.guifont = "VictorMono_Nerd_Font_Propo:h13"
-  -- vim.o.guifont = 'JetBrainsMono_Nerd_Font_Mono:h13'
+  -- vim.o.guifont = "VictorMono_Nerd_Font_Propo:h13"
+  vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono:h18"
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
@@ -89,14 +89,14 @@ if vim.g.neovide then
 
   -- For transparency <---- starts
   -- Helper function for transparency formatting
-  -- local alpha = function()
-  --   return string.format("%x", math.floor((255 * vim.g.transparency) or 0.8))
-  -- end
+  local alpha = function()
+    return string.format("%x", math.floor((255 * vim.g.transparency) or 0.9))
+  end
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-  -- vim.g.neovide_transparency = 1.0
-  -- vim.g.transparency = 1.0
+  vim.g.neovide_transparency = 0.8
+  vim.g.transparency = 1.0
   -- vim.g.neovide_background_color = "#1a1b26" .. alpha()
-  -- -----> end
+  -----> end
 end
 
 if vim.g.vscode then

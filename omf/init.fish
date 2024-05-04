@@ -202,9 +202,9 @@ end
 
 # Archlinux
 
-if type -q ~/python-venv/easifem/bin/easifem
-    set PATH $PATH ~/python-venv/easifem/bin
-end
+# if type -q ~/python-venv/easifem/bin/easifem
+#     set PATH $PATH ~/python-venv/easifem/bin
+# end
 
 if type -q ~/.dprint/bin/dprint
     set PATH $PATH ~/.dprint/bin
@@ -231,6 +231,14 @@ set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
 --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
 
 if type -q eza
+    set fzf_preview_dir_cmd eza --all --color=always
+end
+
+if type -q delta
+    set fzf_diff_highlighter delta --paging=never --width=20
+end
+
+if type -q eza
     alias exa="eza --long --header --icons --git --sort=size"
 end
 
@@ -249,6 +257,10 @@ end
 
 if type -q /usr/bin/perl
     set -gx PERL5LIB $PERL5LIB /usr/bin/perl
+end
+
+if type -q /opt/paraview/bin/paraview
+    alias paraview /opt/paraview/bin/paraview
 end
 
 set onedrive ~/OneDrive
