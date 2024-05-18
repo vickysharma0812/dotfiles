@@ -5,7 +5,6 @@ return {
       -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
         "c",
-        "fortran",
         "lua",
         "rust",
         "latex",

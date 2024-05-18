@@ -147,6 +147,16 @@
     "body": "REAL(DFP) ",
     "description": "real"
   },
+  "real32": {
+    "prefix": "real32",
+    "body": "REAL(Real32) ",
+    "description": "real32"
+  },
+  "real64": {
+    "prefix": "real64",
+    "body": "REAL(Real64) ",
+    "description": "real64"
+  },
   "ra": {
     "prefix": "ra",
     "body": "REAL( DFP ), ALLOCATABLE :: $1",

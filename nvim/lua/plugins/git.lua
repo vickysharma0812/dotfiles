@@ -1,6 +1,19 @@
 return {
+  -- {
+  --   "tpope/vim-fugitive",
+  -- },
   {
-    "tpope/vim-fugitive",
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+
+      "ibhagwan/fzf-lua", -- optional
+    },
+    config = true,
+    opts = {
+      graph_style = "unicode",
+    },
   },
   {
     "lewis6991/gitsigns.nvim",

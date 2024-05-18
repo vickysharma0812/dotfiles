@@ -60,7 +60,8 @@ return {
       -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        -- ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<Down>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -73,7 +74,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        ["<Up>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
@@ -82,6 +83,28 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<C-y>"] = cmp.mapping(
+          cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+          }),
+          { "i", "c" }
+        ), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<S-Tab>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<C-CR>"] = function(fallback)
+          cmp.abort()
+          fallback()
+        end,
       })
 
       --   פּ ﯟ   some other good icons

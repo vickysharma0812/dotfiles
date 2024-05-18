@@ -1,5 +1,15 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.indent = { disable = "fortran" }
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "fortran" })
+      end
+    end,
+  },
+
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -20,7 +30,6 @@ return {
             os.getenv("easifem") .. "/easifem-base/src/**",
             os.getenv("easifem") .. "/easifem-classes/src/**",
             os.getenv("easifem") .. "/easifem-elasticity/src/**",
-            os.getenv("EASIFEM_SOURCE_DIR") .. "/easifem/extpkgs/toml-f/src/**",
             os.getenv("easifem") .. "/StokesFlow/src/**",
             "--hover_signature",
             "--hover_language=fortran",
@@ -28,61 +37,8 @@ return {
           }
         end,
       },
-      -- servers = {
-      --   fortls = {
-      --     on_attach = function(client, bufnr)
-      --       -- your other on_attach code
-      --       -- for example, set keymaps here, like
-      --       -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-      --       -- (see below code block for more details)
-      --       local navbuddy = require("nvim-navbuddy")
-      --       navbuddy.attach(client, bufnr)
-      --     end,
-      --   },
-      -- },
     },
   },
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   config = function()
-  --     vim.notify("Loading fortran linting", 3, { title = "LazyVim" })
-  --     local lint = require("lint")
-  --
-  --     local pattern = [[^([^:]+):(%d+):(%d+):%s+([^:]+):%s+(.*)$]]
-  --     local groups = { "file", "lnum", "col", "code", "severity", "message" }
-  --     local severity_map = {
-  --       ["error"] = vim.diagnostic.severity.ERROR,
-  --       ["warning"] = vim.diagnostic.severity.WARN,
-  --       ["performance"] = vim.diagnostic.severity.WARN,
-  --       ["style"] = vim.diagnostic.severity.INFO,
-  --       ["information"] = vim.diagnostic.severity.INFO,
-  --     }
-  --     local defaults = { ["source"] = "fortran" }
-  --     lint.linters.gfortran = {
-  --       name = "gfortran",
-  --       cmd = "gfortran",
-  --       args = {
-  --         "-c",
-  --         "-Wunused-variable",
-  --         "-Wunused-dummy-argument",
-  --         "-Wall",
-  --         "-I",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/toml-f/modules/",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/base/include/",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/classes/include/",
-  --         os.getenv("HOME") .. "/.easifem/ide/include/",
-  --         "-J",
-  --         os.getenv("HOME") .. "/.easifem/ide/include/",
-  --       }, -- args to pass to the linter
-  --       ignore_exitcode = false, -- set this to true if you don't want to show error messages
-  --       stream = "both", -- set this to "stdout" if the output is not an error, for example with luac
-  --       parser = require("lint.parser").from_pattern(pattern, groups, severity_map, defaults),
-  --     }
-  --
-  --     lint.linters_by_ft = { fortran = { "gfortran" } }
-  --   end,
-  -- },
 
   -- look
   {
@@ -174,7 +130,7 @@ return {
         keymap = {
           jump_prev = "[[",
           jump_next = "]]",
-          accept = "<CR>",
+          accept = "<Tab>",
           refresh = "gr",
           open = "<M-CR>",
         },
@@ -243,48 +199,6 @@ return {
       })
     end,
   },
-  -- codeium cmp source
-  -- {
-  --   "Exafunction/codeium.nvim",
-  --   cmd = "Codeium",
-  --   build = ":Codeium Auth",
-  --   opts = {},
-  --   config = function()
-  --     -- Change '<C-g>' here to any keycode you like.
-  --     vim.keymap.set("i", "<C-g>", function()
-  --       return vim.fn["codeium#Accept"]()
-  --     end, { expr = true, silent = true })
-  --     vim.keymap.set("i", "<c-;>", function()
-  --       return vim.fn["codeium#CycleCompletions"](1)
-  --     end, { expr = true, silent = true })
-  --     vim.keymap.set("i", "<c-,>", function()
-  --       return vim.fn["codeium#CycleCompletions"](-1)
-  --     end, { expr = true, silent = true })
-  --     vim.keymap.set("i", "<c-x>", function()
-  --       return vim.fn["codeium#Clear"]()
-  --     end, { expr = true, silent = true })
-  --     vim.cmd([[let g:codeium_filetypes = {
-  --                   \ "go": v:true,
-  --                   \ "markdown": v:true,
-  --                   \ "fortran": v:true,
-  --                   \ "python": v:true,
-  --                   \ }]])
-  --   end,
-  -- },
-  --
-  -- -- codeium cmp source
-  -- {
-  --   "nvim-cmp",
-  --   dependencies = {
-  --     "Exafunction/codeium.nvim",
-  --   },
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     table.insert(opts.sources, 1, {
-  --       name = "codeium",
-  --     })
-  --   end,
-  -- },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -344,4 +258,46 @@ return {
       use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
     },
   },
+
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   config = function()
+  --     vim.notify("Loading fortran linting", 3, { title = "LazyVim" })
+  --     local lint = require("lint")
+  --
+  --     local pattern = [[^([^:]+):(%d+):(%d+):%s+([^:]+):%s+(.*)$]]
+  --     local groups = { "file", "lnum", "col", "code", "severity", "message" }
+  --     local severity_map = {
+  --       ["error"] = vim.diagnostic.severity.ERROR,
+  --       ["warning"] = vim.diagnostic.severity.WARN,
+  --       ["performance"] = vim.diagnostic.severity.WARN,
+  --       ["style"] = vim.diagnostic.severity.INFO,
+  --       ["information"] = vim.diagnostic.severity.INFO,
+  --     }
+  --     local defaults = { ["source"] = "fortran" }
+  --     lint.linters.gfortran = {
+  --       name = "gfortran",
+  --       cmd = "gfortran",
+  --       args = {
+  --         "-c",
+  --         "-Wunused-variable",
+  --         "-Wunused-dummy-argument",
+  --         "-Wall",
+  --         "-I",
+  --         os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/",
+  --         os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/toml-f/modules/",
+  --         os.getenv("HOME") .. "/.easifem/install/easifem/base/include/",
+  --         os.getenv("HOME") .. "/.easifem/install/easifem/classes/include/",
+  --         os.getenv("HOME") .. "/.easifem/ide/include/",
+  --         "-J",
+  --         os.getenv("HOME") .. "/.easifem/ide/include/",
+  --       }, -- args to pass to the linter
+  --       ignore_exitcode = false, -- set this to true if you don't want to show error messages
+  --       stream = "both", -- set this to "stdout" if the output is not an error, for example with luac
+  --       parser = require("lint.parser").from_pattern(pattern, groups, severity_map, defaults),
+  --     }
+  --
+  --     lint.linters_by_ft = { fortran = { "gfortran" } }
+  --   end,
+  -- },
 }
