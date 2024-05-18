@@ -56,6 +56,10 @@ if test -f ~/.config/easifem/easifemvar.fish
     source ~/.config/easifem/easifemvar.fish
 end
 
+if test -f ~/.config/easifem/scripts/easifem_functions.fish
+    source ~/.config/easifem/scripts/easifem_functions.fish
+end
+
 if type -q nvim
     set -gx EDITOR $(which nvim)
 end
@@ -155,20 +159,6 @@ set PATH $PATH "$HOME/.local/bin"
 set GOPATH $HOME/go
 set PATH $PATH "$GOPATH/bin"
 
-# anaconda
-if test -f ~/anaconda3/etc/fish/conf.d/conda.fish
-    # echo "Sourcing conda Python3 🐍"
-    source ~/anaconda3/etc/fish/conf.d/conda.fish
-end
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if type -q ~/anaconda3/bin/conda
-    # eval ~/anaconda3/bin/conda "shell.fish" hook $argv | source
-    echo "Activating 🚀 EASIFEM conda env 🌿"
-    conda activate easifem
-end
-# <<< conda initialize <<<
 
 
 set -gx TERM xterm-256color
@@ -191,8 +181,8 @@ set -gx VISUAL nvim
 # https://yazi-rs.github.io/docs/quick-start
 # We suggest using this ya shell wrapper that provides the ability to
 # change the current working directory when exiting Yazi.
-function ya
-    set tmp (mktemp -t "yazi-cwd.XXXXX")
+function yy
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
     yazi $argv --cwd-file="$tmp"
     if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
         cd -- "$cwd"
@@ -230,6 +220,9 @@ set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
 --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
 --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
 
+set -gx FZF_TMUX 1
+set -gx FZF_TMUX_OPTS "-p 80%"
+
 if type -q eza
     set fzf_preview_dir_cmd eza --all --color=always
 end
@@ -240,10 +233,6 @@ end
 
 if type -q eza
     alias exa="eza --long --header --icons --git --sort=size"
-end
-
-if test -f ~/.config/easifem/scripts/easifem_functions.fish
-    source ~/.config/easifem/scripts/easifem_functions.fish
 end
 
 if type -q zoxide
@@ -262,5 +251,45 @@ end
 if type -q /opt/paraview/bin/paraview
     alias paraview /opt/paraview/bin/paraview
 end
+
+# anaconda
+if test -f ~/anaconda3/etc/fish/conf.d/conda.fish
+    # echo "Sourcing conda Python3 🐍"
+    source ~/anaconda3/etc/fish/conf.d/conda.fish
+end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if type -q ~/anaconda3/bin/conda
+    # eval ~/anaconda3/bin/conda "shell.fish" hook $argv | source
+    echo "Activating 🚀 EASIFEM conda env 🌿"
+    conda activate easifem
+end
+# <<< conda initialize <<<
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/easifem/miniconda3/bin/conda
+    # eval /home/easifem/miniconda3/bin/conda "shell.fish" hook $argv | source
+end
+
+if test -f /home/easifem/miniconda3/etc/fish/conf.d/conda.fish
+    source /home/easifem/miniconda3/etc/fish/conf.d/conda.fish
+end
+# <<< conda initialize <<<
+
+
+#set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/easifem/.ghcup/bin # ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+set -gx PATH $HOME/.cabal/bin $PATH /Users/easifem/.ghcup/bin # ghcup-env
+
+# pnpm
+set -gx PNPM_HOME "/home/easifem/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
+
 
 set onedrive ~/OneDrive
