@@ -1,6 +1,7 @@
 .DS_Store
 fish/fish_history
 fish/fish_variables
-./fish/fish_variables
+./fish/fish_variables*
 *.bk
-fish/fish_variables
+fish/fish_variables*
+nvim/lazy-lock.json
