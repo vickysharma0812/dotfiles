@@ -4,10 +4,13 @@ return {
   opts = function()
     return {
       templates = {
-        "user.easifem_base",
-        "user.easifem_build",
+        "user.baseDev",
+        "user.classesDev",
+        "user.baseInstall",
+        "user.classesInstall",
+        "user.easifemLint",
         "user.run_script",
-        "builtin",
+        -- "builtin",
       },
       component_aliases = {
         default = {
@@ -21,6 +24,4 @@ return {
       },
     }
   end,
-  -- opts = {
-  -- },
 }

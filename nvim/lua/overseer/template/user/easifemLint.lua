@@ -1,13 +1,11 @@
 return {
-  -- Required fields
-  name = "easifem build",
+  name = "easifemLint",
   builder = function(params)
     local file = vim.fn.expand("%:p")
-    -- local filename = vim.fn.expand("%:t")
     return {
       cmd = { "easifem" },
       args = { "lint", file },
-      name = "easifem",
+      name = "easifemLint",
       cwd = vim.fn.expand("%:h"), -- "/tmp",
       env = {},
       components = {
@@ -25,34 +23,14 @@ return {
       },
     }
   end,
-  -- Optional fields
-  desc = "Build script for easifem",
-  -- Tags can be used in overseer.run_template()
-  -- tags = { overseer.TAG.BUILD },
-  params = {
-    -- See :help overseer-params
-  },
-  -- Determines sort order when choosing tasks. Lower comes first.
+  desc = "Linter for easifem",
+  params = {},
   priority = 50,
-  -- Add requirements for this template. If they are not met, the template will not be visible.
-  -- All fields are optional.
   condition = {
     filetype = { "fortran" },
-    -- dir = {
-    --   os.getenv("easifem"),
-    --   os.getenv("base"),
-    --   os.getenv("classes"),
-    --   os.getenv("materials"),
-    --   os.getenv("kernels"),
-    --   os.getenv("tests"),
-    --   os.getenv("elasticity"),
-    -- },
-    -- Arbitrary logic for determining if task is available
     callback = function(search)
       print(vim.inspect(search))
       return true
     end,
   },
 }
-
---       components = { { "on_output_quickfix", open = true }, "default" },

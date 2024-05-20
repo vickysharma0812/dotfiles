@@ -140,11 +140,12 @@ return {
 
       o = {
         name = "Overseer",
-        r = { "<cmd>OverseerRun<CR>", "Overseer run" },
-        q = { "<cmd>OverseerQuickAction<CR>", "Overseer quick action" },
-        o = { "<cmd>OverseerOpen<CR>", "Overseer open" },
-        t = { "<cmd>OverseerToggle<CR>", "Overseer toggle" },
+        R = { "<cmd>OverseerRestartLast<CR>", "Overseer Restart last cmd" },
         d = { "<cmd>OverseerClose<CR>", "Overseer close" },
+        o = { "<cmd>OverseerOpen<CR>", "Overseer open" },
+        q = { "<cmd>OverseerQuickAction<CR>", "Overseer quick action" },
+        r = { "<cmd>OverseerRun<CR>", "Overseer run" },
+        t = { "<cmd>OverseerToggle<CR>", "Overseer toggle" },
         w = { "<cmd>WatchRun<CR>", "Watch run" },
       },
 
@@ -276,16 +277,6 @@ return {
           j = { "<cmd>split<CR>", "Split window to down" },
           k = { "<cmd>split<CR>", "Split window to up" },
         },
-      },
-      T = {
-        name = "Terminal",
-        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
-        l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazy" },
-        b = { "<cmd>lua _BASE_TOGGLE()<cr>", "Base" },
-        c = { "<cmd>lua _CLASS_TOGGLE()<cr>", "Classes" },
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
       },
       t = {
         name = "Toggle",

@@ -11,10 +11,6 @@
         "path": "./go.json"
       },
       {
-        "language": ["fortran", "markdown"],
-        "path": "./FortranFreeForm.json"
-      },
-      {
         "language": ["markdown"],
         "path": "./markdown.json"
       },
