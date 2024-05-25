@@ -1,7 +1,7 @@
 #! /bin/bash
 
-tmux_popup_session_name="[M-d]-easifem-docs"
-docs="${HOME}/Dropbox/easifem/easifem.github.io/docs/docs-api/"
+tmux_popup_session_name="[M+v]-neovim"
+docs="${HOME}/.config/nvim/"
 
 if [ "$(tmux display-message -p -F "#{session_name}")" = "${tmux_popup_session_name}" ];then
     tmux detach-client

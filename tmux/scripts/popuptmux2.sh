@@ -1,6 +1,6 @@
 #! /bin/bash
 
-tmux_popup_session_name="popup_2"
+tmux_popup_session_name="[M-2]-popup_2"
 
 if [ "$(tmux display-message -p -F "#{session_name}")" = "${tmux_popup_session_name}" ];then
     tmux detach-client
