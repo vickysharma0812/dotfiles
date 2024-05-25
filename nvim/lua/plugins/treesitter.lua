@@ -1,22 +1,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      -- add tsx and treesitter
-      vim.list_extend(opts.ensure_installed, {
-        "c",
-        "lua",
-        "rust",
-        "latex",
-        "markdown",
-        "markdown_inline",
-        "python",
-      })
-    end,
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
 
       autopairs = { enable = true },

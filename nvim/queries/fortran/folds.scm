@@ -8,4 +8,6 @@
  (function)
  (subroutine)
  (interface)
+ (module_procedure)
+ (interface)
 ] @fold

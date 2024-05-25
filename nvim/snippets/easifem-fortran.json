@@ -431,7 +431,7 @@
     "description": "Raise error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t& '$0')"
+      "\t '$0')"
     ]
   },
   "implementation error": {
@@ -439,8 +439,8 @@
     "description": "Implementation error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t& '[IMPLEMENTATION ERROR] :: This routine should be implemented by ' //&",
-      "\t& 'child classes')"
+      "\t '[IMPLEMENTATION ERROR] :: This routine should be implemented by ' //&",
+      "\t 'child classes')"
     ]
   },
   "wip error": {
@@ -448,7 +448,7 @@
     "description": "Work in progress error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t& '[WIP ERROR] :: This routine is under development' )"
+      "\t '[WIP ERROR] :: This routine is under development' )"
     ]
   },
   "internal error": {
@@ -456,7 +456,7 @@
     "description": "internal error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t& '[INTERNAL ERROR] :: $0' )"
+      "\t '[INTERNAL ERROR] :: $0' )"
     ]
   },
   "info": {
@@ -464,7 +464,7 @@
     "description": "Raise info",
     "body": [
       "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
-      "\t& '$0')"
+      "\t '$0')"
     ]
   },
   "warn": {
@@ -472,7 +472,7 @@
     "description": "Raise warning",
     "body": [
       "CALL e%RaiseWarning(modName //'::'//myName// ' - '// &",
-      "\t& '$0')"
+      "\t '$0')"
     ]
   },
   "debug": {
@@ -480,7 +480,7 @@
     "description": "Raise debug",
     "body": [
       "CALL e%RaiseDebug(modName //'::'//myName// ' - '// &",
-      "\t& '$0')"
+      "\t '$0')"
     ]
   },
   "ifpresent": {
@@ -977,7 +977,7 @@
       "MODULE PROCEDURE ${1}",
       "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t& '[WIP ERROR] :: This module has not been implemented yet')",
+      "\t '[WIP ERROR] :: This module has not been implemented yet')",
       "! TODO: Implement ${1} ${0}",
       "END PROCEDURE ${1}"
     ]
@@ -989,7 +989,7 @@
       "MODULE PROCEDURE ${1}",
       "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t& '[WIP ERROR] :: This module has not been implemented yet')",
+      "\t '[WIP ERROR] :: This module has not been implemented yet')",
       "! TODO: Implement ${1} ${0}",
       "END PROCEDURE ${1}"
     ]
@@ -1009,7 +1009,7 @@
     "body": [
       "#ifdef DEBUG_VER",
       "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
-      "\t& '[START] ')",
+      "\t '[START] ')",
       "#endif",
       "${0}"
     ]
@@ -1020,7 +1020,7 @@
     "body": [
       "#ifdef DEBUG_VER",
       "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
-      "\t& '[END] ')",
+      "\t '[END] ')",
       "#endif",
       "${0}"
     ]
@@ -1049,10 +1049,10 @@
       "",
       "CALL astr%Split(essentialParam, sep='/')",
       "CALL CheckEssentialParam(obj=param,  &",
-      "\t& keys=essentialParam,  &",
-      "\t& prefix=myprefix,  &",
-      "\t& myName=myName,  &",
-      "\t& modName=modName)",
+      "\t keys=essentialParam,  &",
+      "\t prefix=myprefix,  &",
+      "\t myName=myName,  &",
+      "\t modName=modName)",
       "!NOTE: CheckEssentialParam param is defined in easifemClasses FPL_Method",
       "",
       "IF (ALLOCATED(essentialParam)) THEN",

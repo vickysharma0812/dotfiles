@@ -268,6 +268,17 @@ return {
     },
   },
   {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+      italic_comments = true,
+      borderless_telescope = true,
+      terminal_colors = true,
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "kanagawa-dragon",
@@ -276,6 +287,7 @@ return {
       -- colorscheme = "carbonfox",
       -- colorscheme = "rose-pine",
       -- colorscheme = "flexoki-dark",
+      -- colorscheme = "cyberdream",
     },
   },
 }

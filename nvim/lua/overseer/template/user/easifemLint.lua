@@ -4,7 +4,7 @@ return {
     local file = vim.fn.expand("%:p")
     return {
       cmd = { "easifem" },
-      args = { "lint", file },
+      args = { "lint", file, "-q" },
       name = "easifemLint",
       cwd = vim.fn.expand("%:h"), -- "/tmp",
       env = {},

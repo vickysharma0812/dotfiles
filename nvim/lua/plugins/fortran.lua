@@ -259,45 +259,120 @@ return {
     },
   },
 
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   config = function()
-  --     vim.notify("Loading fortran linting", 3, { title = "LazyVim" })
-  --     local lint = require("lint")
-  --
-  --     local pattern = [[^([^:]+):(%d+):(%d+):%s+([^:]+):%s+(.*)$]]
-  --     local groups = { "file", "lnum", "col", "code", "severity", "message" }
-  --     local severity_map = {
-  --       ["error"] = vim.diagnostic.severity.ERROR,
-  --       ["warning"] = vim.diagnostic.severity.WARN,
-  --       ["performance"] = vim.diagnostic.severity.WARN,
-  --       ["style"] = vim.diagnostic.severity.INFO,
-  --       ["information"] = vim.diagnostic.severity.INFO,
-  --     }
-  --     local defaults = { ["source"] = "fortran" }
-  --     lint.linters.gfortran = {
-  --       name = "gfortran",
-  --       cmd = "gfortran",
-  --       args = {
-  --         "-c",
-  --         "-Wunused-variable",
-  --         "-Wunused-dummy-argument",
-  --         "-Wall",
-  --         "-I",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/toml-f/modules/",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/base/include/",
-  --         os.getenv("HOME") .. "/.easifem/install/easifem/classes/include/",
-  --         os.getenv("HOME") .. "/.easifem/ide/include/",
-  --         "-J",
-  --         os.getenv("HOME") .. "/.easifem/ide/include/",
-  --       }, -- args to pass to the linter
-  --       ignore_exitcode = false, -- set this to true if you don't want to show error messages
-  --       stream = "both", -- set this to "stdout" if the output is not an error, for example with luac
-  --       parser = require("lint.parser").from_pattern(pattern, groups, severity_map, defaults),
-  --     }
-  --
-  --     lint.linters_by_ft = { fortran = { "gfortran" } }
-  --   end,
-  -- },
+  { "kevinhwang91/nvim-bqf", config = true },
+  {
+    "m4xshen/hardtime.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+
+  {
+    "tris203/precognition.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    opts = {},
+  },
+
+  {
+    "RRethy/vim-illuminate",
+    event = "BufReadPost",
+    config = function()
+      require("illuminate").configure()
+    end,
+  },
+
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    event = "VeryLazy",
+    opts = {
+      -- INFO: Uncomment to use treeitter as fold provider, otherwise nvim lsp is used
+      provider_selector = function(bufnr, filetype, buftype)
+        return { "treesitter", "indent" }
+      end,
+      open_fold_hl_timeout = 400,
+      close_fold_kinds_for_ft = { "imports", "comment" },
+      preview = {
+        win_config = {
+          border = { "", "─", "", "", "", "─", "", "" },
+          -- winhighlight = "Normal:Folded",
+          winblend = 0,
+        },
+        mappings = {
+          scrollU = "<C-u>",
+          scrollD = "<C-d>",
+          jumpTop = "[",
+          jumpBot = "]",
+        },
+      },
+    },
+    init = function()
+      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+      vim.o.foldcolumn = "1" -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+    end,
+    config = function(_, opts)
+      local handler = function(virtText, lnum, endLnum, width, truncate)
+        local newVirtText = {}
+        local totalLines = vim.api.nvim_buf_line_count(0)
+        local foldedLines = endLnum - lnum
+        local suffix = ("  %d %d%%"):format(foldedLines, foldedLines / totalLines * 100)
+        local sufWidth = vim.fn.strdisplaywidth(suffix)
+        local targetWidth = width - sufWidth
+        local curWidth = 0
+        for _, chunk in ipairs(virtText) do
+          local chunkText = chunk[1]
+          local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+          else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, { chunkText, hlGroup })
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+              suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+          end
+          curWidth = curWidth + chunkWidth
+        end
+        local rAlignAppndx = math.max(math.min(vim.opt.textwidth["_value"], width - 1) - curWidth - sufWidth, 0)
+        suffix = (" "):rep(rAlignAppndx) .. suffix
+        table.insert(newVirtText, { suffix, "MoreMsg" })
+        return newVirtText
+      end
+      opts["fold_virt_text_handler"] = handler
+      require("ufo").setup(opts)
+      vim.keymap.set("n", "K", function()
+        local winid = require("ufo").peekFoldedLinesUnderCursor()
+        if not winid then
+          -- vim.lsp.buf.hover()
+          vim.cmd([[ Lspsaga hover_doc ]])
+        end
+      end)
+    end,
+  },
+
+  { "echasnovski/mini.ai", version = false, config = true, opts = {} },
+  { "echasnovski/mini.align", version = false, config = true, opts = {} },
+  {
+    "echasnovski/mini.surround",
+    opts = {
+      mappings = {
+        add = "gsa",
+        delete = "gsd",
+        find = "gsf",
+        find_left = "gsF",
+        highlight = "gsh",
+        replace = "gsr",
+        update_n_lines = "gsn",
+      },
+    },
+  },
 }

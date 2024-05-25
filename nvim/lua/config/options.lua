@@ -76,9 +76,9 @@ if vim.g.neovide then
   vim.g.neovide_remember_window_size = true
   vim.g.neovide_cursor_antialiasing = true
   vim.g.neovide_cursor_animate_in_insert_mode = true
-  -- vim.o.guifont = 'Fira_Code_Regular_Nerd_Font_Complete:h11'
   -- vim.o.guifont = "VictorMono_Nerd_Font_Propo:h13"
-  vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono:h18"
+  -- vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono:h24"
+  vim.o.guifont = "MonaspiceNe_Nerd_Font_Mono:h24"
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
