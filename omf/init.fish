@@ -291,5 +291,10 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
+# gmsh
+if type -q $HOME/python-venv/gmsh/bin/gmsh
+    abbr -a gmsh $HOME/python-venv/gmsh/bin/gmsh
+end
+
 
 set onedrive ~/OneDrive
