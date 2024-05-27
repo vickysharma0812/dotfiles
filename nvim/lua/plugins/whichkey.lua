@@ -197,9 +197,13 @@ return {
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+        -- s = {
+        --   "<cmd>FzfLua lsp_workspace_symbols<cr>",
+        --   "Workspace Symbols",
+        -- },
         s = {
-          "<cmd>FzfLua lsp_workspace_symbols<cr>",
-          "Workspace Symbols",
+          "<cmd>Lspsaga outline<cr>",
+          "Symbols outline (Lspsaga)",
         },
         S = {
           "<cmd>FzfLua lsp_live_workspace_symbols<cr>",
@@ -209,7 +213,7 @@ return {
       s = {
         name = "Search",
         B = { "<cmd>lua require('fzf-lua').lines()<CR>", "fzf find in open buffer lines" },
-        C = { "<cmd>FzfLua colorscheme<cr>", "Colorscheme" },
+        C = { "<cmd>FzfLua colorschemes<cr>", "Colorscheme" },
         H = { "<cmd>Telescope heading<cr>", "Documents headings" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
         R = { "<cmd>FzfLua registers<cr>", "Registers" },
@@ -227,7 +231,11 @@ return {
         s = { "<cmd>FzfLua lsp_document_symbols<cr>", "Document Symbols" },
         t = { "<cmd>FzfLua tabs<cr>", "Open tabs" },
         w = { '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Search current word" },
-        x = { "<cmd>FzfLua quickfix<cr>", "quickfix list" },
+        -- x = { '<cmd>FzfLua quickfix<cr>', "quickfix list" },
+        x = {
+          "<cmd>lua require('fzf-lua').quickfix({winopts = { preview = { hidden = \"hidden\", }, }}) <cr>",
+          "quickfix list",
+        },
         y = { "<cmd>FzfLua loclist<cr>", "location list" },
       },
       P = {

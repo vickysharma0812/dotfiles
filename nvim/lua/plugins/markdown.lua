@@ -63,7 +63,7 @@ return {
 
   {
     "lukas-reineke/headlines.nvim",
-    enabled = true,
+    enabled = false,
     opts = {
       markdown = {
         codeblock_highlight = "",

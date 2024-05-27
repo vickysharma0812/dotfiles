@@ -96,7 +96,22 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       -- calling `setup` is optional for customization
-      require("fzf-lua").setup({})
+      require("fzf-lua").setup({
+        -- { "borderless_full" },
+        -- { "telescope", "fzf-native" },
+        -- winopts = {
+        --   -- split = "belowright",
+        --   split = "below",
+        --   -- border = "single",
+        --   preview = {
+        --     hidden = "nohidden",
+        --     -- border = "border",
+        --     -- title = false,
+        --     layout = "vertical",
+        --     vertical = "bottom:60%",
+        --   },
+        -- },
+      })
     end,
   },
 }

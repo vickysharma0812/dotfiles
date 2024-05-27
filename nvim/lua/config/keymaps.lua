@@ -18,13 +18,9 @@ local keymap = vim.api.nvim_set_keymap
 --   term_mode = "t",
 --   command_mode = "c",
 
--- keymap("n", "<C-Up>", ":resize -2<CR>", opts) -- Resize with arrows
 keymap("n", "<M-Up>", ":resize -2<CR>", opts) -- Resize with arrows
--- keymap("n", "<C-Down>", ":resize +2<CR>", opts) -- Resize with arrows
 keymap("n", "<M-Down>", ":resize +2<CR>", opts) -- Resize with arrows
--- keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts) -- Resize with arrows
 keymap("n", "<M-Left>", ":vertical resize -2<CR>", opts) -- Resize with arrows
--- keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts) -- Resize with arrows
 keymap("n", "<M-Right>", ":vertical resize +2<CR>", opts) -- Resize with arrows
 keymap("n", "<C-d>", "<C-d>zz", opts) -- Ctrl+d half page down; curson stays in the middle
 keymap("n", "<C-u>", "<C-u>zz", opts) -- Ctrl+u half page up; cursor stays in the middle
@@ -38,6 +34,8 @@ keymap("i", "kj", "<ESC>", opts) -- Press kj fast to exit insert mode
 keymap("n", "<F5>", '"=strftime("%Y-%m-%d")<CR>P', opts) -- copy current date
 keymap("n", "<C-CR>", "o<ESC>", opts) -- copy current date
 keymap("n", "<leader>rp", "o<esc>v:'<,'>!erun -bs %<CR>", opts)
+-- keymap("n", "alb", "<esc>o<esc>", opts) -- add a line below
+-- keymap("n", "ala", "<esc>O<esc>", opts) -- add a line below
 
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys

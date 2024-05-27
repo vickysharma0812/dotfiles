@@ -81,7 +81,14 @@ return {
           end,
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
+          {
+            name = "nvim_lsp",
+            option = {
+              markdown_oxide = {
+                keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
+              },
+            },
+          },
           { name = "nvim_lsp_signature_help" },
           { name = "path" },
         }, {
@@ -174,9 +181,9 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<C-K>", function() require("luasnip").expand() end, mode = "i" },
-      { "<C-L>", function() require("luasnip").jump(1) end, mode = {"i", "s"} },
-      { "<C-H>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<C-i>", function() require("luasnip").expand() end, mode = "i" },
+      { "<C-l>", function() require("luasnip").jump(1) end, mode = {"i", "s"} },
+      { "<C-h>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
 

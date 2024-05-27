@@ -1,24 +1,43 @@
 return {
-  "nvimdev/lspsaga.nvim",
-  enabled = false,
-  event = "LspAttach",
-  config = function()
-    require("lspsaga").setup({
-      ui = {
-        kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-      },
-      symbol_in_winbar = {
-        enable = false,
-      },
-    })
-  end,
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter", -- optional
-    "nvim-tree/nvim-web-devicons", -- optional
-  },
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      -- An example nvim-lspconfig capabilities setting
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+      -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+      -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+      capabilities.workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      }
+
+      require("lspconfig").markdown_oxide.setup({
+        capabilities = capabilities, -- again, ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+        on_attach = on_attach,       -- configure your on attach config
+      })
+    end,
+  },
+  {
+    "nvimdev/lspsaga.nvim",
+    enabled = true,
+    event = "LspAttach",
+    config = function()
+      require("lspsaga").setup({
+        ui = {
+          code_action = "",
+        },
+      })
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter", -- optional
+      "nvim-tree/nvim-web-devicons",     -- optional
+    },
+  },
   {
     "simrat39/symbols-outline.nvim",
+    enabled = false,
     cmd = "SymbolsOutline",
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     opts = {

@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    -- version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
@@ -11,6 +11,10 @@ return {
       indent = {
         enable = true,
         disable = { "yaml", "fortran" },
+      },
+
+      highlight = {
+        enable = true,
       },
 
       incremental_selection = {
