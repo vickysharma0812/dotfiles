@@ -64,6 +64,16 @@ if type -q nvim
     set -gx EDITOR $(which nvim)
 end
 
+set -xU NVIM_THEME dark
+
+function dark -d "Set dark theme"
+    set -gx NVIM_THEME dark
+end
+
+function light -d "Set light theme"
+    set -gx NVIM_THEME light
+end
+
 set -gx config $HOME/.config/
 set -gx tmux $HOME/.config/tmux/
 set -gx tmuxrc $HOME/.config/tmux/tmux.conf
