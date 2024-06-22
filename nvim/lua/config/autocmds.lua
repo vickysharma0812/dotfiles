@@ -60,6 +60,17 @@ vim.api.nvim_create_user_command("WatchRun", function()
   end)
 end, {})
 
+-- author: Shion Shimizu
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("set_efm"),
+  pattern = { "fortran" },
+  callback = function()
+    vim.cmd(
+      [[ set efm=%-Ggfortran%.%#,%A%f:%l:%c:,%A%f:%l:,%C,%C%p%*[0123456789^],%Z%trror:\ %m,,%Z%tarning:\ %m,%C%.%#,%-G%.%# ]]
+    )
+  end,
+})
+
 -- function _G.set_terminal_keymaps()
 --   local opts = { noremap = true }
 --   vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)

@@ -31,6 +31,7 @@ return {
             os.getenv("easifem") .. "/easifem-classes/src/**",
             os.getenv("easifem") .. "/easifem-elasticity/src/**",
             os.getenv("easifem") .. "/StokesFlow/src/**",
+            os.getenv("HOME") .. "/.easifem/easifem/src/tomlf/src/**",
             "--hover_signature",
             "--hover_language=fortran",
             "--use_signature_help",
@@ -39,7 +40,6 @@ return {
       },
     },
   },
-
   -- look
   {
     "neovim/nvim-lspconfig",
@@ -195,7 +195,7 @@ return {
       table.insert(opts.sources, 4, {
         name = "copilot",
         group_index = 1,
-        priority = 100,
+        priority = 50,
       })
     end,
   },
@@ -259,30 +259,73 @@ return {
     },
   },
 
-  { "kevinhwang91/nvim-bqf", config = true },
+  {
+    "kevinhwang91/nvim-bqf",
+    config = function()
+      -- Adapt fzf's delimiter in nvim-bqf
+      require("bqf").setup({
+        filter = {
+          fzf = {
+            extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│" },
+          },
+        },
+      })
+    end,
+  },
   {
     "m4xshen/hardtime.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {},
+    opts = { enabled = false },
   },
 
   {
     "tris203/precognition.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     opts = {},
   },
-
   {
     "RRethy/vim-illuminate",
-    event = "BufReadPost",
-    config = function()
-      require("illuminate").configure()
-    end,
-  },
+    event = "VeryLazy",
+    opts = {
+      delay = 200,
+      large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { "lsp", "treesitter", "regex" },
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
 
+      local function map(key, dir, buffer)
+        vim.keymap.set("n", key, function()
+          require("illuminate")["goto_" .. dir .. "_reference"](false)
+        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+      end
+
+      map("]]", "next")
+      map("[[", "prev")
+
+      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          local buffer = vim.api.nvim_get_current_buf()
+          map("]]", "next", buffer)
+          map("[[", "prev", buffer)
+        end,
+      })
+    end,
+    keys = {
+      { "]]", desc = "Next Reference" },
+      { "[[", desc = "Prev Reference" },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = { document_highlight = { enabled = false } },
+  },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
@@ -303,8 +346,8 @@ return {
         mappings = {
           scrollU = "<C-u>",
           scrollD = "<C-d>",
-          jumpTop = "[",
-          jumpBot = "]",
+          jumpTop = "z[",
+          jumpBot = "z]",
         },
       },
     },
@@ -316,7 +359,7 @@ return {
       vim.o.foldenable = true
     end,
     config = function(_, opts)
-      local handler = function(virtText, lnum, endLnum, width, truncate)
+      local handler1 = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
         local totalLines = vim.api.nvim_buf_line_count(0)
         local foldedLines = endLnum - lnum
@@ -347,9 +390,38 @@ return {
         table.insert(newVirtText, { suffix, "MoreMsg" })
         return newVirtText
       end
-      opts["fold_virt_text_handler"] = handler
+
+      local handler2 = function(virtText, lnum, endLnum, width, truncate)
+        local newVirtText = {}
+        local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+        local sufWidth = vim.fn.strdisplaywidth(suffix)
+        local targetWidth = width - sufWidth
+        local curWidth = 0
+        for _, chunk in ipairs(virtText) do
+          local chunkText = chunk[1]
+          local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+          else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, { chunkText, hlGroup })
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+              suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+          end
+          curWidth = curWidth + chunkWidth
+        end
+        table.insert(newVirtText, { suffix, "MoreMsg" })
+        return newVirtText
+      end
+
+      opts["fold_virt_text_handler"] = handler1
       require("ufo").setup(opts)
-      vim.keymap.set("n", "K", function()
+      vim.keymap.set("n", "zK", function()
         local winid = require("ufo").peekFoldedLinesUnderCursor()
         if not winid then
           -- vim.lsp.buf.hover()
@@ -374,5 +446,22 @@ return {
         update_n_lines = "gsn",
       },
     },
+  },
+  {
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    },
+  },
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup({})
+    end,
   },
 }

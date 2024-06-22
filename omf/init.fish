@@ -64,26 +64,50 @@ if type -q nvim
     set -gx EDITOR $(which nvim)
 end
 
-set -xU NVIM_THEME dark
+
+set -gx FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 function dark -d "Set dark theme"
     set -gx NVIM_THEME dark
+    # mocha theme
+    # https://github.com/catppuccin/fzf
+    set -gx FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 end
 
 function light -d "Set light theme"
     set -gx NVIM_THEME light
+    # latte theme
+    # https://github.com/catppuccin/fzf
+    set -gx FZF_DEFAULT_OPTS "\
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
 end
 
 set -gx config $HOME/.config/
+abbr -a cdc cd $config
+
 set -gx tmux $HOME/.config/tmux/
 set -gx tmuxrc $HOME/.config/tmux/tmux.conf
+
 set -gx fish $config/omf
 set -gx fishrc $fish/init.fish
+
 set -gx alacritty $config/alacritty/
 set -gx alarc $alacritt/alacritty.toml
 set -gx kitty $config/kitty
+
 # set -gx nvim $config/nvim
 set -gx nvim $dropbox/dotfiles/nvim
+abbr -a cdv cd $nvim
+
+
 set -gx yazi $config/yazi
 set -gx zellij $config/zellij
 set -gx awesome $config/awesome
@@ -169,8 +193,6 @@ set PATH $PATH "$HOME/.local/bin"
 set GOPATH $HOME/go
 set PATH $PATH "$GOPATH/bin"
 
-
-
 set -gx TERM xterm-256color
 set -gx EDITOR nvim
 set -gx VISUAL nvim
@@ -224,11 +246,6 @@ fzf_configure_bindings
 
 # set -gx FZF_DEFAULT_OPTS "--preview 'bat --color always {}'"
 set -gx FZF_DEFAULT_COMMAND "fd --type f"
-set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
---color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
---color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
---color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
---color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
 
 set -gx FZF_TMUX 1
 set -gx FZF_TMUX_OPTS "-p 80%"
@@ -272,7 +289,7 @@ end
 # !! Contents within this block are managed by 'conda init' !!
 if type -q ~/anaconda3/bin/conda
     # eval ~/anaconda3/bin/conda "shell.fish" hook $argv | source
-    echo "Activating 🚀 EASIFEM conda env 🌿"
+    # echo "Activating 🚀 EASIFEM conda env 🌿"
     conda activate easifem
 end
 # <<< conda initialize <<<
@@ -302,9 +319,9 @@ end
 # pnpm end
 
 # gmsh
-if type -q $HOME/python-venv/gmsh/bin/gmsh
-    abbr -a gmsh $HOME/python-venv/gmsh/bin/gmsh
-end
+# if type -q $HOME/python-venv/gmsh/bin/gmsh
+#     abbr -a gmsh $HOME/python-venv/gmsh/bin/gmsh
+# end
 
 
 set onedrive ~/OneDrive

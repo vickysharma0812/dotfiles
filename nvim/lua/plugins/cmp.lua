@@ -83,16 +83,17 @@ return {
         sources = cmp.config.sources({
           {
             name = "nvim_lsp",
+            priority = 100,
             option = {
               markdown_oxide = {
                 keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
               },
             },
           },
-          { name = "nvim_lsp_signature_help" },
+          { name = "nvim_lsp_signature_help", priority = 99 },
           { name = "path" },
         }, {
-          { name = "buffer" },
+          { name = "buffer", priority = 98 },
         }),
 
         formatting = {

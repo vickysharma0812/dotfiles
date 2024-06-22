@@ -29,7 +29,7 @@ return {
   condition = {
     filetype = { "fortran" },
     callback = function(search)
-      print(vim.inspect(search))
+      -- print(vim.inspect(search))
       return true
     end,
   },

@@ -6,3 +6,7 @@ srgb = false
 idle = true
 neovim_bin = "/opt/homebrew/bin/nvim"
 frame = "transparent"
+
+[font]
+normal = ["FiraCode Nerd Font Mono"]
+size = 14.0
