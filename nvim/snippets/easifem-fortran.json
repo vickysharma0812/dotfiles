@@ -34,10 +34,10 @@
     "prefix": "gpl3",
     "description": "GNU-GPL3 licence",
     "body": [
-			"! This program is a part of EASIFEM library",
-			"! Expandable And Scalable Infrastructure for Finite Element Methods",
-			"! htttps://www.easifem.com",
-			"! Vikas Sharma, Ph.D., vickysharma0812@gmail.com",
+      "! This program is a part of EASIFEM library",
+      "! Expandable And Scalable Infrastructure for Finite Element Methods",
+      "! htttps://www.easifem.com",
+      "! Vikas Sharma, Ph.D., vickysharma0812@gmail.com",
       "!",
       "! This program is free software: you can redistribute it and/or modify",
       "! it under the terms of the GNU General Public License as published by",
@@ -147,16 +147,6 @@
     "body": "REAL(DFP) ",
     "description": "real"
   },
-  "real32": {
-    "prefix": "real32",
-    "body": "REAL(Real32) ",
-    "description": "real32"
-  },
-  "real64": {
-    "prefix": "real64",
-    "body": "REAL(Real64) ",
-    "description": "real64"
-  },
   "ra": {
     "prefix": "ra",
     "body": "REAL( DFP ), ALLOCATABLE :: $1",
@@ -240,8 +230,17 @@
     "description": "vikas",
     "body": [
       "!> author: Vikas Sharma, Ph. D.",
-      "! date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
-      "! summary: $0"
+      "! date: \t",
+      "! summary: \t"
+    ]
+  },
+  "shion": {
+    "prefix": "shion",
+    "description": "shion",
+    "body": [
+      "!> author: Shion Shimizu",
+      "! date: \t",
+      "! summary: \t"
     ]
   },
   "szaghi": {
@@ -249,8 +248,8 @@
     "description": "szaghi",
     "body": [
       "!> author: Stefano Zaghi, https://github.com/szaghi",
-      "! date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
-      "! summary: $0"
+      "! date: \t$1",
+      "! summary: \t$2"
     ]
   },
   "usage": {
@@ -396,9 +395,9 @@
     "prefix": "smp",
     "description": "module procedure",
     "body": [
-      "MODULE PROCEDURE $1",
-      "$0",
-      "END PROCEDURE $1"
+      "MODULE PROCEDURE ${1}",
+      "\t$0",
+      "END PROCEDURE ${1}"
     ]
   },
   "modulefunction": {
@@ -426,12 +425,17 @@
       ""
     ]
   },
+  "disp": {
+    "prefix": "dis",
+    "body": "call Display($1,$2)",
+    "description": "simplest Display method"
+  },
   "error": {
     "prefix": "error",
     "description": "Raise error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t '$0')"
+      "\t& '$0')"
     ]
   },
   "implementation error": {
@@ -439,8 +443,8 @@
     "description": "Implementation error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t '[IMPLEMENTATION ERROR] :: This routine should be implemented by ' //&",
-      "\t 'child classes')"
+      "\t& '[IMPLEMENTATION ERROR] :: This routine should be implemented by ' //&",
+      "\t& 'child classes')"
     ]
   },
   "wip error": {
@@ -448,7 +452,7 @@
     "description": "Work in progress error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t '[WIP ERROR] :: This routine is under development' )"
+      "\t& '[WIP ERROR] :: This routine is under development' )"
     ]
   },
   "internal error": {
@@ -456,7 +460,15 @@
     "description": "internal error",
     "body": [
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t '[INTERNAL ERROR] :: $0' )"
+      "\t& '[INTERNAL ERROR] :: $0' )"
+    ]
+  },
+  "wl error": {
+    "prefix": "wlerror",
+    "description": "Raise error with line number",
+    "body": [
+      "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
+      "\t& 'Check line number $0'//tostring(__LINE__))"
     ]
   },
   "info": {
@@ -464,7 +476,7 @@
     "description": "Raise info",
     "body": [
       "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
-      "\t '$0')"
+      "\t& '$0')"
     ]
   },
   "warn": {
@@ -472,7 +484,7 @@
     "description": "Raise warning",
     "body": [
       "CALL e%RaiseWarning(modName //'::'//myName// ' - '// &",
-      "\t '$0')"
+      "\t& '$0')"
     ]
   },
   "debug": {
@@ -480,7 +492,7 @@
     "description": "Raise debug",
     "body": [
       "CALL e%RaiseDebug(modName //'::'//myName// ' - '// &",
-      "\t '$0')"
+      "\t& '$0')"
     ]
   },
   "ifpresent": {
@@ -583,6 +595,36 @@
   "char": {
     "prefix": "char",
     "body": "CHARACTER(${1:*}) $0",
+    "description": "Character"
+  },
+  "chi": {
+    "prefix": "chi",
+    "body": "CHARACTER(${1:*}), INTENT(IN) :: $0",
+    "description": "Character"
+  },
+  "choi": {
+    "prefix": "choi",
+    "body": "CHARACTER(${1:*}),OPTIONAL, INTENT(IN) :: $0",
+    "description": "Character"
+  },
+  "cho": {
+    "prefix": "cho",
+    "body": "CHARACTER(${1:*}), INTENT(OUT) :: $0",
+    "description": "Character"
+  },
+  "choo": {
+    "prefix": "choo",
+    "body": "CHARACTER(${1:*}), OPTIONAL, INTENT(OUT) :: $0",
+    "description": "Character"
+  },
+  "chio": {
+    "prefix": "chio",
+    "body": "CHARACTER(${1:*}), INTENT(INOUT) :: $0",
+    "description": "Character"
+  },
+  "choio": {
+    "prefix": "choio",
+    "body": "CHARACTER(${1:*}), OPTIONAL, INTENT(INOUT) :: $0",
     "description": "Character"
   },
   "close": {
@@ -786,6 +828,11 @@
     "body": "module ${1:name}\n\n\timplicit none\n\t$0\n\nend module $1\n",
     "description": "module"
   },
+  "neq": {
+    "prefix": "neq",
+    "body": ".ne.",
+    "description": "Not-Equal"
+  },
   "neqv": {
     "prefix": "neqv",
     "body": ".neqv.",
@@ -831,10 +878,45 @@
     "body": "program ${1:name}\n\n\timplicit none\n\t$0\n\nend program $1\n",
     "description": "program"
   },
+  "progUse": {
+    "prefix": "prog",
+    "body": "PROGRAM ${1:name}\n${2:libname}\n\tIMPLICIT NONE\n\t$0\n\nEND PROGRAM $1\n",
+    "description": "program with use statement"
+  },
   "t": {
     "prefix": "t",
     "body": "type(${1:type name}) :: ",
     "description": "Quick Custom Type"
+  },
+  "ti": {
+    "prefix": "ti",
+    "body": "type(${1:type name}), INTENT(IN) :: ",
+    "description": "Type"
+  },
+  "toi": {
+    "prefix": "toi",
+    "body": "type(${1:type name}), OPTIONAL, INTENT(IN) :: ",
+    "description": "Type"
+  },
+  "to": {
+    "prefix": "to",
+    "body": "type(${1:type name}), INTENT(OUT) :: ",
+    "description": "Type"
+  },
+  "too": {
+    "prefix": "too",
+    "body": "type(${1:type name}), OPTIONAL, INTENT(OUT) :: ",
+    "description": "Type"
+  },
+  "tio": {
+    "prefix": "tio",
+    "body": "type(${1:type name}), INTENT(INOUT) :: ",
+    "description": "Type"
+  },
+  "toio": {
+    "prefix": "toio",
+    "body": "type(${1:type name}), OPTIONAL, INTENT(INOUT) :: ",
+    "description": "Type"
   },
   "i": {
     "prefix": "i",
@@ -977,7 +1059,7 @@
       "MODULE PROCEDURE ${1}",
       "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t '[WIP ERROR] :: This module has not been implemented yet')",
+      "\t& '[WIP ERROR] :: This module has not been implemented yet')",
       "! TODO: Implement ${1} ${0}",
       "END PROCEDURE ${1}"
     ]
@@ -989,7 +1071,7 @@
       "MODULE PROCEDURE ${1}",
       "CHARACTER(*), PARAMETER :: myName=\"${1}\"",
       "CALL e%RaiseError(modName //'::'//myName// ' - '// &",
-      "\t '[WIP ERROR] :: This module has not been implemented yet')",
+      "\t& '[WIP ERROR] :: This module has not been implemented yet')",
       "! TODO: Implement ${1} ${0}",
       "END PROCEDURE ${1}"
     ]
@@ -1009,7 +1091,7 @@
     "body": [
       "#ifdef DEBUG_VER",
       "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
-      "\t '[START] ')",
+      "'[START] ')",
       "#endif",
       "${0}"
     ]
@@ -1020,7 +1102,7 @@
     "body": [
       "#ifdef DEBUG_VER",
       "CALL e%RaiseInformation(modName //'::'//myName// ' - '// &",
-      "\t '[END] ')",
+      "'[END] ')",
       "#endif",
       "${0}"
     ]
@@ -1049,10 +1131,10 @@
       "",
       "CALL astr%Split(essentialParam, sep='/')",
       "CALL CheckEssentialParam(obj=param,  &",
-      "\t keys=essentialParam,  &",
-      "\t prefix=myprefix,  &",
-      "\t myName=myName,  &",
-      "\t modName=modName)",
+      "\t& keys=essentialParam,  &",
+      "\t& prefix=myprefix,  &",
+      "\t& myName=myName,  &",
+      "\t& modName=modName)",
       "!NOTE: CheckEssentialParam param is defined in easifemClasses FPL_Method",
       "",
       "IF (ALLOCATED(essentialParam)) THEN",
@@ -1064,17 +1146,42 @@
       "astr = '' "
     ]
   },
-  "import_method":{
+  "import_method": {
     "prefix": "import_method",
     "description": "subroutine import method",
     "body": [
-  "INTERFACE",
-  "MODULE SUBROUTINE obj_Import(obj, hdf5, group)",
-    "CLASS($0), INTENT(INOUT) :: obj",
-    "TYPE(HDF5File_), INTENT(INOUT) :: hdf5",
-    "CHARACTER(*), INTENT(IN) :: group",
-  "END SUBROUTINE obj_Import",
-  "END INTERFACE"
+      "INTERFACE",
+      "MODULE SUBROUTINE obj_Import(obj, hdf5, group)",
+      "CLASS($0), INTENT(INOUT) :: obj",
+      "TYPE(HDF5File_), INTENT(INOUT) :: hdf5",
+      "CHARACTER(*), INTENT(IN) :: group",
+      "END SUBROUTINE obj_Import",
+      "END INTERFACE"
     ]
+  },
+  "easifemClasses": {
+    "prefix": "ec",
+    "description": "use easifemClasses",
+    "body": "USE easifemClasses"
+  },
+  "easifemClassesOnly": {
+    "prefix": "eco",
+    "description": "use easifemClasses with only",
+    "body": "USE easifemClasses, ONLY:  $0"
+  },
+  "easifemBase": {
+    "prefix": "eb",
+    "description": "use easifemBase",
+    "body": "USE easifemClasses"
+  },
+  "easifemBaseOnly": {
+    "prefix": "ebo",
+    "description": "use easifemBase with only",
+    "body": "USE easifemBase, ONLY: $0"
+  },
+  "useOnly": {
+    "prefix": "uo",
+    "description": "use statement with only",
+    "body": "USE ${1:libname}, ONLY: $0"
   }
 }

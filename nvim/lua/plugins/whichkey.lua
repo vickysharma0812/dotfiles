@@ -16,7 +16,7 @@ return {
       -- the presets plugin, adds help for a bunch of default keybindings in Neovim
       -- No actual key bindings are created
       presets = {
-        operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+        operators = true, -- adds help for operators like d, y, ...
         motions = true, -- adds help for motions
         text_objects = true, -- help for text objects triggered after entering an operator
         windows = true, -- default bindings on <c-w>
@@ -28,13 +28,6 @@ return {
     -- add operators that will trigger motion and text object completion
     -- to enable all native operators, set the preset / operators plugin above
     operators = { gc = "Comments" },
-    key_labels = {
-      -- override the label used to display some keys. It doesn't effect WK in any other way.
-      -- For example:
-      -- ["<space>"] = "SPC",
-      -- ["<cr>"] = "RET",
-      -- ["<tab>"] = "TAB",
-    },
     motion = {
       count = true,
     },
@@ -43,17 +36,27 @@ return {
       separator = "➜", -- symbol used between a key and it's label
       group = "+", -- symbol prepended to a group
     },
-    popup_mappings = {
+    keys = {
       scroll_down = "<c-d>", -- binding to scroll down inside the popup
       scroll_up = "<c-u>", -- binding to scroll up inside the popup
     },
-    window = {
-      border = "rounded", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
+    win = {
+      -- don't allow the popup to overlap with the cursor
+      no_overlap = true,
+      -- width = 1,
+      -- height = { min = 4, max = 25 },
+      -- col = 0,
+      -- row = math.huge,
+      -- border = "none",
+      padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+      title = true,
+      title_pos = "center",
       zindex = 1000,
+      -- Additional vim.wo and vim.bo options
+      bo = {},
+      wo = {
+        -- winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+      },
     },
     layout = {
       height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -61,32 +64,12 @@ return {
       spacing = 3, -- spacing between columns
       align = "left", -- align columns left, center or right
     },
-    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
     show_keys = true,
-    triggers = "auto", -- automatically setup triggers
+    triggers = {
+      { "<auto>", mode = "nxsot" },
+    },
     -- triggers = { "<leader>" }, -- or specify a list manually
-    triggers_nowait = {
-      -- marks
-      "`",
-      "'",
-      "g`",
-      "g'",
-      -- registers
-      '"',
-      "<c-r>",
-      -- spelling
-      "z=",
-    },
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
-    },
-
     defaults = {
       mode = "n", -- NORMAL mode
       prefix = " ", -- "<leader>",
@@ -98,9 +81,9 @@ return {
 
     mappings = {
       ["<leader>"] = { "<cmd>FzfLua files<CR>", "Find files" },
-      ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-      ["E"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
-      ["e"] = { "<cmd>Neotree toggle float<cr>", "Explorer" },
+      a = { "<cmd>Alpha<cr>", "Alpha" },
+      E = { "<cmd>Neotree toggle<cr>", "Explorer" },
+      e = { "<cmd>Neotree toggle float<cr>", "Explorer" },
       ["."] = { "<cmd>JABSOpen<cr>", "Find files" },
       [","] = { "<cmd>FzfLua buffers<cr>", "Find buffers" },
 
@@ -110,7 +93,6 @@ return {
       -- },
 
       f = {
-        name = "Files",
         f = { "<cmd>FzfLua files resume=true<CR>", "Find files" },
         r = { "<cmd>FzfLua oldfiles resume=true<CR>", "Find files" },
         F = { "<cmd>FzfLua oldfiles resume=true<CR>", "Find files" },
@@ -121,7 +103,6 @@ return {
         p = { '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', "find on current file" },
         S = { '<cmd>lua require("spectre").toggle()<CR>', "Toggle spectre" },
         c = {
-          name = "Config files",
           a = { ":e ~/.config/awesome/rc.lua <CR>", "Awesome" },
           s = { ":e ~/.config/omf/init.fish <CR>", "Shell" },
           t = { ":e ~/.config/alacritty/alacritty.toml <CR>", "Alacritty toml" },
@@ -131,15 +112,14 @@ return {
           m = { ":e ~/.config/nvim/snippets/easifem-markdown.json <CR>", "Markdown snippets" },
         },
       },
-      x = {
-        name = "EASIFEM dev",
-        -- g = { "<cmd>CMakeGenerate<CR>", "Cmake configure" },
-        -- b = { "<cmd>CMakeBuild()<CR>", "Cmake build" },
-        -- r = { "<cmd>CMakeRun()<CR>", "Cmake run" },
-      },
+      -- x = {
+      --   name = "EASIFEM dev",
+      --   -- g = { "<cmd>CMakeGenerate<CR>", "Cmake configure" },
+      --   -- b = { "<cmd>CMakeBuild()<CR>", "Cmake build" },
+      --   -- r = { "<cmd>CMakeRun()<CR>", "Cmake run" },
+      -- },
 
       o = {
-        name = "Overseer",
         R = { "<cmd>OverseerRestartLast<CR>", "Overseer Restart last cmd" },
         d = { "<cmd>OverseerClose<CR>", "Overseer close" },
         o = { "<cmd>OverseerOpen<CR>", "Overseer open" },
@@ -150,7 +130,6 @@ return {
       },
 
       g = {
-        name = "Git",
         D = { "<cmd>lua require 'gitsigns'.diffthis('~')<cr>", "Diff" },
         P = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
         R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
@@ -171,7 +150,6 @@ return {
         n = { "<cmd>Neogit<cr>", "Neogit" },
       },
       c = {
-        name = "LSP",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
         d = {
           "<cmd>FzfLua diagnostics_document<cr>",
@@ -209,7 +187,6 @@ return {
         },
       },
       s = {
-        name = "Search",
         B = { "<cmd>lua require('fzf-lua').lines()<CR>", "fzf find in open buffer lines" },
         C = { "<cmd>FzfLua colorschemes<cr>", "Colorscheme" },
         H = { "<cmd>Telescope heading<cr>", "Documents headings" },
@@ -237,7 +214,6 @@ return {
         y = { "<cmd>FzfLua loclist<cr>", "location list" },
       },
       P = {
-        name = "Project",
         v = { "<cmd>NvimTreeToggle<CR>", "Open Explorer" },
         f = { "<cmd>FzfLua files<CR>", "Find files" },
         b = { "<cmd>FzfLua buffers<CR>", "Find buffers" },
@@ -246,14 +222,12 @@ return {
         h = { "<cmd>Fzf tags<CR>", "Search tags" },
       },
       B = {
-        name = "Tab",
         n = { "<cmd>tabnew<CR>", "New Tab" },
         d = { "<cmd>tabclose<CR>", "Close Tab" },
         l = { "<cmd>tabnext<CR>", "Next Tab" },
         h = { "<cmd>tabprevious<CR>", "Previous Tab" },
       },
       b = {
-        name = "Buffer",
         l = { "<cmd>bnext<CR>", "Next buffer" },
         h = { "<cmd>bprevious<CR>", "Previous buffer" },
         -- d = { "<cmd>bdelete<CR>", "Close buffer" },
@@ -268,7 +242,6 @@ return {
         w = { "<cmd>lua vim.cmd.w()<CR>", "Save buffer" },
       },
       w = {
-        name = "Window",
         h = { "<C-w>h", "Go to left window" },
         l = { "<C-w>l", "Go to right window" },
         j = { "<C-w>j", "Go to down window" },
@@ -285,9 +258,7 @@ return {
         },
       },
       t = {
-        name = "Toggle",
-        -- t = { "<cmd>TransparentToggle<cr>", "Toggle transparent" },
-        --
+        c = { "lua require('copilot.suggestion').toggle_auto_trigger()", "Toggle copilot auto suggestion" },
         n = { "<cmd>tabnew<CR>", "New Tab" },
         d = { "<cmd>tabclose<CR>", "Close Tab" },
         l = { "<cmd>tabnext<CR>", "Next Tab" },
@@ -302,7 +273,6 @@ return {
         z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
         s = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
         x = {
-          name = "TroubleToggle",
           d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document diagnostic" },
           D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Toggle workspace diagnostic" },
           q = { "<cmd>TroubleToggle quickfix<cr>", "Toggle qickfix" },
@@ -312,18 +282,15 @@ return {
         },
       },
       z = {
-        name = "Zen mode",
         z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
         R = { "lua require('ufo').openAllFolds<cr>", "Open all folds" },
         r = { "lua require('ufo').openFoldsExceptKinds<cr>", "Open all folds except kinds" },
         M = { "lua require('ufo').closeAllFolds<cr>", "Close all folds" },
       },
       n = {
-        name = "Notifications",
         d = { "lua require('notify').dismiss({ silent = true, pending = true })", "Delete all Notifications" },
       },
       h = {
-        name = "harpoon",
         a = {
           function()
             require("harpoon"):list():add()

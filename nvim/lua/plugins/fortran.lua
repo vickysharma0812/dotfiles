@@ -29,9 +29,9 @@ return {
             "--source_dirs",
             os.getenv("easifem") .. "/easifem-base/src/**",
             os.getenv("easifem") .. "/easifem-classes/src/**",
-            os.getenv("easifem") .. "/easifem-elasticity/src/**",
-            os.getenv("easifem") .. "/StokesFlow/src/**",
             os.getenv("HOME") .. "/.easifem/easifem/src/tomlf/src/**",
+            -- os.getenv("easifem") .. "/StokesFlow/src/**",
+            -- os.getenv("easifem") .. "/easifem-elasticity/src/**",
             "--hover_signature",
             "--hover_language=fortran",
             "--use_signature_help",
@@ -123,82 +123,85 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
-    opts = {
-      panel = {
-        enabled = true,
-        auto_refresh = false,
-        keymap = {
-          jump_prev = "[[",
-          jump_next = "]]",
-          accept = "<Tab>",
-          refresh = "gr",
-          open = "<M-CR>",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          keymap = {
+            jump_prev = "((",
+            jump_next = "))",
+            accept = "<Tab>",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
+          layout = {
+            position = "bottom", -- | top | left | right
+            ratio = 0.4,
+          },
         },
-        layout = {
-          position = "bottom", -- | top | left | right
-          ratio = 0.4,
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<Tab>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-)>",
+            prev = "<M-(>",
+            dismiss = "<C-)>",
+          },
         },
-      },
-      suggestion = {
-        enabled = true,
-        auto_trigger = false,
-        debounce = 75,
-        keymap = {
-          accept = "<M-l>",
-          accept_word = false,
-          accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
+        filetypes = {
+          fortran = true,
+          go = true,
+          markdown = true,
+          gitcommit = true,
+          yaml = false,
+          help = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
         },
-      },
-      filetypes = {
-        fortran = true,
-        go = true,
-        markdown = true,
-        gitcommit = true,
-        yaml = false,
-        help = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ["."] = false,
-      },
-      copilot_node_command = "node", -- Node.js version must be > 18.x
-      server_opts_overrides = {},
-    },
-  },
-  -- copilot cmp source
-  {
-    "nvim-cmp",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = "copilot.lua",
-        opts = {},
-        config = function(_, opts)
-          local copilot_cmp = require("copilot_cmp")
-          copilot_cmp.setup(opts)
-          -- attach cmp source whenever copilot attaches
-          -- fixes lazy-loading issues with the copilot cmp source
-          LazyVim.lsp.on_attach(function(client)
-            if client.name == "copilot" then
-              copilot_cmp._on_insert_enter({})
-            end
-          end)
-        end,
-      },
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, 4, {
-        name = "copilot",
-        group_index = 1,
-        priority = 50,
+        copilot_node_command = "node", -- Node.js version must be > 18.x
+        server_opts_overrides = {},
       })
     end,
   },
+  -- copilot cmp source
+  -- {
+  --   "nvim-cmp",
+  --   dependencies = {
+  --     {
+  --       "zbirenbaum/copilot-cmp",
+  --       dependencies = "copilot.lua",
+  --       opts = {},
+  --       config = function(_, opts)
+  --         local copilot_cmp = require("copilot_cmp")
+  --         copilot_cmp.setup(opts)
+  --         -- attach cmp source whenever copilot attaches
+  --         -- fixes lazy-loading issues with the copilot cmp source
+  --         LazyVim.lsp.on_attach(function(client)
+  --           if client.name == "copilot" then
+  --             copilot_cmp._on_insert_enter({})
+  --           end
+  --         end)
+  --       end,
+  --     },
+  --   },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, 4, {
+  --       name = "copilot",
+  --       group_index = 1,
+  --       priority = 50,
+  --     })
+  --   end,
+  -- },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -274,7 +277,7 @@ return {
   },
   {
     "m4xshen/hardtime.nvim",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = { enabled = false },
@@ -282,7 +285,7 @@ return {
 
   {
     "tris203/precognition.nvim",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     opts = {},
   },
@@ -462,6 +465,72 @@ return {
     "karb94/neoscroll.nvim",
     config = function()
       require("neoscroll").setup({})
+    end,
+  },
+  {
+    "tzachar/highlight-undo.nvim",
+    opts = {
+      duration = 300,
+      undo = {
+        hlgroup = "HighlightUndo",
+        mode = "n",
+        lhs = "u",
+        map = "undo",
+        opts = {},
+      },
+      redo = {
+        hlgroup = "HighlightRedo",
+        mode = "n",
+        lhs = "<C-r>",
+        map = "redo",
+        opts = {},
+      },
+      highlight_for_count = true,
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    config = function()
+      vim.notify("Loading fortran linting", 3, { title = "LazyVim" })
+      local lint = require("lint")
+
+      local pattern = [[^([^:]+):(%d+):(%d+):%s+([^:]+):%s+(.*)$]]
+      local groups = { "file", "lnum", "col", "severity", "message" }
+      local severity_map = {
+        ["error"] = vim.diagnostic.severity.ERROR,
+        ["warning"] = vim.diagnostic.severity.WARN,
+        ["performance"] = vim.diagnostic.severity.WARN,
+        ["style"] = vim.diagnostic.severity.INFO,
+        ["information"] = vim.diagnostic.severity.INFO,
+      }
+      local defaults = { ["source"] = "fortran" }
+      lint.linters.gfortran = {
+        name = "gfortran",
+        cmd = "gfortran",
+        args = {
+          "-c",
+          "-fsyntax-only",
+          "-cpp",
+          "-fdiagnostics-plain-output",
+          "-Wunused-variable",
+          "-Wunused-dummy-argument",
+          "-Wall",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/",
+          os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/toml-f/modules/",
+          os.getenv("HOME") .. "/.easifem/install/easifem/base/include/",
+          os.getenv("HOME") .. "/.easifem/install/easifem/classes/include/",
+          os.getenv("HOME") .. "/.easifem/ide/include/",
+          "-J",
+          os.getenv("HOME") .. "/.easifem/ide/include/",
+        }, -- args to pass to the linter
+        ignore_exitcode = true, -- set this to true if you don't want to show error messages
+        stream = "both", -- set this to "stdout" if the output is not an error, for example with luac
+        parser = require("lint.parser").from_pattern(pattern, groups, severity_map, defaults),
+      }
+
+      lint.linters_by_ft = { fortran = { "gfortran" } }
     end,
   },
 }

@@ -155,14 +155,16 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
-      transparent = true,
+      style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
+      light_style = "day", -- The theme is used when the background is set to light
+      transparent = false,
       styles = {
         sidebars = "dark",
         floats = "dark",
-        comments = { italic = true },
-        keywords = { italic = false },
-        functions = { bold = false, italic = true },
-        variables = { bold = true },
+        -- comments = { italic = true },
+        -- keywords = { italic = false },
+        -- functions = { bold = false, italic = true },
+        -- variables = { bold = },
       },
     },
   },
@@ -286,9 +288,16 @@ return {
     },
   },
   {
+    "tjdevries/colorbuddy.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+  {
     "LazyVim/LazyVim",
     opts = function(_, opts)
-      opts.colorscheme = "catppuccin"
+      opts.colorscheme = "tokyonight"
+      -- opts.colorscheme = "gruvbuddy"
+      -- opts.colorscheme = "catppuccin"
     end,
   },
 }

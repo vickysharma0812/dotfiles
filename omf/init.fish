@@ -65,30 +65,34 @@ if type -q nvim
 end
 
 
-set -gx FZF_DEFAULT_OPTS "\
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+# set -gx FZF_DEFAULT_OPTS "\
+# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-function dark -d "Set dark theme"
-    set -gx NVIM_THEME dark
-    # mocha theme
-    # https://github.com/catppuccin/fzf
-    set -gx FZF_DEFAULT_OPTS "\
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-end
-
-function light -d "Set light theme"
-    set -gx NVIM_THEME light
-    # latte theme
-    # https://github.com/catppuccin/fzf
-    set -gx FZF_DEFAULT_OPTS "\
---color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
---color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
---color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
-end
+set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
+  --highlight-line \
+  --info=inline-right \
+  --ansi \
+  --layout=reverse \
+  --border=none
+  --color=bg+:#283457 \
+  --color=bg:#16161e \
+  --color=border:#27a1b9 \
+  --color=fg:#c0caf5 \
+  --color=gutter:#16161e \
+  --color=header:#ff9e64 \
+  --color=hl+:#2ac3de \
+  --color=hl:#2ac3de \
+  --color=info:#545c7e \
+  --color=marker:#ff007c \
+  --color=pointer:#ff007c \
+  --color=prompt:#2ac3de \
+  --color=query:#c0caf5:regular \
+  --color=scrollbar:#27a1b9 \
+  --color=separator:#ff9e64 \
+  --color=spinner:#ff007c \
+"
 
 set -gx config $HOME/.config/
 abbr -a cdc cd $config
@@ -106,6 +110,7 @@ set -gx kitty $config/kitty
 # set -gx nvim $config/nvim
 set -gx nvim $dropbox/dotfiles/nvim
 abbr -a cdv cd $nvim
+abbr -a cdd cd $dropbox
 
 
 set -gx yazi $config/yazi
@@ -125,7 +130,7 @@ set -gx kernels $easifem/easifem-kernels/
 set -gx elasticity $easifem/easifem-elasticity/
 set -gx acoustic $easifem/easifem-acoustic/
 set -gx vikas $HOME/Documents/Vikas
-set -gx easifemDocs $easifem/easifem.github.io/
+set -gx easifemDocs $HOME/Documents/easifem.github.io/
 set -gx docs $easifemDocs/docs/docs-api
 set -gx apps $easifem/apps
 set -gx EASIFEM_TEST_DIR $tests
@@ -141,6 +146,14 @@ set -gx notes $lectures/Notes/
 set -gx myweb ~/OneDrive/Knowledge/LectureNotes/VikasSharma
 set -gx play ~/OneDrive/Playground/
 set -gx lyxdocs ~/Documents/lyx/
+
+abbr -a edc easifem dev classes
+abbr -a edb easifem dev base
+abbr -a eib easifem install base --no-download
+abbr -a eic easifem install classes --no-download
+abbr -a cded cd $docs
+abbr -a cdeb cd $base
+abbr -a cdec cd $classes
 
 ## alias and functions
 #
@@ -196,6 +209,13 @@ set PATH $PATH "$GOPATH/bin"
 set -gx TERM xterm-256color
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+
+# gmsh related
+#
+if type -q /opt/gmsh/bin/gmsh
+    set PATH $PATH /opt/gmsh/bin
+    # set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH /opt/paraview/lib
+end
 
 # paraview related
 #
@@ -317,11 +337,6 @@ if not string match -q -- $PNPM_HOME $PATH
     set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
-
-# gmsh
-# if type -q $HOME/python-venv/gmsh/bin/gmsh
-#     abbr -a gmsh $HOME/python-venv/gmsh/bin/gmsh
-# end
 
 
 set onedrive ~/OneDrive

@@ -61,7 +61,7 @@ return {
           ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<M-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<C-y>"] = cmp.mapping(
             cmp.mapping.confirm({
@@ -70,11 +70,13 @@ return {
             }),
             { "i", "c" }
           ),
-          ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ["<S-Tab>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+          -- -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- ["<S-Tab>"] = cmp.mapping.confirm({
+          --   behavior = cmp.ConfirmBehavior.Replace,
+          --   select = true,
+          -- }),
+          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           ["<C-CR>"] = function(fallback)
             cmp.abort()
             fallback()
@@ -220,5 +222,13 @@ return {
     opts = {
       enable_autocmd = false,
     },
+  },
+
+  {
+    "chrisbra/NrrwRgn",
+    config = function()
+      vim.g.nrrw_rgn_vert = 1 -- open narrowRegion in vertical split window
+      vim.g.nrrw_rgn_wdth = math.floor(vim.fn.winwidth(0) / 2) -- default is 30
+    end,
   },
 }
