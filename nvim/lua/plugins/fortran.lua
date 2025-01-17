@@ -8,16 +8,15 @@ return {
       end
     end,
   },
-
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
         "fortls",
+        "fprettify",
       },
     },
   },
-
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -35,6 +34,8 @@ return {
             "--hover_signature",
             "--hover_language=fortran",
             "--use_signature_help",
+            "--incl_suffixes",
+            ".F90",
           }
         end,
       },
@@ -118,7 +119,6 @@ return {
       }
     end,
   },
-
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -172,109 +172,72 @@ return {
       })
     end,
   },
-  -- copilot cmp source
+  {
+    "folke/trouble.nvim",
+    opts = {
+      modes = {
+        preview_float = {
+          mode = "diagnostics",
+          preview = {
+            type = "float",
+            relative = "editor",
+            border = "rounded",
+            title = "Preview",
+            title_pos = "center",
+            position = { 0, -2 },
+            size = { width = 0.3, height = 0.3 },
+            zindex = 200,
+          },
+        },
+      },
+    }, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
   -- {
-  --   "nvim-cmp",
-  --   dependencies = {
-  --     {
-  --       "zbirenbaum/copilot-cmp",
-  --       dependencies = "copilot.lua",
-  --       opts = {},
-  --       config = function(_, opts)
-  --         local copilot_cmp = require("copilot_cmp")
-  --         copilot_cmp.setup(opts)
-  --         -- attach cmp source whenever copilot attaches
-  --         -- fixes lazy-loading issues with the copilot cmp source
-  --         LazyVim.lsp.on_attach(function(client)
-  --           if client.name == "copilot" then
-  --             copilot_cmp._on_insert_enter({})
-  --           end
-  --         end)
-  --       end,
-  --     },
-  --   },
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     table.insert(opts.sources, 4, {
-  --       name = "copilot",
-  --       group_index = 1,
-  --       priority = 50,
+  --   "kevinhwang91/nvim-bqf",
+  --   config = function()
+  --     -- Adapt fzf's delimiter in nvim-bqf
+  --     require("bqf").setup({
+  --       filter = {
+  --         fzf = {
+  --           extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│" },
+  --         },
+  --       },
   --     })
   --   end,
   -- },
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      position = "bottom", -- position of the list can be: bottom, top, left, right
-      height = 10, -- height of the trouble list when position is top or bottom
-      width = 50, -- width of the list when position is left or right
-      icons = true, -- use devicons for filenames
-      mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-      severity = nil, -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
-      fold_open = "", -- icon used for open folds
-      fold_closed = "", -- icon used for closed folds
-      group = true, -- group results by file
-      padding = true, -- add an extra new line on top of the list
-      cycle_results = true, -- cycle item list when reaching beginning or end of list
-      action_keys = { -- key mappings for actions in the trouble list
-        -- map to {} to remove a mapping, for example:
-        -- close = {},
-        close = "q", -- close the list
-        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
-        refresh = "r", -- manually refresh
-        jump = { "<cr>", "<tab>", "<2-leftmouse>" }, -- jump to the diagnostic or open / close folds
-        open_split = { "<c-x>" }, -- open buffer in new split
-        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
-        open_tab = { "<c-t>" }, -- open buffer in new tab
-        jump_close = { "o" }, -- jump to the diagnostic and close the list
-        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
-        switch_severity = "s", -- switch "diagnostics" severity filter level to HINT / INFO / WARN / ERROR
-        toggle_preview = "P", -- toggle auto_preview
-        hover = "K", -- opens a small popup with the full multiline message
-        preview = "p", -- preview the diagnostic location
-        open_code_href = "c", -- if present, open a URI with more information about the diagnostic error
-        close_folds = { "zM", "zm" }, -- close all folds
-        open_folds = { "zR", "zr" }, -- open all folds
-        toggle_fold = { "zA", "za" }, -- toggle fold of current file
-        previous = "k", -- previous item
-        next = "j", -- next item
-        help = "?", -- help menu
-      },
-      multiline = true, -- render multi-line messages
-      indent_lines = true, -- add an indent guide below the fold icons
-      win_config = { border = "single" }, -- window configuration for floating windows. See |nvim_open_win()|.
-      auto_open = false, -- automatically open the list when you have diagnostics
-      auto_close = false, -- automatically close the list when you have no diagnostics
-      auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
-      auto_fold = false, -- automatically fold a file trouble list at creation
-      auto_jump = { "lsp_definitions" }, -- for the given modes, automatically jump if there is only a single result
-      include_declaration = { "lsp_references", "lsp_implementations", "lsp_definitions" }, -- for the given modes, include the declaration of the current symbol in the results
-      signs = {
-        -- icons / text used for a diagnostic
-        error = "",
-        warning = "",
-        hint = "",
-        information = "",
-        other = "",
-      },
-      use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
-    },
-  },
-
-  {
-    "kevinhwang91/nvim-bqf",
-    config = function()
-      -- Adapt fzf's delimiter in nvim-bqf
-      require("bqf").setup({
-        filter = {
-          fzf = {
-            extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│" },
-          },
-        },
-      })
-    end,
-  },
   {
     "m4xshen/hardtime.nvim",
     enabled = false,
@@ -282,7 +245,6 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = { enabled = false },
   },
-
   {
     "tris203/precognition.nvim",
     enabled = false,
@@ -332,6 +294,7 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       -- INFO: Uncomment to use treeitter as fold provider, otherwise nvim lsp is used
@@ -433,7 +396,6 @@ return {
       end)
     end,
   },
-
   { "echasnovski/mini.ai", version = false, config = true, opts = {} },
   { "echasnovski/mini.align", version = false, config = true, opts = {} },
   {
@@ -488,9 +450,9 @@ return {
       highlight_for_count = true,
     },
   },
-
   {
     "mfussenegger/nvim-lint",
+    enabled = false,
     config = function()
       vim.notify("Loading fortran linting", 3, { title = "LazyVim" })
       local lint = require("lint")
@@ -504,6 +466,8 @@ return {
         ["style"] = vim.diagnostic.severity.INFO,
         ["information"] = vim.diagnostic.severity.INFO,
       }
+      local errorformat =
+        "%-Ggfortran%.%#,%A%f:%l:%c:,%A%f:%l:,%C,%C%p%*[0123456789^],%Z%trror:\\ %m,,%Z%tarning:\\ %m,%C%.%#,%-G%.%#"
       local defaults = { ["source"] = "fortran" }
       lint.linters.gfortran = {
         name = "gfortran",
@@ -512,25 +476,116 @@ return {
           "-c",
           "-fsyntax-only",
           "-cpp",
-          "-fdiagnostics-plain-output",
+          -- "-fdiagnostics-plain-output",
           "-Wunused-variable",
           "-Wunused-dummy-argument",
+          "-Wmaybe-uninitialized",
           "-Wall",
           "-I",
-          os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/",
-          os.getenv("HOME") .. "/.easifem/install/easifem/extpkgs/include/toml-f/modules/",
-          os.getenv("HOME") .. "/.easifem/install/easifem/base/include/",
-          os.getenv("HOME") .. "/.easifem/install/easifem/classes/include/",
-          os.getenv("HOME") .. "/.easifem/ide/include/",
+          os.getenv("HOME") .. "/.easifem/easifem/lint/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/base/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/classes/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/fftw/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/gmsh/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/lapack95/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/lis/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/sparsekit/include/",
+          "-I",
+          os.getenv("HOME") .. "/.easifem/easifem/install/tomlf/include/toml-f/modules/",
+          -- os.getenv("HOME") .. "/.easifem/easifem/install/arpack/include/arpack/",
+          -- os.getenv("HOME") .. "/.easifem/easifem/install/superlu/include/",
           "-J",
-          os.getenv("HOME") .. "/.easifem/ide/include/",
+          os.getenv("HOME") .. "/.easifem/easifem/lint/include/",
+          "-DDEBUG_VER",
+          "-DUSE_LUA",
+          "-DUSE_BLAS95",
         }, -- args to pass to the linter
         ignore_exitcode = true, -- set this to true if you don't want to show error messages
         stream = "both", -- set this to "stdout" if the output is not an error, for example with luac
-        parser = require("lint.parser").from_pattern(pattern, groups, severity_map, defaults),
+        -- parser = require("lint.parser").from_pattern(pattern, groups, severity_map, defaults),
+        parser = require("lint.parser").from_errorformat(errorformat),
       }
 
       lint.linters_by_ft = { fortran = { "gfortran" } }
     end,
   },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+    end,
+  },
+  {
+    "danymat/neogen",
+    cmd = "Neogen",
+    keys = {
+      {
+        "<leader>cn",
+        function()
+          require("neogen").generate()
+        end,
+        desc = "Generate Annotations (Neogen)",
+      },
+    },
+    opts = function(_, opts)
+      if opts.snippet_engine ~= nil then
+        return
+      end
+
+      local map = {
+        ["LuaSnip"] = "luasnip",
+        ["nvim-snippy"] = "snippy",
+        ["vim-vsnip"] = "vsnip",
+      }
+
+      for plugin, engine in pairs(map) do
+        if LazyVim.has(plugin) then
+          opts.snippet_engine = engine
+          return
+        end
+      end
+
+      if vim.snippet then
+        opts.snippet_engine = "nvim"
+      end
+    end,
+  },
+  -- copilot cmp source
+  -- {
+  --   "nvim-cmp",
+  --   dependencies = {
+  --     {
+  --       "zbirenbaum/copilot-cmp",
+  --       dependencies = "copilot.lua",
+  --       opts = {},
+  --       config = function(_, opts)
+  --         local copilot_cmp = require("copilot_cmp")
+  --         copilot_cmp.setup(opts)
+  --         -- attach cmp source whenever copilot attaches
+  --         -- fixes lazy-loading issues with the copilot cmp source
+  --         LazyVim.lsp.on_attach(function(client)
+  --           if client.name == "copilot" then
+  --             copilot_cmp._on_insert_enter({})
+  --           end
+  --         end)
+  --       end,
+  --     },
+  --   },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, 4, {
+  --       name = "copilot",
+  --       group_index = 1,
+  --       priority = 50,
+  --     })
+  --   end,
+  -- },
 }

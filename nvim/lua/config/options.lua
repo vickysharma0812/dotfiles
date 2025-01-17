@@ -7,7 +7,7 @@ local options = {
   --clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 2, -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-  -- conceallevel = 1, -- so that `` is visible in markdown files
+  conceallevel = 0, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
   ignorecase = true, -- ignore case in search patterns
   mouse = "a", -- allow the mouse to be used in neovim
@@ -79,7 +79,7 @@ if vim.g.neovide then
   -- vim.o.guifont = "VictorMono_Nerd_Font_Propo:h13"
   -- vim.o.guifont = "JetBrainsMono_Nerd_Font_Mono:h24"
   -- vim.o.guifont = "MonaspiceNe_Nerd_Font_Mono:h24"
-  -- vim.o.guifont = "FiraCode Nerd Font Mono:h18"
+  vim.o.guifont = "FiraCode Nerd Font Mono:h18"
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0

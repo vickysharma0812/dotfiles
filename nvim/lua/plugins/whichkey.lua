@@ -27,7 +27,7 @@ return {
     },
     -- add operators that will trigger motion and text object completion
     -- to enable all native operators, set the preset / operators plugin above
-    operators = { gc = "Comments" },
+    -- operators = { gc = "Comments" },
     motion = {
       count = true,
     },
@@ -70,301 +70,408 @@ return {
       { "<auto>", mode = "nxsot" },
     },
     -- triggers = { "<leader>" }, -- or specify a list manually
-    defaults = {
-      mode = "n", -- NORMAL mode
-      prefix = " ", -- "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
+    -- defaults = {
+    --   mode = "n", -- NORMAL mode
+    --   prefix = " ", -- "<leader>",
+    --   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    --   silent = true, -- use `silent` when creating keymaps
+    --   noremap = true, -- use `noremap` when creating keymaps
+    --   nowait = true, -- use `nowait` when creating keymaps
+    -- },
+  },
+  -- config = function(_, opts)
+  --   local wk = require("which-key")
+  --   wk.setup(opts)
+  --   -- wk.register(opts.mappings, opts.defaults)
+  -- end,
+  keys = {
+    { "<leader>,", "<cmd>FzfLua buffers<cr>", desc = "Find buffers", nowait = true, remap = false },
+    { "<leader>.", "<cmd>JABSOpen<cr>", desc = "Find files", nowait = true, remap = false },
+    { "<leader><leader>", "<cmd>FzfLua files<CR>", desc = "Find files", nowait = true, remap = false },
+    { "<leader>Bd", "<cmd>tabclose<CR>", desc = "Close Tab", nowait = true, remap = false },
+    { "<leader>Bh", "<cmd>tabprevious<CR>", desc = "Previous Tab", nowait = true, remap = false },
+    { "<leader>Bl", "<cmd>tabnext<CR>", desc = "Next Tab", nowait = true, remap = false },
+    { "<leader>Bn", "<cmd>tabnew<CR>", desc = "New Tab", nowait = true, remap = false },
+    { "<leader>E", "<cmd>Neotree toggle<cr>", desc = "Explorer", nowait = true, remap = false },
+    { "<leader>Pb", "<cmd>FzfLua buffers<CR>", desc = "Find buffers", nowait = true, remap = false },
+    { "<leader>Pf", "<cmd>FzfLua files<CR>", desc = "Find files", nowait = true, remap = false },
+    { "<leader>Pg", "<cmd>FzfLua live_grep<CR>", desc = "Search string live_grep", nowait = true, remap = false },
+    { "<leader>Ph", "<cmd>Fzf tags<CR>", desc = "Search tags", nowait = true, remap = false },
+    { "<leader>Ps", "<cmd>FzfLua grep_project<CR>", desc = "Search text in project", nowait = true, remap = false },
+    { "<leader>Pv", "<cmd>NvimTreeToggle<CR>", desc = "Open Explorer", nowait = true, remap = false },
+    { "<leader>a", "<cmd>Alpha<cr>", desc = "Alpha", nowait = true, remap = false },
+    {
+      "<leader>bd",
+      function(n)
+        require("mini.bufremove").delete(n, false)
+      end,
+      desc = "Close buffer",
+      nowait = true,
+      remap = false,
     },
-
-    mappings = {
-      ["<leader>"] = { "<cmd>FzfLua files<CR>", "Find files" },
-      a = { "<cmd>Alpha<cr>", "Alpha" },
-      E = { "<cmd>Neotree toggle<cr>", "Explorer" },
-      e = { "<cmd>Neotree toggle float<cr>", "Explorer" },
-      ["."] = { "<cmd>JABSOpen<cr>", "Find files" },
-      [","] = { "<cmd>FzfLua buffers<cr>", "Find buffers" },
-
-      -- [","] = {
-      --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_ivy{previewer = true})<cr>",
-      --   "Find buffers",
-      -- },
-
-      f = {
-        f = { "<cmd>FzfLua files resume=true<CR>", "Find files" },
-        r = { "<cmd>FzfLua oldfiles resume=true<CR>", "Find files" },
-        F = { "<cmd>FzfLua oldfiles resume=true<CR>", "Find files" },
-        g = { "<cmd>FzfLua git_files<CR>", "Find Git files" },
-        d = { "<cmd>Bdelete<CR>", "Close file" },
-        o = { "<cmd>Neotree position=float reveal_force_cwd=true dir=%:p:h reveal_file=%:p<CR>", "Reveal file in tree" },
-        w = { '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "find current word spectre" },
-        p = { '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', "find on current file" },
-        S = { '<cmd>lua require("spectre").toggle()<CR>', "Toggle spectre" },
-        c = {
-          a = { ":e ~/.config/awesome/rc.lua <CR>", "Awesome" },
-          s = { ":e ~/.config/omf/init.fish <CR>", "Shell" },
-          t = { ":e ~/.config/alacritty/alacritty.toml <CR>", "Alacritty toml" },
-          T = { ":e ~/.config/alacritty/alacritty.yml <CR>", "Alacritty yml" },
-          z = { ":e ~/.config/zellij/config.kdl <CR>", "Zellij" },
-          f = { ":e ~/.config/nvim/snippets/easifem-fortran.json <CR>", "Fortran snippets" },
-          m = { ":e ~/.config/nvim/snippets/easifem-markdown.json <CR>", "Markdown snippets" },
-        },
-      },
-      -- x = {
-      --   name = "EASIFEM dev",
-      --   -- g = { "<cmd>CMakeGenerate<CR>", "Cmake configure" },
-      --   -- b = { "<cmd>CMakeBuild()<CR>", "Cmake build" },
-      --   -- r = { "<cmd>CMakeRun()<CR>", "Cmake run" },
-      -- },
-
-      o = {
-        R = { "<cmd>OverseerRestartLast<CR>", "Overseer Restart last cmd" },
-        d = { "<cmd>OverseerClose<CR>", "Overseer close" },
-        o = { "<cmd>OverseerOpen<CR>", "Overseer open" },
-        q = { "<cmd>OverseerQuickAction<CR>", "Overseer quick action" },
-        r = { "<cmd>OverseerRun<CR>", "Overseer run" },
-        t = { "<cmd>OverseerToggle<CR>", "Overseer toggle" },
-        w = { "<cmd>WatchRun<CR>", "Watch run" },
-      },
-
-      g = {
-        D = { "<cmd>lua require 'gitsigns'.diffthis('~')<cr>", "Diff" },
-        P = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
-        R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
-        S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
-        b = { "<cmd>FzfLua git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>FzfLua git_commits<cr>", "Checkout commit" },
-        d = { "<cmd>Gitsigns diffthis<cr>", "Diff" },
-        f = { "<cmd>FzfLua git_files<cr>", "Find git files" },
-        g = { "<cmd>Neogit<cr>", "NeoGit" },
-        j = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
-        k = { "<cmd>Gitsigns prev_hunk<cr>", "Prev Hunk" },
-        l = { "<cmd>Gitsigns blame_line<cr>", "Blame" },
-        o = { "<cmd>FzfLua git_status<cr>", "Open changed file" },
-        p = { "<cmd>Gitsigns preview_hunk_inline<cr>", "Preview Hunk Inline" },
-        r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
-        s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
-        u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
-        n = { "<cmd>Neogit<cr>", "Neogit" },
-      },
-      c = {
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        d = {
-          "<cmd>FzfLua diagnostics_document<cr>",
-          "Document Diagnostics",
-        },
-        w = {
-          "<cmd>FzfLua diagnostics_workspace<cr>",
-          "Workspace Diagnostics",
-        },
-        f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-        i = { "<cmd>LspInfo<cr>", "Info" },
-        I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-        j = {
-          "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-          "Next Diagnostic",
-        },
-        k = {
-          "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-          "Prev Diagnostic",
-        },
-        l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-        q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        -- s = {
-        --   "<cmd>FzfLua lsp_workspace_symbols<cr>",
-        --   "Workspace Symbols",
-        -- },
-        s = {
-          "<cmd>Lspsaga outline<cr>",
-          "Symbols outline (Lspsaga)",
-        },
-        S = {
-          "<cmd>FzfLua lsp_live_workspace_symbols<cr>",
-          "Live Workspace Symbols",
-        },
-      },
-      s = {
-        B = { "<cmd>lua require('fzf-lua').lines()<CR>", "fzf find in open buffer lines" },
-        C = { "<cmd>FzfLua colorschemes<cr>", "Colorscheme" },
-        H = { "<cmd>Telescope heading<cr>", "Documents headings" },
-        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        R = { "<cmd>FzfLua registers<cr>", "Registers" },
-        S = { "<cmd>FzfLua lsp_workspace_symbols<cr>", "Workspace Symbols" },
-        b = { "<cmd>lua require('fzf-lua').blines()<CR>", "fzf find in current buffer lines" },
-        c = { "<cmd>FzfLua commands<cr>", "Commands" },
-        d = { "<cmd>FzfLua lsp_document_diagnostics<cr>", "Docment diagnostics" },
-        e = { "<cmd>Telescope symbols<cr>", "Pick a Symbols" },
-        f = { "<cmd>FzfLua grep_curbuf<cr>", "Grep in current buffer" },
-        g = { "<cmd>FzfLua grep_project<cr>", "Grep project" },
-        h = { "<cmd>FzfLua helptags<cr>", "Find Help" },
-        k = { "<cmd>FzfLua keymaps<cr>", "Keymaps" },
-        l = { "<cmd>FzfLua blines<cr>", "current buffer lines" },
-        p = { "<cmd>Telescope projects<cr>", "Search projects" },
-        s = { "<cmd>FzfLua lsp_document_symbols<cr>", "Document Symbols" },
-        t = { "<cmd>FzfLua tabs<cr>", "Open tabs" },
-        w = { '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Search current word" },
-        x = { "<cmd>FzfLua quickfix<cr>", "quickfix list" },
-        -- x = {
-        --   "<cmd>lua require('fzf-lua').quickfix({winopts = { preview = { hidden = \"hidden\", }, }}) <cr>",
-        --   "quickfix list",
-        -- },
-        y = { "<cmd>FzfLua loclist<cr>", "location list" },
-      },
-      P = {
-        v = { "<cmd>NvimTreeToggle<CR>", "Open Explorer" },
-        f = { "<cmd>FzfLua files<CR>", "Find files" },
-        b = { "<cmd>FzfLua buffers<CR>", "Find buffers" },
-        s = { "<cmd>FzfLua grep_project<CR>", "Search text in project" },
-        g = { "<cmd>FzfLua live_grep<CR>", "Search string live_grep" },
-        h = { "<cmd>Fzf tags<CR>", "Search tags" },
-      },
-      B = {
-        n = { "<cmd>tabnew<CR>", "New Tab" },
-        d = { "<cmd>tabclose<CR>", "Close Tab" },
-        l = { "<cmd>tabnext<CR>", "Next Tab" },
-        h = { "<cmd>tabprevious<CR>", "Previous Tab" },
-      },
-      b = {
-        l = { "<cmd>bnext<CR>", "Next buffer" },
-        h = { "<cmd>bprevious<CR>", "Previous buffer" },
-        -- d = { "<cmd>bdelete<CR>", "Close buffer" },
-        d = {
-          function(n)
-            require("mini.bufremove").delete(n, false)
-          end,
-          "Close buffer",
-        },
-        f = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format buffer" },
-        -- f = { "<cmd>GuardFmt<CR>", "Format buffer by using Guard" },
-        w = { "<cmd>lua vim.cmd.w()<CR>", "Save buffer" },
-      },
-      w = {
-        h = { "<C-w>h", "Go to left window" },
-        l = { "<C-w>l", "Go to right window" },
-        j = { "<C-w>j", "Go to down window" },
-        k = { "<C-w>k", "Go to up window" },
-        d = { "<cmd>close<CR>", "Close window" },
-        n = { "<cmd>new<CR>", "New window" },
-        N = { "<cmd>vnew<CR>", "Vertical new window" },
-        s = {
-          name = "Window split",
-          h = { "<cmd>vsplit<CR>", "Split window to left" },
-          l = { "<cmd>vsplit<CR>", "Split window to right" },
-          j = { "<cmd>split<CR>", "Split window to down" },
-          k = { "<cmd>split<CR>", "Split window to up" },
-        },
-      },
-      t = {
-        c = { "lua require('copilot.suggestion').toggle_auto_trigger()", "Toggle copilot auto suggestion" },
-        n = { "<cmd>tabnew<CR>", "New Tab" },
-        d = { "<cmd>tabclose<CR>", "Close Tab" },
-        l = { "<cmd>tabnext<CR>", "Next Tab" },
-        h = { "<cmd>tabprevious<CR>", "Previous Tab" },
-        H = { "<cmd>Hardtime toggle<CR>", "Toggle hardtime" },
-        P = { 'lua require("precognition").toggle()<CR>', "Toggle precognition" },
-        t = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal" },
-        b = {
-          "<cmd>Neotree source=buffers reveal=true action=focus position=float toggle=true<cr>",
-          "Toggle buffer to right",
-        },
-        z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
-        s = { "<cmd>SymbolsOutline<cr>", "Toggle Symbol-outline" },
-        x = {
-          d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document diagnostic" },
-          D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Toggle workspace diagnostic" },
-          q = { "<cmd>TroubleToggle quickfix<cr>", "Toggle qickfix" },
-          l = { "<cmd>TroubleToggle loclist<cr>", "Toggle loclist" },
-          x = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
-          R = { "<cmd>TroubleToggle lsp_references<cr>", "TroubleToggle lsp references" },
-        },
-      },
-      z = {
-        z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
-        R = { "lua require('ufo').openAllFolds<cr>", "Open all folds" },
-        r = { "lua require('ufo').openFoldsExceptKinds<cr>", "Open all folds except kinds" },
-        M = { "lua require('ufo').closeAllFolds<cr>", "Close all folds" },
-      },
-      n = {
-        d = { "lua require('notify').dismiss({ silent = true, pending = true })", "Delete all Notifications" },
-      },
-      h = {
-        a = {
-          function()
-            require("harpoon"):list():add()
-          end,
-          "add file",
-        },
-        r = {
-          function()
-            require("harpoon"):list():remove()
-          end,
-          "remove a file",
-        },
-        m = {
-          function()
-            local harpoon = require("harpoon")
-            harpoon.ui:toggle_quick_menu(harpoon:list())
-          end,
-          "harpoon menu",
-        },
-        n = {
-          function()
-            require("harpoon"):list():next()
-          end,
-          "next file",
-        },
-        p = {
-          function()
-            require("harpoon"):list():prev()
-          end,
-          "previous file",
-        },
-        ["1"] = {
-          function()
-            require("harpoon"):list():select(1)
-          end,
-          "file 1",
-        },
-        ["2"] = {
-          function()
-            require("harpoon"):list():select(2)
-          end,
-          "file 2",
-        },
-        ["3"] = {
-          function()
-            require("harpoon"):list():select(3)
-          end,
-          "file 3",
-        },
-        ["4"] = {
-          function()
-            require("harpoon"):list():select(4)
-          end,
-          "file 4",
-        },
-        ["5"] = {
-          function()
-            require("harpoon"):list():select(5)
-          end,
-          "file 5",
-        },
-        ["6"] = {
-          function()
-            require("harpoon"):list():select(6)
-          end,
-          "file 6",
-        },
-      },
+    { "<leader>bf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format buffer", nowait = true, remap = false },
+    { "<leader>bh", "<cmd>bprevious<CR>", desc = "Previous buffer", nowait = true, remap = false },
+    { "<leader>bl", "<cmd>bnext<CR>", desc = "Next buffer", nowait = true, remap = false },
+    { "<leader>bw", "<cmd>lua vim.cmd.w()<CR>", desc = "Save buffer", nowait = true, remap = false },
+    { "<leader>cI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
+    {
+      "<leader>cS",
+      "<cmd>FzfLua lsp_live_workspace_symbols<cr>",
+      desc = "Live Workspace Symbols",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
+    {
+      "<leader>cd",
+      "<cmd>FzfLua diagnostics_document<cr>",
+      desc = "Document Diagnostics",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>cf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>", desc = "Format", nowait = true, remap = false },
+    { "<leader>ci", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
+    {
+      "<leader>cj",
+      "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+      desc = "Next Diagnostic",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>ck",
+      "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+      desc = "Prev Diagnostic",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>cl", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action", nowait = true, remap = false },
+    { "<leader>cq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Quickfix", nowait = true, remap = false },
+    { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
+    { "<leader>cs", "<cmd>Lspsaga outline<cr>", desc = "Symbols outline (Lspsaga)", nowait = true, remap = false },
+    {
+      "<leader>cw",
+      "<cmd>FzfLua diagnostics_workspace<cr>",
+      desc = "Workspace Diagnostics",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>e", "<cmd>Neotree toggle float<cr>", desc = "Explorer", nowait = true, remap = false },
+    { "<leader>fF", "<cmd>FzfLua oldfiles resume=true<CR>", desc = "Find files", nowait = true, remap = false },
+    { "<leader>fS", '<cmd>lua require("spectre").toggle()<CR>', desc = "Toggle spectre", nowait = true, remap = false },
+    {
+      "<leader>fcT",
+      ":e ~/.config/alacritty/alacritty.yml <CR>",
+      desc = "Alacritty yml",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>fca", ":e ~/.config/awesome/rc.lua <CR>", desc = "Awesome", nowait = true, remap = false },
+    {
+      "<leader>fcf",
+      ":e ~/.config/nvim/snippets/easifem-fortran.json <CR>",
+      desc = "Fortran snippets",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>fcm",
+      ":e ~/.config/nvim/snippets/easifem-markdown.json <CR>",
+      desc = "Markdown snippets",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>fcs", ":e ~/.config/omf/init.fish <CR>", desc = "Shell", nowait = true, remap = false },
+    {
+      "<leader>fct",
+      ":e ~/.config/alacritty/alacritty.toml <CR>",
+      desc = "Alacritty toml",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>fcz", ":e ~/.config/zellij/config.kdl <CR>", desc = "Zellij", nowait = true, remap = false },
+    { "<leader>fd", "<cmd>Bdelete<CR>", desc = "Close file", nowait = true, remap = false },
+    { "<leader>ff", "<cmd>FzfLua files resume=true<CR>", desc = "Find files", nowait = true, remap = false },
+    { "<leader>fg", "<cmd>FzfLua git_files<CR>", desc = "Find Git files", nowait = true, remap = false },
+    {
+      "<leader>fo",
+      "<cmd>Neotree position=float reveal_force_cwd=true dir=%:p:h reveal_file=%:p<CR>",
+      desc = "Reveal file in tree",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>fp",
+      '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+      desc = "find on current file",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>fr", "<cmd>FzfLua oldfiles resume=true<CR>", desc = "Find files", nowait = true, remap = false },
+    {
+      "<leader>fw",
+      '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+      desc = "find current word spectre",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>gD", "<cmd>lua require 'gitsigns'.diffthis('~')<cr>", desc = "Diff", nowait = true, remap = false },
+    { "<leader>gP", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview Hunk", nowait = true, remap = false },
+    { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer", nowait = true, remap = false },
+    { "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>", desc = "Stage Buffer", nowait = true, remap = false },
+    { "<leader>gb", "<cmd>FzfLua git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
+    { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
+    { "<leader>gd", "<cmd>Gitsigns diffthis<cr>", desc = "Diff", nowait = true, remap = false },
+    { "<leader>gf", "<cmd>FzfLua git_files<cr>", desc = "Find git files", nowait = true, remap = false },
+    { "<leader>gg", "<cmd>Neogit<cr>", desc = "NeoGit", nowait = true, remap = false },
+    { "<leader>gj", "<cmd>Gitsigns next_hunk<cr>", desc = "Next Hunk", nowait = true, remap = false },
+    { "<leader>gk", "<cmd>Gitsigns prev_hunk<cr>", desc = "Prev Hunk", nowait = true, remap = false },
+    { "<leader>gl", "<cmd>Gitsigns blame_line<cr>", desc = "Blame", nowait = true, remap = false },
+    { "<leader>gn", "<cmd>Neogit<cr>", desc = "Neogit", nowait = true, remap = false },
+    { "<leader>go", "<cmd>FzfLua git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
+    {
+      "<leader>gp",
+      "<cmd>Gitsigns preview_hunk_inline<cr>",
+      desc = "Preview Hunk Inline",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk", nowait = true, remap = false },
+    { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage Hunk", nowait = true, remap = false },
+    { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>", desc = "Undo Stage Hunk", nowait = true, remap = false },
+    {
+      "<leader>nd",
+      "lua require('notify').dismiss({ silent = true, pending = true })",
+      desc = "Delete all Notifications",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>oR", "<cmd>OverseerRestartLast<CR>", desc = "Overseer Restart last cmd", nowait = true, remap = false },
+    { "<leader>od", "<cmd>OverseerClose<CR>", desc = "Overseer close", nowait = true, remap = false },
+    { "<leader>oo", "<cmd>OverseerOpen<CR>", desc = "Overseer open", nowait = true, remap = false },
+    { "<leader>oq", "<cmd>OverseerQuickAction<CR>", desc = "Overseer quick action", nowait = true, remap = false },
+    { "<leader>or", "<cmd>OverseerRun<CR>", desc = "Overseer run", nowait = true, remap = false },
+    { "<leader>ot", "<cmd>OverseerToggle<CR>", desc = "Overseer toggle", nowait = true, remap = false },
+    { "<leader>ow", "<cmd>WatchRun<CR>", desc = "Watch run", nowait = true, remap = false },
+    {
+      "<leader>sB",
+      "<cmd>lua require('fzf-lua').lines()<CR>",
+      desc = "fzf find in open buffer lines",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>sC", "<cmd>FzfLua colorschemes<cr>", desc = "Colorscheme", nowait = true, remap = false },
+    { "<leader>sH", "<cmd>Telescope heading<cr>", desc = "Documents headings", nowait = true, remap = false },
+    { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
+    { "<leader>sR", "<cmd>FzfLua registers<cr>", desc = "Registers", nowait = true, remap = false },
+    { "<leader>sS", "<cmd>FzfLua lsp_workspace_symbols<cr>", desc = "Workspace Symbols", nowait = true, remap = false },
+    {
+      "<leader>sb",
+      "<cmd>lua require('fzf-lua').blines()<CR>",
+      desc = "fzf find in current buffer lines",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>sc", "<cmd>FzfLua commands<cr>", desc = "Commands", nowait = true, remap = false },
+    {
+      "<leader>sd",
+      "<cmd>FzfLua lsp_document_diagnostics<cr>",
+      desc = "Docment diagnostics",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>se", "<cmd>Telescope symbols<cr>", desc = "Pick a Symbols", nowait = true, remap = false },
+    { "<leader>sf", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep in current buffer", nowait = true, remap = false },
+    { "<leader>sg", "<cmd>FzfLua grep_project<cr>", desc = "Grep project", nowait = true, remap = false },
+    { "<leader>sh", "<cmd>FzfLua helptags<cr>", desc = "Find Help", nowait = true, remap = false },
+    { "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "Keymaps", nowait = true, remap = false },
+    { "<leader>sl", "<cmd>FzfLua blines<cr>", desc = "current buffer lines", nowait = true, remap = false },
+    { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Search projects", nowait = true, remap = false },
+    { "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Document Symbols", nowait = true, remap = false },
+    { "<leader>st", "<cmd>FzfLua tabs<cr>", desc = "Open tabs", nowait = true, remap = false },
+    {
+      "<leader>sw",
+      '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+      desc = "Search current word",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>sx", "<cmd>FzfLua quickfix<cr>", desc = "quickfix list", nowait = true, remap = false },
+    { "<leader>sy", "<cmd>FzfLua loclist<cr>", desc = "location list", nowait = true, remap = false },
+    { "<leader>tH", "<cmd>Hardtime toggle<CR>", desc = "Toggle hardtime", nowait = true, remap = false },
+    {
+      "<leader>tP",
+      'lua require("precognition").toggle()<CR>',
+      desc = "Toggle precognition",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>tb",
+      "<cmd>Neotree source=buffers reveal=true action=focus position=float toggle=true<cr>",
+      desc = "Toggle buffer to right",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>tc",
+      "lua require('copilot.suggestion').toggle_auto_trigger()",
+      desc = "Toggle copilot auto suggestion",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>td", "<cmd>tabclose<CR>", desc = "Close Tab", nowait = true, remap = false },
+    { "<leader>th", "<cmd>tabprevious<CR>", desc = "Previous Tab", nowait = true, remap = false },
+    { "<leader>tl", "<cmd>tabnext<CR>", desc = "Next Tab", nowait = true, remap = false },
+    { "<leader>tn", "<cmd>tabnew<CR>", desc = "New Tab", nowait = true, remap = false },
+    { "<leader>ts", "<cmd>SymbolsOutline<cr>", desc = "Toggle Symbol-outline", nowait = true, remap = false },
+    { "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal", nowait = true, remap = false },
+    {
+      "<leader>txD",
+      "<cmd>TroubleToggle workspace_diagnostics<cr>",
+      desc = "Toggle workspace diagnostic",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>txR",
+      "<cmd>TroubleToggle lsp_references<cr>",
+      desc = "TroubleToggle lsp references",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>txd",
+      "<cmd>TroubleToggle document_diagnostics<cr>",
+      desc = "Toggle document diagnostic",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>txl", "<cmd>TroubleToggle loclist<cr>", desc = "Toggle loclist", nowait = true, remap = false },
+    { "<leader>txq", "<cmd>TroubleToggle quickfix<cr>", desc = "Toggle qickfix", nowait = true, remap = false },
+    { "<leader>txx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle", nowait = true, remap = false },
+    { "<leader>tz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode", nowait = true, remap = false },
+    { "<leader>wN", "<cmd>vnew<CR>", desc = "Vertical new window", nowait = true, remap = false },
+    { "<leader>wd", "<cmd>close<CR>", desc = "Close window", nowait = true, remap = false },
+    { "<leader>wh", "<C-w>h", desc = "Go to left window", nowait = true, remap = false },
+    { "<leader>wj", "<C-w>j", desc = "Go to down window", nowait = true, remap = false },
+    { "<leader>wk", "<C-w>k", desc = "Go to up window", nowait = true, remap = false },
+    { "<leader>wl", "<C-w>l", desc = "Go to right window", nowait = true, remap = false },
+    { "<leader>wn", "<cmd>new<CR>", desc = "New window", nowait = true, remap = false },
+    { "<leader>ws", group = "Window split", nowait = true, remap = false },
+    { "<leader>wsh", "<cmd>vsplit<CR>", desc = "Split window to left", nowait = true, remap = false },
+    { "<leader>wsj", "<cmd>split<CR>", desc = "Split window to down", nowait = true, remap = false },
+    { "<leader>wsk", "<cmd>split<CR>", desc = "Split window to up", nowait = true, remap = false },
+    { "<leader>wsl", "<cmd>vsplit<CR>", desc = "Split window to right", nowait = true, remap = false },
+    { "<leader>zM", "lua require('ufo').closeAllFolds<cr>", desc = "Close all folds", nowait = true, remap = false },
+    { "<leader>zR", "lua require('ufo').openAllFolds<cr>", desc = "Open all folds", nowait = true, remap = false },
+    {
+      "<leader>zr",
+      "lua require('ufo').openFoldsExceptKinds<cr>",
+      desc = "Open all folds except kinds",
+      nowait = true,
+      remap = false,
+    },
+    { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode", nowait = true, remap = false },
+    {
+      "<leader>ha",
+      function()
+        require("harpoon"):list():add()
+      end,
+      desc = "harpoon add",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>hr",
+      function()
+        require("harpoon"):list():remove()
+      end,
+      desc = "harpoon remove",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>hm",
+      function()
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end,
+      desc = "harpoon menu",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>hn",
+      function()
+        require("harpoon"):list():next()
+      end,
+      desc = "harpoon next file",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>hp",
+      function()
+        require("harpoon"):list():prev()
+      end,
+      desc = "harpoon prev file",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>h1",
+      function()
+        require("harpoon"):list():select(1)
+      end,
+      desc = "harpoon file 1",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>h2",
+      function()
+        require("harpoon"):list():select(2)
+      end,
+      desc = "harpoon file 2",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>h3",
+      function()
+        require("harpoon"):list():select(3)
+      end,
+      desc = "harpoon file 3",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>h4",
+      function()
+        require("harpoon"):list():select(4)
+      end,
+      desc = "harpoon file 4",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>h5",
+      function()
+        require("harpoon"):list():select(5)
+      end,
+      desc = "harpoon file 5",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>h6",
+      function()
+        require("harpoon"):list():select(6)
+      end,
+      desc = "harpoon file 6",
+      nowait = true,
+      remap = false,
     },
   },
-
-  config = function(_, opts)
-    local wk = require("which-key")
-    wk.setup(opts)
-    wk.register(opts.mappings, opts.defaults)
-  end,
 }
