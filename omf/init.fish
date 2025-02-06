@@ -108,7 +108,7 @@ set -gx alarc $alacritt/alacritty.toml
 set -gx kitty $config/kitty
 
 # set -gx nvim $config/nvim
-set -gx nvim $dropbox/dotfiles/nvim
+set -gx nvim $config/nvim
 abbr -a cdv cd $nvim
 abbr -a cdd cd $dropbox
 
