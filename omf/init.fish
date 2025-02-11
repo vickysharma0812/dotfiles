@@ -65,34 +65,36 @@ if type -q nvim
 end
 
 
-# set -gx FZF_DEFAULT_OPTS "\
-# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+# set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
+#   --highlight-line \
+#   --info=inline-right \
+#   --ansi \
+#   --layout=reverse \
+#   --border=none
+#   --color=bg+:#283457 \
+#   --color=bg:#16161e \
+#   --color=border:#27a1b9 \
+#   --color=fg:#c0caf5 \
+#   --color=gutter:#16161e \
+#   --color=header:#ff9e64 \
+#   --color=hl+:#2ac3de \
+#   --color=hl:#2ac3de \
+#   --color=info:#545c7e \
+#   --color=marker:#ff007c \
+#   --color=pointer:#ff007c \
+#   --color=prompt:#2ac3de \
+#   --color=query:#c0caf5:regular \
+#   --color=scrollbar:#27a1b9 \
+#   --color=separator:#ff9e64 \
+#   --color=spinner:#ff007c \
+# "
 
-set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
-  --highlight-line \
-  --info=inline-right \
-  --ansi \
-  --layout=reverse \
-  --border=none
-  --color=bg+:#283457 \
-  --color=bg:#16161e \
-  --color=border:#27a1b9 \
-  --color=fg:#c0caf5 \
-  --color=gutter:#16161e \
-  --color=header:#ff9e64 \
-  --color=hl+:#2ac3de \
-  --color=hl:#2ac3de \
-  --color=info:#545c7e \
-  --color=marker:#ff007c \
-  --color=pointer:#ff007c \
-  --color=prompt:#2ac3de \
-  --color=query:#c0caf5:regular \
-  --color=scrollbar:#27a1b9 \
-  --color=separator:#ff9e64 \
-  --color=spinner:#ff007c \
-"
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
+--color=selected-bg:#bcc0cc \
+--multi"
 
 set -gx config $HOME/.config/
 abbr -a cdc cd $config
