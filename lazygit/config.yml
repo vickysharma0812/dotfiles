@@ -11,17 +11,25 @@ gui:
   sidePanelWidth: 0.3333
   expandFocusedSidePanel: false
   mainPanelSplitMode: flexible
-  theme:
-    activeBorderColor:
-      - "#89ddff"
-      - bold
-    inactiveBorderColor:
-      - "#565f89"
-    optionsTextColor:
-      - "#3d59a1"
-    selectedLineBgColor:
-      - "#292e42"
-      - bold
   commitLength:
     show: true
   skipNoStagedFilesWarning: false
+  theme:
+    lightTheme: false 
+    activeBorderColor:
+      - "#40a02b" # Green
+      - bold
+    inactiveBorderColor:
+      - "#4c4f69" # Text
+    optionsTextColor:
+      - "#1e66f5" # Blue
+    selectedLineBgColor:
+      - "#ccd0da" # Surface0
+    selectedRangeBgColor:
+      - "#ccd0da" # Surface0
+    cherryPickedCommitBgColor:
+      - "#179299" # Teal
+    cherryPickedCommitFgColor:
+      - "#1e66f5" # Blue
+    unstagedChangesColor:
+      - red       # Red
