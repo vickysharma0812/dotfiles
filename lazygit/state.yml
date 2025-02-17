@@ -1,8 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
+    - /home/easifem/.config/nvim
     - /home/easifem/Documents/quarto-lectures/sdee
     - /home/easifem/Dropbox/dotfiles
-    - /home/easifem/.config/nvim
     - /home/easifem/Documents/quarto-lectures/basics-fem
     - /home/easifem/Documents/quarto-lectures/engineering-math
     - /home/easifem/Documents/quarto-lectures/basis-fem
