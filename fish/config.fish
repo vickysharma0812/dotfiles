@@ -89,7 +89,7 @@ end
 #   --color=spinner:#ff007c \
 # "
 
-set -Ux FZF_DEFAULT_OPTS "\
+set -Ux FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
 --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
 --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
 --color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
@@ -98,6 +98,8 @@ set -Ux FZF_DEFAULT_OPTS "\
 
 set -gx config $HOME/.config/
 abbr -a cdc cd $config
+
+set -gx down $HOME/Downloads/
 
 set -gx tmux $HOME/.config/tmux/
 set -gx tmuxrc $HOME/.config/tmux/tmux.conf
@@ -131,23 +133,16 @@ set -gx tests $easifem/easifem-tests
 set -gx kernels $easifem/easifem-kernels/
 set -gx elasticity $easifem/easifem-elasticity/
 set -gx acoustic $easifem/easifem-acoustic/
-set -gx vikas $HOME/Documents/Vikas
+set -gx website $HOME/Documents/vickysharma0812.github.io/
 set -gx easifemDocs $HOME/Documents/easifem.github.io/
 set -gx docs $easifemDocs/docs/docs-api
 set -gx apps $easifem/apps
 set -gx EASIFEM_TEST_DIR $tests
+set -gx lectures $HOME/Documents/quarto-lectures/
+set -gx lyxdocs $HOME/Documents/lyx/
+set -gx papers $HOME/Documents/papers/
+set -gx books $HOME/Documents/books/
 set -gx onedrive ~/OneDrive
-set -gx know ~/OneDrive/Knowledge
-set -gx fem ~/OneDrive/Knowledge/FEM
-set -gx lectures ~/OneDrive/Knowledge/LectureNotes
-set -gx sim ~/OneDrive/Publications/Simulations/
-set -gx pub ~/OneDrive/Publications
-set -gx subpub ~/OneDrive/Publications/Submitted/
-set -gx onpub ~/OneDrive/Publications/Ongoing/
-set -gx notes $lectures/Notes/
-set -gx myweb ~/OneDrive/Knowledge/LectureNotes/VikasSharma
-set -gx play ~/OneDrive/Playground/
-set -gx lyxdocs ~/Documents/lyx/
 
 abbr -a edc easifem dev classes
 abbr -a edb easifem dev base
@@ -236,12 +231,12 @@ end
 # We suggest using this ya shell wrapper that provides the ability to
 # change the current working directory when exiting Yazi.
 function yy
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    yazi $argv --cwd-file="$tmp"
-    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-        cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
 end
 
 # Archlinux

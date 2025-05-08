@@ -1,6 +1,14 @@
 lastupdatecheck: 0
 recentrepos:
+    - /home/easifem/Documents/easifem.github.io
     - /home/easifem/.config/nvim
+    - /home/easifem/Documents/vickysharma0812.github.io
+    - /home/easifem/Dropbox/easifem/easifem-base
+    - /home/easifem/Dropbox/easifem/easifem-classes
+    - /home/easifem/Dropbox/easifem/lis
+    - /home/easifem/Dropbox/easifem/config
+    - /home/easifem/Documents/ILAS/2025-First-Sem-SFE/SFE-Webnotes
+    - /home/easifem/Documents/ILAS/2025-First-Sem-RDP/RDP-Webnotes
     - /home/easifem/Documents/quarto-lectures/sdee
     - /home/easifem/Dropbox/dotfiles
     - /home/easifem/Documents/quarto-lectures/basics-fem
@@ -8,15 +16,12 @@ recentrepos:
     - /home/easifem/Documents/quarto-lectures/basis-fem
     - /home/easifem/Documents/quarto-lectures/math-fem
     - /home/easifem/Documents/quarto-lectures/spectral-fem
-    - /home/easifem/Dropbox/easifem/easifem-classes
-    - /home/easifem/Dropbox/easifem/easifem-base
-    - /home/easifem/Documents/easifem.github.io
 startuppopupversion: 5
-lastversion: 0.45.2
+lastversion: 0.50.0
 customcommandshistory: []
 hidecommandlog: false
 ignorewhitespaceindiffview: false
-diffcontextsize: 3
+diffcontextsize: 5
 renamesimilaritythreshold: 50
 localbranchsortorder: recency
 remotebranchsortorder: alphabetical

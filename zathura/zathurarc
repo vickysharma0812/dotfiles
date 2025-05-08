@@ -11,6 +11,9 @@ set selection-clipboard clipboard
 set render-loading "false"
 set window-width 960
 set window-height 1080
+set window-title-basename "true"
+set render-loading              true
+set adjust-open width
 
 map <Space> toggle_index
 map w recolor
@@ -18,55 +21,12 @@ unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 map q quit
-# Dracula color theme for Zathura
-# Swaps Foreground for Background to get a light version if the user prefers
 
 #
-# https://codeberg.org/tylerwolf/dotfiles-guix/src/branch/main/zathura/zathurarc
-# 
-
-set window-title-basename "true"
-set selection-clipboard "clipboard"
-
-set notification-error-fg       "#dcd7ba"
-set notification-warning-fg     "#44475a"
-set notification-bg             "#1f1f28"
-set notification-fg             "#dcd7ba"
-
-set completion-bg               "#1f1f28"
-set completion-group-bg         "#1f1f28"
-set completion-highlight-bg     "#44475a"
-set completion-highlight-fg     "#dcd7ba"
-
-set index-bg                    "#1f1f28"
-set index-fg                    "#dcd7ba"
-set index-active-fg             "#dcd7ba"
-
-set inputbar-bg                 "#1f1f28"
-set inputbar-fg                 "#dcd7ba"
-set statusbar-bg                "#1f1f28"
-set statusbar-fg                "#dcd7ba"
-
-set highlight-color             "#2d4f67"
-set highlight-active-color      "#dcd7ba"
-
-set default-bg                  "#1f1f28"
-set default-fg                  "#dcd7ba"
-
-set render-loading              true
-set render-loading-fg           "#1f1f28"
-set render-loading-bg           "#dcd7ba"
-
+# color theme
 #
-# Recolor mode settings
-#
+include ./themes/catppuccin-latte
 
-set recolor-lightcolor          "#1f1f28"
-set recolor-darkcolor           "#dcd7ba"
 
-#
-# Startup options
-#
-set adjust-open width
-set recolor true
+
 
