@@ -64,7 +64,6 @@ if type -q nvim
     set -gx EDITOR $(which nvim)
 end
 
-
 # set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
 #   --highlight-line \
 #   --info=inline-right \
@@ -89,12 +88,12 @@ end
 #   --color=spinner:#ff007c \
 # "
 
-set -Ux FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
---color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
---color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
---color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
---color=selected-bg:#bcc0cc \
---multi"
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
+--color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
+--color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
+--color=selected-bg:#BCC0CC \
+--color=border:#CCD0DA,label:#4C4F69"
 
 set -gx config $HOME/.config/
 abbr -a cdc cd $config
@@ -116,7 +115,6 @@ set -gx nvim $config/nvim
 abbr -a cdv cd $nvim
 abbr -a cdd cd $dropbox
 
-
 set -gx yazi $config/yazi
 set -gx zellij $config/zellij
 set -gx awesome $config/awesome
@@ -126,13 +124,13 @@ set -gx dot $dropbox/dotfiles
 set -gx VIMTEX_OUTPUT_DIRECTORY build
 
 set -gx easifem $dropbox/easifem
-set -gx base $easifem/easifem-base
-set -gx classes $easifem/easifem-classes
-set -gx materials $easifem/easifem-materials/
-set -gx tests $easifem/easifem-tests
-set -gx kernels $easifem/easifem-kernels/
-set -gx elasticity $easifem/easifem-elasticity/
-set -gx acoustic $easifem/easifem-acoustic/
+set -gx base $easifem/base
+set -gx classes $easifem/classes
+set -gx materials $easifem/materials/
+set -gx tests $easifem/tests
+set -gx kernels $easifem/kernels/
+set -gx elasticity $easifem/elasticity/
+set -gx acoustic $easifem/acoustic/
 set -gx website $HOME/Documents/vickysharma0812.github.io/
 set -gx easifemDocs $HOME/Documents/easifem.github.io/
 set -gx docs $easifemDocs/docs/docs-api
@@ -161,11 +159,9 @@ function v
     nvim $argv
 end
 
-
 function fishme
     source $fishrc
 end
-
 
 # function rebuid_easifem
 #     easifem clean base classes materials kernels $argv
@@ -193,7 +189,6 @@ end
 if test -d /opt/eww/eww-v0.4.0
     set PATH $PATH /opt/eww/eww-v0.4.0
 end
-
 
 ## rust
 set PATH $PATH "$HOME/.cargo/bin"
@@ -231,12 +226,12 @@ end
 # We suggest using this ya shell wrapper that provides the ability to
 # change the current working directory when exiting Yazi.
 function yy
-	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		builtin cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
 end
 
 # Archlinux
@@ -287,7 +282,6 @@ if type -q $HOME/Softwares/Odin/odin
     set PATH $PATH $HOME/Softwares/Odin
 end
 
-
 if type -q /usr/bin/perl
     set -gx PERL5LIB $PERL5LIB /usr/bin/perl
 end
@@ -311,7 +305,6 @@ if type -q ~/anaconda3/bin/conda
 end
 # <<< conda initialize <<<
 
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if test -f /home/easifem/miniconda3/bin/conda
@@ -323,7 +316,6 @@ if test -f /home/easifem/miniconda3/etc/fish/conf.d/conda.fish
 end
 # <<< conda initialize <<<
 
-
 #set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/easifem/.ghcup/bin # ghcup-env
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 set -gx PATH $HOME/.cabal/bin $PATH /Users/easifem/.ghcup/bin # ghcup-env
@@ -334,6 +326,5 @@ if not string match -q -- $PNPM_HOME $PATH
     set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
-
 
 set onedrive ~/OneDrive
