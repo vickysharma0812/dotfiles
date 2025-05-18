@@ -1,11 +1,15 @@
 lastupdatecheck: 0
 recentrepos:
-    - /home/easifem/Documents/vickysharma0812.github.io
     - /home/easifem/Documents/easifem.github.io
+    - /home/easifem/Dropbox/easifem/oneDimElasticity
     - /home/easifem/.config/nvim
+    - /home/easifem/Dropbox/easifem/classes
+    - /home/easifem/Dropbox/easifem/base
+    - /home/easifem/Dropbox/easifem/authors
+    - /home/easifem/Dropbox/dotfiles
+    - /home/easifem/Documents/vickysharma0812.github.io
     - /home/easifem/Documents/ILAS/2025-First-Sem-SFE/SFE-Webnotes
     - /home/easifem/Dropbox/easifem/config
-    - /home/easifem/Dropbox/dotfiles
     - /home/easifem/Dropbox/easifem/lis
     - /home/easifem/Documents/ILAS/2025-First-Sem-RDP/RDP-Webnotes
     - /home/easifem/Documents/quarto-lectures/sdee

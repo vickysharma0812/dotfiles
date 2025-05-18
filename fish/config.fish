@@ -97,6 +97,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 
 set -gx config $HOME/.config/
 abbr -a cdc cd $config
+set -gx i3 $config/i3/
 
 set -gx down $HOME/Downloads/
 
@@ -124,6 +125,7 @@ set -gx dot $dropbox/dotfiles
 set -gx VIMTEX_OUTPUT_DIRECTORY build
 
 set -gx easifem $dropbox/easifem
+set -gx easiconfig $config/easifem
 set -gx base $easifem/base
 set -gx classes $easifem/classes
 set -gx materials $easifem/materials/
