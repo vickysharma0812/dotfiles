@@ -5,3 +5,5 @@ fish/fish_variables
 *.bk
 fish/fish_variables*
 nvim/lazy-lock.json
+
+tmux/plugins/
